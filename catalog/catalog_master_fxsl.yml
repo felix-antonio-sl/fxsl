@@ -19,8 +19,50 @@ Catalog:
     #   file: "knowledge/core/guide_core_001_example_fxsl.yml"
     #   status: draft
 
-  Agents: []
+  Agents:
     # Add your agents here
+    - urn: "urn:knowledge:fxsl:agents:pensador-generador:1.0.0"
+      title: "Pensador-Generador"
+      file: "agents/pensador-generador/agent_pensador_generador.yaml"
+      source: "knowledge/domains/inteligencia/pensador-analitico-generativo.md"
+      status: active
+      description: "Pensador Analítico-Generador: claridad operable desde la complejidad."
+
+    - urn: "urn:knowledge:fxsl:agents:ingeniero-sistemas-composicional:1.0.0"
+      title: "Ingeniero-Sistemas-Composicional"
+      file: "agents/ingeniero-sistemas-composicional/agent_ingeniero_sistemas_composicional.yaml"
+      status: active
+      description: "Ingeniero-Arquitecto de Sistemas Composicionales: descomposición jerárquica y composición categórica de sistemas complejos."
+
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.0.0"
+      title: "Arquitecto-Categorico"
+      file: "agents/arquitecto-categorico/agent_arquitecto_categorico.yaml"
+      status: active
+      description: "Arquitecto Categórico de dominios de datos: modelado con teoría de categorías y generación de artefactos técnicos (esquemas, APIs, grafos)."
+
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-sistemas-informacion:1.0.0"
+      title: "Arquitecto-Sistemas-Informacion"
+      file: "agents/arquitecto-sistemas-informacion/agent_arquitecto_sistemas_informacion.yaml"
+      status: active
+      description: "Arquitecto de Sistemas de Información: IS como Work Systems de procesamiento de información, con datos como categorías."
+
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-automatizacion-organizacional:1.0.0"
+      title: "Arquitecto-Automatizacion-Organizacional"
+      file: "agents/arquitecto-automatizacion-organizacional/agent_arquitecto_automatizacion_organizacional.yaml"
+      status: active
+      description: "Arquitecto de Automatización Organizacional: modelar, diagnosticar y transformar organizaciones mediante automatización e IA."
+
+    - urn: "urn:knowledge:fxsl:agents:ingeniero-software-composicional:2.0.0"
+      title: "Ingeniero-Software-Composicional"
+      file: "agents/ingeniero-software-composicional/agent_ingeniero_software_composicional.yaml"
+      status: active
+      description: "Ingeniero de Software Composicional: diseño, arquitectura, código y tests bajo un paradigma categórico end-to-end."
+
+    - urn: "urn:knowledge:fxsl:agents:dispatcher-fxsl:1.0.0"
+      title: "Dispatcher-FXSL"
+      file: "agents/dispatcher-fxsl/agent_dispatcher_fxsl.yaml"
+      status: active
+      description: "Meta-agente dispatcher del ecosistema FXSL: clasifica solicitudes y recomienda el agente especializado adecuado."
 
   Schemas: []
     # Add your schemas here
@@ -29,9 +71,9 @@ Catalog:
     # Add domain-specific knowledge here
 
 Statistics:
-  total_artifacts: 0
+  total_artifacts: 7
   core_guides: 0
-  agents: 0
+  agents: 7
   schemas: 0
   domains: 0
-  last_updated: "2025-11-25"
+  last_updated: "2025-11-27"
