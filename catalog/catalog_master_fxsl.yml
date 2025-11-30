@@ -64,16 +64,109 @@ Catalog:
       status: active
       description: "Meta-agente dispatcher del ecosistema FXSL: clasifica solicitudes y recomienda el agente especializado adecuado."
 
+    - urn: "urn:knowledge:fxsl:agents:abogado-legislacion-medica:1.0.0"
+      title: "Abogado-Legislacion-Medica"
+      file: "agents/abogado-legislacion-medica/agent_abogado_legislacion_medica.yaml"
+      status: active
+      description: "Abogado especialista en legislación del trabajo médico en Chile."
+
   Schemas: []
     # Add your schemas here
+  Domains:
+    - urn: "urn:knowledge:fxsl:med:legislacion:index:1.0.0"
+      title: "Legislación Médica - Índice General"
+      file: "knowledge/domains/medicina/legislacion/kb_med_000_legislacion_index_koda.yml"
+      status: active
 
-  Domains: []
-    # Add domain-specific knowledge here
+    - urn: "urn:knowledge:fxsl:med:legislacion:intro_estatutos:1.0.0"
+      title: "Introducción a los Estatutos y Jerarquía Normativa"
+      file: "knowledge/domains/medicina/legislacion/kb_med_001_intro_estatutos_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:deberes_prohibiciones:1.0.0"
+      title: "Derechos, Deberes, Prohibiciones e Incompatibilidades"
+      file: "knowledge/domains/medicina/legislacion/kb_med_002_deberes_prohibiciones_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:ingreso_carrera:1.0.0"
+      title: "Ingreso a la Vida Laboral y Carrera Funcionaria"
+      file: "knowledge/domains/medicina/legislacion/kb_med_003_ingreso_carrera_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:jornada_calificaciones:1.0.0"
+      title: "Jornada de Trabajo y Calificaciones"
+      file: "knowledge/domains/medicina/legislacion/kb_med_004_jornada_calificaciones_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:remuneraciones:1.0.0"
+      title: "Remuneraciones y Asignaciones"
+      file: "knowledge/domains/medicina/legislacion/kb_med_005_remuneraciones_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:acoso_laboral:1.0.0"
+      title: "Acoso Laboral y Sexual"
+      file: "knowledge/domains/medicina/legislacion/kb_med_006_acoso_laboral_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:responsabilidad_admin:1.0.0"
+      title: "Responsabilidad Administrativa y Sumarios"
+      file: "knowledge/domains/medicina/legislacion/kb_med_007_responsabilidad_admin_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:terminacion:1.0.0"
+      title: "Terminación de la Relación Laboral/Funcionarial"
+      file: "knowledge/domains/medicina/legislacion/kb_med_008_terminacion_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:maternidad:1.0.0"
+      title: "Protección a la Maternidad"
+      file: "knowledge/domains/medicina/legislacion/kb_med_009_maternidad_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:contratacion_publica:1.0.0"
+      title: "Contratación Pública y Modalidades de Vínculo"
+      file: "knowledge/domains/medicina/legislacion/kb_med_010_contratacion_publica_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:feriados_permisos:1.0.0"
+      title: "Feriados, Permisos y Comisiones de Servicio"
+      file: "knowledge/domains/medicina/legislacion/kb_med_011_feriados_permisos_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:derechos_especiales:1.0.0"
+      title: "Derechos Especiales: Guardia Nocturna e Incentivo al Retiro"
+      file: "knowledge/domains/medicina/legislacion/kb_med_012_derechos_especiales_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:formacion_especialistas:1.0.0"
+      title: "Formación de Especialistas, Becas y PAO"
+      file: "knowledge/domains/medicina/legislacion/kb_med_013_formacion_especialistas_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:ley_21643:1.0.0"
+      title: "Ley 21.643 - Ley Karin (Acoso y Violencia Laboral)"
+      file: "knowledge/domains/medicina/legislacion/kb_med_090_ley_21643_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:ley_15076:1.0.0"
+      title: "Ley 15.076 - Estatuto de los Profesionales Funcionarios de los Servicios de Salud"
+      file: "knowledge/domains/medicina/legislacion/kb_med_091_ley_15076_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:ley_19664:1.0.0"
+      title: "Ley 19.664 - Normas Especiales para los Profesionales Funcionarios de los Servicios de Salud"
+      file: "knowledge/domains/medicina/legislacion/kb_med_092_ley_19664_koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:med:legislacion:confianza_legitima:1.0.0"
+      title: "Principio de Confianza Legítima en Contratas Médicas"
+      file: "knowledge/domains/medicina/legislacion/kb_med_014_confianza_legitima_koda.yml"
+      status: active
 
 Statistics:
-  total_artifacts: 7
+  total_artifacts: 26
   core_guides: 0
-  agents: 7
+  agents: 8
   schemas: 0
-  domains: 0
-  last_updated: "2025-11-27"
+  domains: 18
+  last_updated: "2025-11-29"
