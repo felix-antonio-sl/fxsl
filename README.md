@@ -1,6 +1,6 @@
 # fxsl
 
-[![KODA Compliant](https://img.shields.io/badge/KODA-Compliant-blue)](https://github.com/koda-framework/koda)
+[![KODA Compliant](https://img.shields.io/badge/KODA-Compliant-blue)](https://github.com/felix-antonio-sl/koda)
 
 > Personal knowledge base and learnings
 
@@ -32,8 +32,8 @@ Example URN: `urn:knowledge:fxsl:core:example:1.0.0`
 
 ## Federation
 
-This repository is part of the [KODA Federation](https://github.com/koda-framework/koda).
+This repository is part of the [KODA Federation](https://github.com/felix-antonio-sl/koda).
 
 ---
 
-*Built with [KODA Framework](https://github.com/koda-framework/koda) — Knowledge-Oriented Design Architecture*
+*Built with [KODA Framework](https://github.com/felix-antonio-sl/koda) — Knowledge-Oriented Design Architecture*
