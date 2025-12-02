@@ -70,6 +70,12 @@ Catalog:
       status: active
       description: "Abogado especialista en legislación del trabajo médico en Chile."
 
+    - urn: "urn:knowledge:fxsl:agents:medico-urgencias:1.1.0"
+      title: "Medico-Urgencias"
+      file: "agents/medico-urgencias/agent_medico_urgencias.yaml"
+      status: active
+      description: "Asistente médico AI especializado en urgencias en Chile, con parsimonia extrema y foco en decisiones críticas."
+
   Schemas: []
     # Add your schemas here
   Domains:
@@ -164,9 +170,9 @@ Catalog:
       status: active
 
 Statistics:
-  total_artifacts: 26
+  total_artifacts: 27
   core_guides: 0
-  agents: 8
+  agents: 9
   schemas: 0
   domains: 18
-  last_updated: "2025-11-29"
+  last_updated: "2025-11-30"

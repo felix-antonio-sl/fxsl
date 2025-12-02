@@ -10,8 +10,8 @@ _meta:
 
 self:
   namespace: "fxsl"
-  repository: "github.com/Felix Sanhueza/fxsl"
-  visibility: public
+  repository: "github.com/felix-antonio-sl/fxsl"
+  visibility: private
   maintainer: "maintainer@example.com"
 
 namespaces:
