@@ -6,7 +6,7 @@
 
 ## Structure
 
-```
+```text
 fxsl/
 ├── knowledge/
 │   ├── core/           # Core guides and specifications
