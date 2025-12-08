@@ -1,0 +1,137 @@
+# KODA Knowledge Artifact: Algebraic Databases
+# Domain: Category Theory / Databases
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:algebraic-databases:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/foundations/algebraic_databases.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-ADB-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "Initial KODA/Spec skeleton for Algebraic Databases."
+Ctx: "Notas estructuradas sobre profunctors, bimodules y proarrow equipments aplicados a bases de datos."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar la estructura algebraica de bases de datos: profunctors, bimodules y proarrow equipments."
+Obj: "Servir de fuente formal para CM-INTEGRATION-ENGINE y el diseño de uber-queries categóricas."
+
+Source:
+  Title: "Algebraic Databases"
+  Authors: ["Patrick Schultz", "David I. Spivak", "Christina Vasilakopoulou", "Ryan Wisnesky"]
+  Ctx: "Marco algebraico/categórico para bases de datos: profunctors, bimodules, proarrow equipments y uber-queries."
+
+Related_Concepts:
+  XRef:
+    - "urn:knowledge:fxsl:cat:unified-multimodel:1.0.0#UM-QUERY-AS-FUNCTOR"
+  Notes: |
+    - Los profunctors generalizan las queries multi-model como morfismos horizontales.
+    - El proarrow equipment es el marco teórico para CM-INTEGRATION-ENGINE.
+    - Uber-queries permiten composición de consultas cross-schema.
+
+Advanced_Structures:
+  - ID: PROFUNCTOR
+    Def: "Profuntor M: C ⇸ D = funtor M: C^op × D → Set."
+    Interpretation: "Generaliza funtores; modela relaciones entre categorías (por ejemplo, queries)."
+    Use: "Describir consultas y correspondencias entre esquemas de bases de datos."
+
+  - ID: BIMODULE
+    Def: "Bimodule = profuntor estructurado en la doble categoría Data (esquemas, mapeos, módulos)."
+    Components:
+      Objects: "Esquemas (categorías)."
+      Vertical_Morphisms: "Funtores (mapeos de esquema)."
+      Horizontal_Morphisms: "Profuntores/módulos (queries)."
+    Use: "Encapsular consultas como entidades composables."
+    Ref: PROFUNCTOR
+
+  - ID: PROARROW-EQUIPMENT
+    Def: "Proarrow equipment = doble categoría que organiza esquemas, mapeos y profuntores."
+    Structure:
+      Objects: "Esquemas."
+      Vertical_Morphisms: "Mapeos de esquemas (funtores)."
+      Horizontal_Morphisms: "Profunctors/Bimodules (queries)."
+    Use: "Servir de base para query rewriting y composición de migraciones complejas."
+    Ref: BIMODULE
+
+Uber_Queries:
+  - ID: UBER-QUERY
+    Def: "Uber-query = consulta expresada como profuntor composable dentro del equipment."
+    Properties:
+      - "Composicional: se compone vía composición de profuntores (M;N)."
+      - "Con semántica precisa: evaluación mediante Γ_M."
+      - "Verificable: permite pruebas algebraicas sobre la query."
+    Use: "Diseñar pipelines de consultas sobre múltiples esquemas con garantías formales."
+    Ref: [PROFUNCTOR, PROARROW-EQUIPMENT]
+
+Query_Evaluation:
+  - ID: GAMMA-EVALUATION
+    Def: "Γ_M(I) = ∫^c M(c,−) × I(c): evalúa un profuntor M sobre una instancia I."
+    Interpretation: "Aplicar una uber-query M a datos concretos I."
+    Use: "Dar semántica a consultas categóricas sobre instancias."
+
+  - ID: QUERY-COMPOSITION
+    Def: "Composición de queries (M;N)(a,c) = ∫^b M(a,b) × N(b,c)."
+    Use: "Construir consultas complejas a partir de bloques simples de forma algebraica."
+    Ref: GAMMA-EVALUATION
+
+Theoretical_Foundations:
+  - ID: KAN-EXTENSION
+    Def: "Extensión de Kan (Lan_F, Ran_F): mejor aproximación universal a extender funtores a lo largo de F."
+    Types:
+      - "Left Kan extension (Lan_F): generaliza Σ_F."
+      - "Right Kan extension (Ran_F): generaliza Π_F."
+    Use: "Modelar transformaciones complejas schema+data con propiedades universales."
+
+  - ID: KAN-LIFT
+    Def: "Kan lift: problema inverso de extensión; levantar estructuras a lo largo de un funtor."
+    Condition: "Requiere usualmente que el funtor sea fully faithful para preservar semántica."
+    Use: "Transformaciones multi-model y cambios de representación con garantías."
+
+  - ID: YONEDA-EMBEDDING
+    Def: "Embedding de Yoneda y: C → [C^op, Set] donde y(A) = Hom(−, A)."
+    Property: "y es fully faithful: C se embebe en su categoría de presheaves."
+    Interpretation: "Todo objeto se representa fielmente por sus relaciones con otros objetos."
+    Use: "Fundamenta el diseño por interfaces y la representación de queries como presheaves."
+    Proc: |
+      1. Dado objeto A en C, construir presheaf y(A) = Hom(−, A).
+      2. Para morfismo f: A→B, y(f) es transformación natural Hom(−,A)→Hom(−,B).
+      3. El funtor y preserva y refleja isomorfismos: A≅B en C sii y(A)≅y(B).
+      4. Usar para: representar schemas como presheaves, diseñar APIs por comportamiento.
+    XRef: "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#YONEDA-LEMMA"

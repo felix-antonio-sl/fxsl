@@ -1,0 +1,129 @@
+# KODA Knowledge Artifact: Coalgebras for Software Engineering
+# Domain: Category Theory / Behavior & State
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:coalgebras:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/dynamics/coalgebras.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-COALG-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "KODA/Spec content for Coalgebras with Proc and software examples."
+Ctx: "Notas estructuradas sobre coalgebras, bisimulación y comportamiento observable para el Arquitecto Categórico."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss.
+    LEXICON: Act->Action, Cond->Condition, Ctx->Context, Def->Definition, Ex->Example, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, Req->Requirement, Warn->Warning, Just->Justification
+    REFERENCE POLICY: Ref: internal only. XRef: external URN only.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar el enfoque coalgebraico para modelar sistemas orientados a comportamiento."
+Obj: "Servir de fuente formal para CM-BEHAVIOR-ENGINE en análisis de equivalencia y sustitución de componentes."
+
+Source:
+  Title: "Coalgebra for the Working Software Engineer"
+  Authors: ["Luís Barbosa"]
+  Ctx: "Introducción práctica a coalgebras como modelo para sistemas orientados a estado y comportamiento."
+
+Core_Concepts:
+  - ID: COALGEBRA-DEF
+    Def: "F-coalgebra = par (U, c: U→F(U)) donde U es espacio de estados y F es funtor de interfaz."
+    Components:
+      U: "Espacio de estados (carrier oculto)."
+      F: "Funtor que describe el tipo de observaciones/transiciones."
+      c: "Morfismo de estructura que asigna a cada estado su observación y próximo estado."
+    Principle: "Lo que importa es cómo se comporta el sistema, no cómo está representado internamente."
+
+  - ID: INTERFACE-FUNCTORS
+    Def: "Funtores F típicos para describir interfaces de sistemas."
+    Patterns:
+      - ID: FUNCTOR-STREAM
+        Formula: "F(U) = Out × U"
+        Interpretation: "Secuencias infinitas de salidas (streams, logs)."
+      - ID: FUNCTOR-AUTOMATON
+        Formula: "F(U) = (Out × U)^In"
+        Interpretation: "Máquinas de Mealy / autómatas con inputs y outputs."
+      - ID: FUNCTOR-OOP
+        Formula: "F(U) = Π_{m∈M}(Result_m × U)"
+        Interpretation: "Objetos orientados a métodos (OOP)."
+    Ref: COALGEBRA-DEF
+
+Behavioral_Equivalence:
+  - ID: BISIMULATION
+    Def: "Bisimulación R ⊆ U×U: relación tal que estados relacionados producen comportamientos indistinguibles bajo c."
+    Formal: "Si u₁ R u₂ entonces F(R)(c(u₁), c(u₂)) se mantiene."
+    Interpretation: "Equivalencia observacional más fina que isomorfismo de estados internos."
+    Use: "Determinar cuándo dos componentes son sustituibles sin cambiar comportamiento externo."
+    Ref: [COALGEBRA-DEF, INTERFACE-FUNCTORS]
+
+  - ID: FINAL-COALGEBRA
+    Def: "Coalgebra final ν_F = objeto terminal en la categoría de F-coalgebras."
+    Property: "Para toda coalgebra (U,c) existe único morfismo unfold: U→ν_F que preserva estructura."
+    Interpretation: "Espacio de todos los comportamientos posibles de tipo F."
+    Use: "Abstraer estado interno y trabajar solo con comportamiento observable (p.ej. streams infinitos)."
+    Ref: BISIMULATION
+
+Reasoning_Principles:
+  - ID: COINDUCTION
+    Def: "Coinducción = técnica de prueba dual a la inducción para demostrar igualdad de comportamientos infinitos."
+    Proc: |
+      1. Proponer una relación R entre estados candidatos a ser equivalentes.
+      2. Probar que R es una bisimulación (cerrada por c y F).
+      3. Concluir que estados relacionados por R son indistinguibles desde el punto de vista de comportamiento.
+    Use: "Probar equivalencia de sistemas reactivos o infinitos (streams, procesos)."
+    Ref: [BISIMULATION, FINAL-COALGEBRA]
+
+  - ID: ANAMORPHISM
+    Def: "Anamorfismo: construcción de comportamiento mediante unfold a partir de un generador seed: A→F(A)."
+    Type: "unfold: A→ν_F"
+    Contrast: "Dual del catamorfismo (fold) usado para estructuras de datos finitas."
+    Use: "Generar flujos infinitos o comportamientos continuos desde una semilla finita."
+
+Software_Applications:
+  - ID: OOP-AS-COALGEBRA
+    Def: "Clases y objetos pueden modelarse coalgebraicamente: clase ≈ funtor, objeto ≈ coalgebra."
+    Mapping:
+      - "Clase C define interfaz F_C."
+      - "Instancia obj se modela como coalgebra (state_obj, c_obj: state_obj→F_C(state_obj))."
+      - "Encapsulación = estado oculto; solo se expone F_C."
+    Use: "Razonar sobre APIs, objetos y componentes por su comportamiento observable."
+    Ref: [INTERFACE-FUNCTORS, COALGEBRA-DEF]
+
+  - ID: COMPONENT-SUBSTITUTION
+    Def: "Componente A sustituible por B sii existe bisimulación entre sus coalgebras."
+    Proc: |
+      1. Definir interfaz F compartida entre componentes.
+      2. Modelar cada componente como F-coalgebra (U_A,c_A) y (U_B,c_B).
+      3. Construir relación R entre estados iniciales y probar que es bisimulación.
+      4. Si R es bisimulación → A y B son sustituibles sin cambiar comportamiento externo.
+    Use: "Refactoring seguro, pruebas de regresión y comparación de implementaciones."
+    Ref: BISIMULATION
+

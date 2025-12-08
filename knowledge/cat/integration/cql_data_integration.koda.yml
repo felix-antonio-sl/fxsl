@@ -1,0 +1,112 @@
+# KODA Knowledge Artifact: Categorical Query Language (CQL) Data Integration
+# Domain: Category Theory / Scientific Data Integration
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:cql-data-integration:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/integration/cql_data_integration.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-CQL-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "Initial KODA/Spec skeleton for Categorical Query Language (CQL) Data Integration."
+Ctx: "Notas estructuradas sobre CQL, migración funtorial y manejo de heterogeneidad científica."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar el lenguaje CQL como herramienta para integración de datos basada en CT."
+Obj: "Servir de fuente formal para CM-MIGRATION-ENGINE y CM-INTEGRATION-ENGINE en dominios científicos."
+
+Source:
+  Title: "Categorical Query Language for Data Integration"
+  Authors: ["David I. Spivak", "Ryan Wisnesky", "otros"]
+  Ctx: "Uso de CQL como lenguaje de integración basado en teoría de categorías."
+
+CQL_Overview:
+  - ID: CQL-DEF
+    Def: "CQL = Categorical Query Language, lenguaje de scripting para integración de datos basado en CT."
+    Properties:
+      - "Migraciones funtoriales con garantías de corrección."
+      - "Provenance automático de datos transformados."
+      - "Integración de lenguajes de programación en el esquema."
+    Use: "Integrar bases de datos científicas complejas de forma robusta."
+
+  - ID: CQL-SCHEMA
+    Def: "Esquema CQL = Olog (ontology log) que captura conocimiento conceptual explícito."
+    Interpretation: "El esquema impone significado semántico, evitando mal uso de datos."
+    Ref: CQL-DEF
+
+Functorial_Migration:
+  - ID: CQL-MIGRATION
+    Def: "Migración en CQL = aplicación de Δ/Σ/Π inducida por un funtor de esquemas F: S_source→S_target."
+    Guarantee: "Correctness by construction: si el funtor existe, la migración respeta integridad y constraints."
+    XRef:
+      - "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#MIGRATION-DELTA"
+      - "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#MIGRATION-SIGMA"
+      - "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#MIGRATION-PI"
+    Proc: |
+      1. Definir esquema fuente S_source como categoría (ologs CQL).
+      2. Definir esquema destino S_target.
+      3. Construir funtor F: S_source → S_target que capture la traducción.
+      4. CQL genera automáticamente Δ_F, Σ_F, Π_F.
+      5. Aplicar el operador adecuado según el tipo de migración.
+      6. CQL garantiza correctness + provenance automático.
+
+  - ID: CQL-PROVENANCE
+    Def: "Provenance = trazabilidad automática del origen de cada dato migrado."
+    Mechanism: "La funtorialidad preserva información sobre el origen en cada transformación."
+    Use: "Auditar pipelines de integración científica y justificar resultados."
+
+Heterogeneity_Handling:
+  - ID: CQL-HETEROGENEITY-FACTORS
+    Def: "Factores típicos de heterogeneidad en datos científicos."
+    Factors:
+      - "Nombres diferentes para conceptos iguales."
+      - "Constantes implícitas no documentadas."
+      - "Denormalización y duplicación de información."
+      - "Estructura oculta en campos tipo string."
+      - "Diferentes niveles de granularidad entre fuentes."
+    Ref: CQL-DEF
+
+  - ID: CQL-HETEROGENEITY-SOLUTION
+    Def: "Solución CQL: definir funtores de traducción F: S_source→S_target que capturen explícitamente las correspondencias."
+    Use: "Eliminar ambigüedad semántica al alinear esquemas heterogéneos."
+    Ref: CQL-MIGRATION
+
+

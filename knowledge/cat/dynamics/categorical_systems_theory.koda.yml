@@ -1,0 +1,186 @@
+# KODA Knowledge Artifact: Categorical Systems Theory
+# Domain: Category Theory / Dynamical Systems
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/dynamics/categorical_systems_theory.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-SYS-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "Initial KODA/Spec content for Categorical Systems Theory."
+Ctx: "Notas estructuradas sobre lenses, wiring diagrams, monads y análisis de comportamiento."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar el marco de sistemas categóricos para modelar arquitecturas dinámicas."
+Obj: "Servir de fuente formal para CM-BEHAVIOR-ENGINE (lenses, sistemas monádicos, wiring diagrams)."
+
+Source:
+  Title: "Categorical Systems Theory"
+  Authors: ["David Jaz Myers"]
+  Ctx: "Tratado sobre lentes, wiring diagrams y sistemas monádicos para modelar sistemas dinámicos."
+
+Lens_Theory:
+  - ID: LENS-DEF
+    Def: "Lens = par (expose: S→O, update: S×I→S) que modela sistemas state-based con interfaz bidireccional."
+    Structure:
+      expose: "S → O"
+      update: "S × I → S"
+    Use: "Separar estado interno (S) de interfaz pública (I,O) en arquitecturas de software."
+
+  - ID: LENS-TYPES
+    Def: "Tipos de lenses según el tipo de efecto en update."
+    Types:
+      - ID: LENS-DETERMINISTIC
+        Def: "update: S×I→S (sin efectos adicionales)."
+        Monad: "Identity"
+        Use: "Sistemas deterministas puros."
+      - ID: LENS-POSSIBILISTIC
+        Def: "update: S×I→P(S) (conjunto de posibles siguientes estados)."
+        Monad: "Powerset"
+        Use: "No-determinismo, múltiples futuros posibles."
+      - ID: LENS-STOCHASTIC
+        Def: "update: S×I→D(S) (distribución de probabilidad sobre estados)."
+        Monad: "Distribution"
+        Use: "Sistemas estocásticos, modelos probabilísticos."
+      - ID: LENS-COST
+        Def: "update: S×I→(S,Cost)."
+        Monad: "Writer"
+        Use: "Sistemas con logging o costes acumulados."
+    Ref: LENS-DEF
+
+  - ID: LENS-COMPOSITION
+    Def: "Las lenses se componen vía wiring diagrams, preservando modularidad."
+    Use: "Construir sistemas complejos pegando componentes más simples."
+    Proc: |
+      1. Definir interfaz de cada componente: Lens_A = (S_A, I_A, O_A, expose_A, update_A).
+      2. Identificar conexiones: qué outputs de A alimentan inputs de B.
+      3. Construir wiring diagram W que describe las conexiones.
+      4. Componer: Lens_AB = W(Lens_A, Lens_B).
+      5. El estado compuesto es S_AB = S_A × S_B.
+      6. El update compuesto aplica updates en orden topológico según W.
+    Ex: |
+      -- Lens_Sensor: estado=lectura, output=valor_actual
+      -- Lens_Controller: input=sensor_val, estado=target, output=command
+      -- Wiring: Sensor.output → Controller.input
+      -- Composición: Sistema(sensor_state, controller_state)
+      --   update: lee sensor, pasa a controller, genera command
+
+Wiring_Diagrams:
+  - ID: WIRING-DEF
+    Def: "Wiring diagram = patrón de conexión entre sistemas modelado como morfismo en una categoría de arities."
+    Use: "Describir arquitecturas como grafos de componentes y conexiones."
+    Components:
+      Inner_boxes: "Sistemas componentes (lenses, coalgebras, servicios)."
+      Outer_box: "Interfaz del sistema compuesto."
+      Wires: "Conexiones input→output entre boxes."
+    Ex: |
+      [Sensor]──sensor_val──▶[Controller]──command──▶[Actuator]
+         │                        │                      │
+         └────────────────────────┴──────────────────────┘
+                        Sistema Compuesto
+
+  - ID: WIRING-LAWVERE
+    Def: "Extensión a teorías de Lawvere para sistemas tipados con operaciones algebraicas."
+    Use: "Agregar tipos y operaciones (por ejemplo, suma, producto) a los puertos de sistemas."
+    Ref: WIRING-DEF
+
+  - ID: WIRING-PROC
+    Def: "Procedimiento para construir un wiring diagram."
+    Proc: |
+      1. Listar todos los componentes y sus tipos de interfaz (inputs, outputs).
+      2. Dibujar cada componente como una caja con puertos.
+      3. Conectar outputs a inputs respetando tipos.
+      4. Verificar que no haya ciclos sin delay (o modelar explícitamente el delay).
+      5. Definir la interfaz externa: qué inputs/outputs se exponen al exterior.
+      6. El resultado es un morfismo en la categoría de wiring diagrams.
+    Ref: WIRING-DEF
+
+Monadic_Systems:
+  - ID: MONAD-EFFECT
+    Def: "Mónada M encapsula un tipo de efecto computacional (fallo, no-determinismo, probabilidad, estado, logging)."
+    Catalog:
+      - Monad: "Maybe"
+        Effect: "Fallo parcial"
+        Kleisli: "A → Maybe B"
+      - Monad: "List"
+        Effect: "No-determinismo"
+        Kleisli: "A → [B]"
+      - Monad: "Distribution"
+        Effect: "Probabilidad"
+        Kleisli: "A → D(B)"
+      - Monad: "State S"
+        Effect: "Estado mutable"
+        Kleisli: "A → S → (B,S)"
+      - Monad: "Writer W"
+        Effect: "Logging/traza"
+        Kleisli: "A → (B,W)"
+
+  - ID: KLEISLI-CATEGORY
+    Def: "Categoría de Kleisli Kl(M): objetos = tipos, morfismos = funciones A→M(B)."
+    Use: "Componer efectos de forma coherente al trabajar con sistemas no puros."
+    Ref: MONAD-EFFECT
+    Proc: |
+      1. Elegir mónada M según el efecto dominante (Maybe, List, State, etc.).
+      2. Expresar cada paso del pipeline como f: A→M(B).
+      3. Componer usando bind (>>=): f >=> g = λa. (f a) >>= g.
+      4. La composición maneja automáticamente el efecto (fallo, no-det, estado).
+    Ex: |
+      -- Pipeline con Maybe (puede fallar):
+      parseUser :: String → Maybe User
+      validateAge :: User → Maybe User
+      saveUser :: User → Maybe UserId
+      -- Composición Kleisli:
+      pipeline = parseUser >=> validateAge >=> saveUser
+      -- Si cualquier paso falla, todo el pipeline retorna Nothing.
+
+Behavior_Analysis:
+  - ID: BEHAVIOR-TRAJECTORY
+    Def: "Trayectoria = secuencia de estados generada por la dinámica del sistema."
+    Use: "Analizar cómo evoluciona el sistema en el tiempo."
+
+  - ID: BEHAVIOR-STEADY-STATE
+    Def: "Estado estacionario: s tal que update(s, i)=s para cierto régimen de inputs."
+    Use: "Identificar configuraciones estables del sistema."
+
+  - ID: BEHAVIOR-PERIODIC
+    Def: "Órbita periódica: secuencia de estados que se repite tras un número finito de pasos."
+    Use: "Modelar ciclos y patrones repetitivos en sistemas dinámicos."

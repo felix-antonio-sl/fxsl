@@ -1,0 +1,147 @@
+# KODA Knowledge Artifact: Mathematical Modelling via Category Theory
+# Domain: Category Theory / Model Categories & Complexity
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:mathematical-modelling:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/meta/mathematical_modelling.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-MODEL-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "Initial KODA/Spec skeleton for Mathematical Modelling by Category Theory."
+Ctx: "Notas estructuradas sobre categorías de modelos, orden por complejidad y convertibilidad."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar el marco categórico para organizar familias de modelos por complejidad."
+Obj: "Servir de fuente formal para el análisis de Model Poset en el Arquitecto Categórico."
+
+Source:
+  Title: "Mathematical Modelling by Help of Category Theory"
+  Authors: ["Reissner", "colaboradores"]
+  Ctx: "Formalización de categorías de modelos, complejidad y convertibilidad."
+
+Related_Concepts:
+  XRef:
+    - "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0#MBSE-INJECTION-POSET"
+    - "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#FDM-FUNCTOR-CATEGORY"
+  Notes: |
+    - El Model Poset es una instancia del orden por inyección en MBSE.
+    - La categoría de modelos es análoga a la categoría de instancias [C, Set] del FDM.
+    - Model Coupling usa productos/coproductos como en límites/colímites.
+
+Model_Categories:
+  - ID: MM-MODEL-CATEGORY
+    Def: "Categoría Model con objetos=modelos y morfismos=relaciones entre conjuntos de supuestos."
+    Objects: "Modelos = conjuntos finitos no vacíos de supuestos Set_A."
+    Morphisms: "Relaciones que preservan validez de supuestos."
+    Use: "Organizar variantes de modelos de un mismo fenómeno."
+
+  - ID: MM-COMPLEXITY-ORDER
+    Def: "Orden parcial por complejidad basado en inclusión de supuestos."
+    Definition: "A ≤ B sii Set_A ⊆ Set_B (B es al menos tan complejo como A)."
+    Interpretation: "Más supuestos = modelo más complejo/restrictivo."
+    Ref: MM-MODEL-CATEGORY
+    Proc: |
+      1. Dado dos modelos A y B, extraer sus conjuntos de supuestos Set_A y Set_B.
+      2. Verificar inclusión: ¿Set_A ⊆ Set_B?
+      3. Si sí → A ≤ B (A es más simple o igual que B).
+      4. Si no → verificar Set_B ⊆ Set_A para el orden inverso.
+      5. Si ninguno → A y B son incomparables (ramas distintas del poset).
+    Ex: |
+      -- Modelo A: {conservación_masa, flujo_laminar}
+      -- Modelo B: {conservación_masa, flujo_laminar, efectos_térmicos}
+      -- Set_A ⊆ Set_B → A ≤ B
+      -- B es más complejo que A (añade efectos térmicos)
+
+Model_Properties:
+  - ID: MM-MODEL-MINIMAL
+    Def: "Modelo mínimo: menor conjunto de supuestos que aún captura el fenómeno considerado."
+    Use: "Encontrar modelos parsimoniosos."
+
+  - ID: MM-MODEL-MAXIMAL
+    Def: "Modelo máximo: incluye todos los supuestos relevantes identificados."
+    Use: "Estudiar límite superior de complejidad razonable."
+
+  - ID: MM-MODEL-REDUCIBLE
+    Def: "Modelo reducible: puede simplificarse (removiendo supuestos) sin perder capacidad predictiva."
+    Test: "Eliminar un supuesto y verificar si el fenómeno sigue siendo correctamente descrito."
+
+  - ID: MM-MODEL-EXTENDIBLE
+    Def: "Modelo extendible: puede enriquecerse con nuevos supuestos para cubrir fenómenos adicionales."
+    Use: "Planificar extensiones de modelos existentes."
+
+Convertibility:
+  - ID: MM-MODEL-CONVERTIBLE
+    Def: "Dos modelos son convertibles si comparten exactamente el mismo conjunto de supuestos y están relacionados por una transformación natural entre sus representaciones."
+    Implication: "Tienen la misma complejidad aunque difieran en formulación (p.ej., PDE vs formulación integral)."
+
+  - ID: MM-FORMULATION-NATURAL-TRANSFORM
+    Def: "Transformación natural que conecta dos formulaciones diferentes del mismo modelo abstracto."
+    Use: "Traducir soluciones entre formulaciones sin perder significado."
+    Ref: MM-MODEL-CONVERTIBLE
+
+Model_Coupling:
+  - ID: MM-MODEL-COUPLING
+    Def: "Modelo acoplado = producto/coproducto de categorías de modelos más condiciones de acople adicionales."
+    Structure: "Model_i × Model_j con ecuaciones que relacionan variables de ambos modelos."
+    Use: "Describir sistemas multi-física o multi-dominio (p.ej., termo-mecánica)."
+    Proc: |
+      1. Identificar modelos componentes Model_i, Model_j.
+      2. Definir interfaz de acople: variables compartidas entre dominios.
+      3. Construir producto Model_i × Model_j.
+      4. Añadir ecuaciones de acople como ecualizadores sobre el producto.
+      5. El modelo acoplado es el subobjeto que satisface las ecuaciones.
+    Ex: |
+      -- Model_T (térmico): {T, Q, conservación_energía}
+      -- Model_M (mecánico): {σ, ε, equilibrio}
+      -- Acople: T afecta ε vía expansión térmica: ε = ε_mec + αΔT
+      -- Producto: Model_T × Model_M
+      -- Ecuación de acople: ecualizador que impone ε = f(T, σ)
+    XRef: "urn:knowledge:fxsl:cat:seven-sketches:1.0.0#LIMIT-EQUALIZER"
+
+  - ID: MM-COUPLING-COMPLEXITY
+    Def: "Complejidad total = complejidad base de cada modelo + complejidad de acople."
+    Components:
+      Base: "Complejidad de los modelos individuales."
+      Coupling: "Supuestos adicionales necesarios para vincularlos."
+    Use: "Distinguir si la complejidad viene del fenómeno o de la integración de modelos."
+
+

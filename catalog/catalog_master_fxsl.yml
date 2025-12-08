@@ -34,7 +34,7 @@ Catalog:
       status: active
       description: "Ingeniero-Arquitecto de Sistemas Composicionales: descomposición jerárquica y composición categórica de sistemas complejos."
 
-    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.0.0"
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.2.0"
       title: "Arquitecto-Categorico"
       file: "agents/arquitecto-categorico/agent_arquitecto_categorico.yaml"
       status: active
@@ -169,10 +169,82 @@ Catalog:
       file: "knowledge/domains/medicina/legislacion/kb_med_014_confianza_legitima_koda.yml"
       status: active
 
+    # Category Theory Knowledge Base for Arquitecto Categórico
+    - urn: "urn:knowledge:fxsl:cat:cognitive-toolkit:1.0.0"
+      title: "Cognitive Toolkit v1.1 — Arquitecto Categórico"
+      file: "knowledge/cat/cognitive_toolkit.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:seven-sketches:1.0.0"
+      title: "Seven Sketches — Functorial Data Model"
+      file: "knowledge/cat/foundations/seven_sketches.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:algebraic-databases:1.0.0"
+      title: "Algebraic Databases — Profunctors & Proarrow Equipments"
+      file: "knowledge/cat/foundations/algebraic_databases.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0"
+      title: "Categorical Systems Theory — Lenses & Monadic Systems"
+      file: "knowledge/cat/dynamics/categorical_systems_theory.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:coalgebras:1.0.0"
+      title: "Coalgebras for Software Engineering"
+      file: "knowledge/cat/dynamics/coalgebras.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:unified-multimodel:1.0.0"
+      title: "Unified Multi-Model Representation"
+      file: "knowledge/cat/integration/unified_multimodel.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:data-lakes-ct:1.0.0"
+      title: "Data Lakes via Category Theory"
+      file: "knowledge/cat/integration/data_lakes_ct.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:cql-data-integration:1.0.0"
+      title: "Categorical Query Language (CQL) Data Integration"
+      file: "knowledge/cat/integration/cql_data_integration.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:mathematical-modelling:1.0.0"
+      title: "Mathematical Modelling via Category Theory"
+      file: "knowledge/cat/meta/mathematical_modelling.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0"
+      title: "MBSE Consistency via Category Theory (S2ML+Cat)"
+      file: "knowledge/cat/meta/mbse_consistency.koda.yml"
+      status: active
+
+    # Auditoría Categórica (nuevo v1.2)
+    - urn: "urn:knowledge:fxsl:cat:audit-patterns:1.0.0"
+      title: "Categorical Audit Patterns for DIK Artifacts"
+      file: "knowledge/cat/meta/audit_patterns.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:kb-category:1.0.0"
+      title: "Knowledge Base as Category"
+      file: "knowledge/cat/meta/kb_category.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:constraint-logic:1.0.0"
+      title: "Unified Constraint Logic (Sketches/Regular)"
+      file: "knowledge/cat/meta/constraint_logic.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:schema-evolution:1.0.0"
+      title: "Schema Evolution and Behavioral Audit"
+      file: "knowledge/cat/meta/schema_evolution.koda.yml"
+      status: active
+
 Statistics:
-  total_artifacts: 27
+  total_artifacts: 41
   core_guides: 0
   agents: 9
   schemas: 0
-  domains: 18
-  last_updated: "2025-11-30"
+  domains: 32
+  last_updated: "2025-12-05"

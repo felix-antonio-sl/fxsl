@@ -1,0 +1,131 @@
+# KODA Knowledge Artifact: MBSE Consistency via Category Theory
+# Domain: Category Theory / MBSE & Safety
+
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0"
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/cat/meta/mbse_consistency.koda.yml"
+    mirrors: []
+  dependencies:
+    requires:
+      - urn: "urn:knowledge:koda:core:spec:1.0.0"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-05"
+    last_modified_by: "FS"
+    last_modified_at: "2025-12-05"
+    signature: null
+
+ID: CAT-MBSE-01
+Version: 1.0.0
+Status: Active
+Human-Creator: FS
+Human-Editor: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-05
+Modification-Date: 2025-12-05
+Version-Notes: "Initial KODA/Spec skeleton for Category-Theoretic MBSE Consistency (S2ML+Cat)."
+Ctx: "Notas estructuradas sobre Catports, Catblocks, Catmodels y relaciones de consistencia."
+
+LLM_Parsing_Instructions:
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
+
+Purp: "Registrar el marco S2ML+Cat para consistencia entre modelos MBSE y Safety."
+Obj: "Servir de fuente formal para CM-STRUCTURE-ENGINE y análisis de consistencia entre modelos de sistemas."
+
+Source:
+  Title: "Category Theory for Consistency Between Multilevel System Modeling (MBSE) and Safety (MBSA)"
+  Authors: ["Autores S2ML+Cat"]
+  Ctx: "Uso de categorías para formalizar Catmodels y relaciones de consistencia."
+
+Related_Concepts:
+  XRef:
+    - "urn:knowledge:fxsl:cat:mathematical-modelling:1.0.0#MM-COMPLEXITY-ORDER"
+    - "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0#WIRING-DEF"
+  Notes: |
+    - Catblocks son análogos a componentes en wiring diagrams.
+    - El poset de inyecciones es instancia del Model Poset de mathematical_modelling.
+    - La consistencia binaria es un tipo de pullback en la categoría de Catmodels.
+
+S2ML_Cat_Framework:
+  - ID: MBSE-CATPORT
+    Def: "Catport = categoría con un único objeto (símbolo) y morfismo identidad."
+    Interpretation: "Puerto/interfaz atómica de un sistema."
+
+  - ID: MBSE-CATCONNECTION
+    Def: "Catconnection = categoría cuyos objetos son Catports y morfismos son solo identidades."
+    Interpretation: "Conexión abstracta entre puertos."
+    Ref: MBSE-CATPORT
+
+  - ID: MBSE-CATBLOCK
+    Def: "Catblock = categoría cuyos objetos pueden ser Catblocks, Catports y Catconnections, con morfismos que describen composición/contención."
+    Interpretation: "Bloque de sistema (componente) con estructura interna."
+    Ref: [MBSE-CATPORT, MBSE-CATCONNECTION]
+
+  - ID: MBSE-CATMODEL
+    Def: "Catmodel = categoría con un conjunto finito de Catblocks, Catports y Catconnections, con un Catblock raíz único."
+    Interpretation: "Modelo completo de sistema en el marco S2ML+Cat."
+    Ref: MBSE-CATBLOCK
+
+Consistency_Relations:
+  - ID: MBSE-CATMODEL-INJECTION
+    Def: "Inyección entre Catmodels: f: M→N que preserva estructura (bloques, puertos, conexiones) de forma inyectiva."
+    Interpretation: "M es submodelo estructural de N."
+
+  - ID: MBSE-CATMODEL-EQUIVALENCE
+    Def: "Equivalencia de Catmodels basada en teorema tipo Cantor-Bernstein: si hay inyecciones M→N y N→M, entonces M y N son equivalentes."
+    Implication: "Tienen la misma complejidad estructural, pueden considerarse isomorfos."
+    Ref: MBSE-CATMODEL-INJECTION
+
+  - ID: MBSE-BINARY-CONSISTENCY
+    Def: "Consistencia binaria: dos Catmodels son consistentes si comparten un submodelo común."
+    Definition: "Existe Catmodel K y inyecciones K→M, K→N."
+    Use: "Verificar si dos modelos (p.ej., MBSE y Safety) son compatibles."
+    Proc: |
+      1. Dado dos Catmodels M (MBSE) y N (Safety), listar sus elementos:
+         - Bloques, puertos, conexiones de cada uno.
+      2. Identificar elementos comunes por nombre/tipo/semántica.
+      3. Construir candidato K con los elementos compartidos.
+      4. Verificar que K sea un Catmodel válido (Catblock raíz, conexiones cerradas).
+      5. Verificar que las inclusiones K→M y K→N preserven estructura.
+      6. Si K existe y es no trivial → M y N son consistentes.
+      7. Si K es vacío o solo tiene elementos triviales → inconsistencia.
+    Ex: |
+      -- MBSE Model M: {Controller, Sensor, Actuator, ctrl_to_sensor, ctrl_to_act}
+      -- Safety Model N: {Controller, SafetyMonitor, ctrl_to_monitor}
+      -- K común: {Controller} (solo el bloque Controller es compartido)
+      -- K→M: Controller ↦ Controller
+      -- K→N: Controller ↦ Controller
+      -- Resultado: Consistentes (comparten Controller como interfaz común)
+
+  - ID: MBSE-DICTIONARY-CONSISTENCY
+    Def: "Consistencia por diccionario: identificar un esqueleto común (diccionario) que relaciona elementos de distintos modelos."
+    Use: "Alinear terminología y estructura entre disciplinas (MBSE, MBSA, etc.)."
+
+Partial_Order:
+  - ID: MBSE-INJECTION-POSET
+    Def: "La relación de inyección define un orden parcial sobre Catmodels."
+    Use: "Comparar la complejidad estructural de distintos modelos de un mismo sistema."
+    Property: "Permite organizar modelos en un lattice de refinamientos/abstracciones."
+
+
