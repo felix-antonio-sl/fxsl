@@ -1,0 +1,38 @@
+_manifest:
+  urn: "urn:tooling:fxsl:rules:spanish-docs:1.0.0"
+  type: rule
+  federation:
+    visibility: public
+    license: "CC-BY-4.0"
+
+metadata:
+  description: "Reglas para documentación y comunicación en español"
+  scope: global
+  priority: medium
+
+content:
+  rules:
+    - rule: "Toda documentación de usuario en español (es-CL)"
+      rationale: "Audiencia principal es hispanohablante"
+
+    - rule: "Keywords de KODA en inglés, contenido en español"
+      rationale: "Separación protocolo/contenido según KODA/Spec"
+
+    - rule: "Usar terminología técnica en español cuando exista equivalente"
+      rationale: "Facilitar comprensión sin sacrificar precisión"
+
+    - rule: "Mantener comentarios de código en español para artefactos FXSL"
+      rationale: "Consistencia con resto de documentación"
+
+    - rule: "Usar formato de fecha ISO 8601 (YYYY-MM-DD)"
+      rationale: "Estándar internacional, evita ambigüedad"
+
+  examples:
+    - good: |
+        # Configuración del agente de auditoría
+        role: "Auditor categórico de ontologías"
+        objective: "Verificar coherencia estructural DIK"
+      bad: |
+        # Agent audit configuration
+        role: "Auditor categórico de ontologías"
+        objective: "Verificar coherencia estructural DIK"

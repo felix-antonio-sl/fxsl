@@ -1,0 +1,41 @@
+_manifest:
+  urn: "urn:tooling:fxsl:profiles:antigravity:1.0.0"
+  type: profile
+  federation:
+    visibility: internal
+    license: "CC-BY-4.0"
+
+metadata:
+  platform: antigravity
+  description: "Configuración optimizada para Antigravity (Gemini-based assistant)"
+
+settings:
+  # Preferencias de idioma
+  preferred_language: es
+  content_language: es-CL
+
+  # Comportamiento de comandos
+  auto_approve_safe_commands: true
+  max_command_wait_ms: 10000
+
+  # Directorios de trabajo
+  artifact_directory: ".gemini/antigravity/brain"
+  workflow_directory: ".agent/workflows"
+
+  # Estilo de respuesta
+  response_style:
+    use_markdown: true
+    concise_artifacts: true
+    embed_code_blocks: true
+
+  # Integración con KODA
+  koda_integration:
+    validate_agents_on_save: true
+    schema_path: "../koda/schemas"
+    catalog_resolution: CATALOG_FIRST
+
+  # Task management
+  task_management:
+    create_task_md: true
+    create_implementation_plan: true
+    create_walkthrough: true

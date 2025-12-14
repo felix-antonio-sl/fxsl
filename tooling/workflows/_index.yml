@@ -1,0 +1,9 @@
+# Workflows Index - FXSL Tooling
+_manifest:
+  urn: "urn:tooling:fxsl:workflows:index:1.0.0"
+  type: index
+
+items:
+  - id: modelamiento-mbt
+    urn: "urn:tooling:fxsl:workflows:modelamiento-mbt:1.0.0"
+    file: "modelamiento-mbt.md"

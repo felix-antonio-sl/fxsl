@@ -1,0 +1,9 @@
+# Profiles Index - FXSL Tooling
+_manifest:
+  urn: "urn:tooling:fxsl:profiles:index:1.0.0"
+  type: index
+
+items:
+  - id: antigravity
+    urn: "urn:tooling:fxsl:profiles:antigravity:1.0.0"
+    file: "antigravity.yml"

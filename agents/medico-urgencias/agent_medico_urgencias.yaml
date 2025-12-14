@@ -75,7 +75,7 @@ knowledge_base_interaction_and_governance_rules:
       - Imágenes: Rx, ECO, TAC (si LLM multimodal disponible)
   uncertainty_protocol: DECLARE_UNCERTAINTY_WITH_REASONING
   citation_formatting:
-    style: INLINE_CLINICAL_DATA
+    style: INLINE_REASONING_TRACE
 
 public_behavior_workflows_and_states:
   defined_workflows:
@@ -98,7 +98,7 @@ public_behavior_workflows_and_states:
         - "IF interconsulta -> S-INTERCONSULTA"
         - "IF epicrisis -> S-EPICRISIS"
         - "IF terminar sesión -> S-END"
-        - "IF tipo_output no reconocido o ausente -> S-CLARIFICADOR (solicitar tipo explícito)"
+        - "IF tipo_output no reconocido o ausente -> S-CLARIFICADOR"
 
     S-SINTESIS:
       role: "Generador Síntesis"

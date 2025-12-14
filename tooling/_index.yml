@@ -1,0 +1,40 @@
+# KODA/Tooling Catalog - FXSL
+# Catálogo maestro de artefactos de tooling
+
+_manifest:
+  urn: "urn:tooling:fxsl:catalog:master:1.0.0"
+  type: catalog
+  federation:
+    visibility: public
+    license: "CC-BY-4.0"
+  provenance:
+    created_by: "FS"
+
+artifacts:
+  workflows:
+    - urn: "urn:tooling:fxsl:workflows:modelamiento-mbt:1.0.0"
+      file: "workflows/modelamiento-mbt.md"
+      description: "Workflow de modelamiento basado en tensiones (MBT)"
+      compatible_agents:
+        - "urn:knowledge:fxsl:agents:modelador-mbt:*"
+
+  rules:
+    - urn: "urn:tooling:fxsl:rules:yaml-strict:1.0.0"
+      file: "rules/yaml-strict.yml"
+      description: "Reglas de formateo YAML estricto"
+
+    - urn: "urn:tooling:fxsl:rules:spanish-docs:1.0.0"
+      file: "rules/spanish-docs.yml"
+      description: "Convenciones para documentación en español"
+
+  profiles:
+    - urn: "urn:tooling:fxsl:profiles:antigravity:1.0.0"
+      file: "profiles/antigravity.yml"
+      description: "Configuración optimizada para Antigravity IDE"
+      platforms: [antigravity]
+
+    - urn: "urn:tooling:fxsl:profiles:fxsl-workspace:1.0.0"
+      file: "profiles/fxsl-workspace.yml"
+      description: "Configuración workspace FXSL con agente preferido"
+      platforms: [antigravity, windsurf]
+      default_agent: "modelador-mbt"

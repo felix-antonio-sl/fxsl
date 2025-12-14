@@ -1,0 +1,56 @@
+# KODA Master Catalog - FXSL Namespace
+# Inventario maestro de artefactos de conocimiento y tooling
+
+_manifest:
+  urn: "urn:knowledge:fxsl:catalog:master:1.0.0"
+  type: catalog
+  federation:
+    visibility: private
+    license: "Proprietary"
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-13"
+
+catalog:
+  description: "Catálogo maestro del namespace FXSL (Personal)"
+
+  # ===========================================================================
+  # TOOLING ARTIFACTS
+  # ===========================================================================
+  tooling:
+    workflows:
+      - urn: "urn:tooling:fxsl:workflows:modelamiento-mbt:1.0.0"
+        file: "tooling/workflows/modelamiento-mbt.md"
+        description: "Proceso de modelamiento guiado por tensiones MBT"
+        tags: [methodology, modeling, mbt]
+
+    rules:
+      - urn: "urn:tooling:fxsl:rules:yaml-strict:1.0.0"
+        file: "tooling/rules/yaml-strict.yml"
+        description: "Reglas de formateo YAML estricto"
+        tags: [compliance, formatting]
+
+      - urn: "urn:tooling:fxsl:rules:spanish-docs:1.0.0"
+        file: "tooling/rules/spanish-docs.yml"
+        description: "Reglas para documentación en español"
+        tags: [compliance, language]
+
+    profiles:
+      - urn: "urn:tooling:fxsl:profiles:antigravity:1.0.0"
+        file: "tooling/profiles/antigravity.yml"
+        description: "Configuración optimizada para Antigravity"
+        tags: [config, platform]
+
+  # ===========================================================================
+  # AGENTS
+  # ===========================================================================
+  agents:
+    - urn: "urn:knowledge:fxsl:agents:modelador-mbt:1.0.0"
+      file: "agents/modelador-mbt/agent_modelador_mbt.yaml"
+      description: "Agente especialista en modelamiento basado en tensiones"
+      tags: [modeling, architect]
+
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.0.0"
+      file: "agents/arquitecto-categorico/agent_arquitecto_categorico.yaml"
+      description: "Arquitecto de sistemas basado en teoría de categorías"
+      tags: [architecture, math]

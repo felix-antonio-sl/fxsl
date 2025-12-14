@@ -1,0 +1,60 @@
+---
+_manifest:
+  urn: "urn:tooling:fxsl:profiles:fxsl-workspace:1.0.0"
+  type: profile
+  version_koda_spec: "1.0.0"
+  namespace: "fxsl"
+
+metadata:
+  platform: [antigravity, windsurf]
+  description: "Configuración para workspace FXSL (personal namespace)"
+  author: "FS"
+  created_at: "2025-12-14"
+
+# Agente preferido
+agent_preference:
+  default_agent: "modelador-mbt"
+  agent_urn: "urn:knowledge:fxsl:agents:modelador-mbt:1.0.0"
+  fallback_agent: "arquitecto-categorico"
+  fallback_urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.0.0"
+  activation_context: |
+    En FXSL, preferir MODELADOR-MBT para diseño basado en tensiones.
+    Fallback a ARQUITECTO-CATEGÓRICO para fundamentos matemáticos.
+
+# Workflows contextuales
+recommended_workflows:
+  - id: "modelamiento-mbt"
+    when: "Modelando sistemas con MBT"
+    urn: "urn:tooling:fxsl:workflows:modelamiento-mbt:1.0.0"
+
+  - id: "agent-validation"
+    when: "Validando agentes FXSL"
+    urn: "urn:tooling:koda:workflows:agent-validation:1.0.0" # Heredado de KODA
+
+# Rules contextuales
+active_rules:
+  - "spanish-docs.yml" # Documentación en español
+  - "yaml-strict.yml" # Formato YAML (heredado)
+  - "koda-conventions.yml" # Convenciones KODA (heredado)
+
+# Configuración IDE
+ide_settings:
+  antigravity:
+    auto_approve_safe_commands: true # FXSL es workspace personal
+    preferred_language: "es"
+    artifact_directory: ".gemini/antigravity/brain"
+
+  windsurf:
+    cascade_mode: "fast" # Workspace personal, menos formalidad
+    auto_import_agents_md: true
+
+# Directorios clave FXSL
+key_directories:
+  agents: "agents/"
+  knowledge: "knowledge/"
+  tooling: "tooling/"
+
+# Comandos útiles
+useful_commands:
+  validate: "cd ../koda && ./scripts/koda-validate.sh --workspace ../fxsl"
+  catalog: "cat knowledge/catalog/catalog_master_fxsl.yml"

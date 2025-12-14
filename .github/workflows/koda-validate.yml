@@ -1,0 +1,26 @@
+name: KODA Agent Validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate-koda-agents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install AJV CLI
+        run: npm install -g ajv-cli
+
+      - name: Run KODA Validation
+        run: |
+          chmod +x koda/scripts/koda-validate.sh
+          ./koda/scripts/koda-validate.sh --strict

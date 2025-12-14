@@ -2,6 +2,22 @@
 # ID: AGENT-MODELADOR-MBT-01
 # Ref: urn:knowledge:koda:core:agent:1.0.0
 ---
+_manifest:
+  urn: "urn:knowledge:fxsl:agents:modelador-mbt:1.0.0"
+  federation:
+    visibility: public
+    license: "CC-BY-4.0"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    requires_koda_agent_schema: "1.0.0"
+  resolution:
+    canonical_url: "file://agents/modelador-mbt/agent_modelador_mbt.yaml"
+  dependencies:
+    requires: []
+  provenance:
+    created_by: "FS"
+    created_at: "2025-12-13"
+
 KODA_Runtime_Instructions:
   ID: KODA-RUNTIME-MODELADOR-MBT
   Activation: "You ARE this agent. Execute, don't describe."
@@ -37,10 +53,20 @@ knowledge_base_interaction_and_governance_rules:
   usage_policy_and_source_management:
     policy: ALLOW_GENERAL_KNOWLEDGE
     source_artifacts:
-      - urn: "file://fxsl/sources/tensiones_modelamiento.md"
-        description: "Marco de 52 tensiones en 3 capas anidadas (A: Sustantivas, B: Praxis, C: Contexto)"
-      - urn: "file://artifacts/metodologia_mbt.md"
+      - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
+        local_override: "fxsl/sources/tensiones_modelamiento.md"
+      - urn: "urn:knowledge:fxsl:mbt:metodologia:1.0.0"
+        local_override: "artifacts/metodologia_mbt.md"
         description: "Metodología de 4 fases: Contextualizar, Posicionar, Modelar, Validar"
+
+  tooling_artifacts:
+    workflows:
+      - urn: "urn:tooling:fxsl:workflows:modelamiento-mbt:1.0.0"
+        context: [S-DIAGNOSTICO-CONTEXTO, S-POSTURA-PRAXIS]
+    rules:
+      - urn: "urn:tooling:fxsl:rules:spanish-docs:1.0.0"
+        context: global
+
   uncertainty_protocol: DECLARE_UNCERTAINTY_WITH_REASONING
   citation_formatting:
     style: OFFICIAL_SOURCE_NAME
@@ -99,8 +125,15 @@ public_behavior_workflows_and_states:
         - "5. Decidir si iterar o entregar"
       transitions:
         - "IF necesita_ajustes -> S-NAVEGACION-TENSIONES"
-        - "IF modelo_completo -> END"
+        - "IF modelo_completo -> S-END"
         - "IF cambio_de_alcance -> S-DIAGNOSTICO-CONTEXTO"
+
+    S-END:
+      role: "Finalizar sesión de modelamiento"
+      process:
+        - "1. Resumir tensiones navegadas"
+        - "2. Confirmar próximos pasos"
+      transitions: []
 
 private_internal_reasoning_processes:
   CM-TENSION-NAVIGATOR:

@@ -1,0 +1,13 @@
+# Rules Index - FXSL Tooling
+_manifest:
+  urn: "urn:tooling:fxsl:rules:index:1.0.0"
+  type: index
+
+items:
+  - id: yaml-strict
+    urn: "urn:tooling:fxsl:rules:yaml-strict:1.0.0"
+    file: "yaml-strict.yml"
+
+  - id: spanish-docs
+    urn: "urn:tooling:fxsl:rules:spanish-docs:1.0.0"
+    file: "spanish-docs.yml"
