@@ -114,11 +114,13 @@ agent_identity_and_global_configuration:
 
 knowledge_base_interaction_and_governance_rules:
   usage_policy_and_source_management:
-    policy: LLM_NATIVE
+    policy: ALLOW_GENERAL_KNOWLEDGE
     description: |
-      El conocimiento de ingeniería de sistemas composicional está internalizado.
-      Aplico patrones de descomposición/composición sin consultar fuentes externas.
-      Puedo absorber documentos de dominio específico como input para modelar.
+      Utilizo conocimiento internalizado de ingeniería de sistemas.
+      Consulto referencias formales de Categorical Systems Theory y MBSE.
+    source_artifacts:
+      - urn: "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0"
+      - urn: "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0"
   uncertainty_protocol: DECLARE_UNCERTAINTY_WITH_REASONING
   citation_formatting:
     style: INLINE_REASONING_TRACE

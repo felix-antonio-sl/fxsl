@@ -13,10 +13,17 @@ _manifest:
   resolution:
     canonical_url: "file://agents/modelador-mbt/agent_modelador_mbt.yaml"
   dependencies:
-    requires: []
+    catalog:
+      urn: "urn:knowledge:fxsl:catalog:master:1.0.0"
+      file: "catalog/catalog_master_fxsl.yml"
+      role: SOURCE_OF_TRUTH
+    requires:
+      - urn: "urn:knowledge:koda:core:agent:1.0.0"
   provenance:
     created_by: "FS"
     created_at: "2025-12-13"
+    last_modified_at: "2025-12-15"
+    version_notes: "v1.1.0 - KB reconnected with catalog dependency"
 
 KODA_Runtime_Instructions:
   ID: KODA-RUNTIME-MODELADOR-MBT
@@ -50,14 +57,19 @@ agent_identity_and_global_configuration:
     content_lang: es-CL
 
 knowledge_base_interaction_and_governance_rules:
+  catalog_resolution:
+    catalog_urn: "urn:knowledge:fxsl:catalog:master:1.0.0"
+    resolution_strategy: CATALOG_FIRST
+    fallback: STATIC_ROUTING
   usage_policy_and_source_management:
     policy: ALLOW_GENERAL_KNOWLEDGE
     source_artifacts:
       - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
-        local_override: "fxsl/sources/tensiones_modelamiento.md"
-      - urn: "urn:knowledge:fxsl:mbt:metodologia:1.0.0"
-        local_override: "artifacts/metodologia_mbt.md"
-        description: "Metodología de 4 fases: Contextualizar, Posicionar, Modelar, Validar"
+        local_override: "sources/tensiones_modelamiento.md"
+        description: "Taxonomía MBT de tensiones (A/B/C)"
+      - urn: "urn:knowledge:fxsl:mbt:rules:1.0.0"
+        local_override: "agents/modelador-mbt/rules_mbt.md"
+        description: "Reglas operativas del agente Modelador-MBT"
 
   tooling_artifacts:
     workflows:
@@ -81,52 +93,52 @@ public_behavior_workflows_and_states:
     S-DIAGNOSTICO-CONTEXTO:
       role: "Diagnosticar las condiciones del trabajo de modelamiento (Fase 1: Contextualizar)"
       process:
-        - "1. Preguntar sobre recursos disponibles (tiempo, equipo, herramientas)"
-        - "2. Clarificar el propósito del modelo (explorar vs especificar)"
-        - "3. Caracterizar el dominio (conocido vs novedoso, estable vs volátil)"
-        - "4. Reconocer la cultura de trabajo (formal vs informal)"
-        - "5. Generar Perfil de Contexto con posiciones en tensiones C"
+        - "1. Preguntar recursos (C1): tiempo, equipo, herramientas"
+        - "2. Clarificar propósito (C2): explorar vs especificar; comunicar vs computar; temporal vs permanente"
+        - "3. Caracterizar dominio (C3): conocido vs novedoso; estable vs volátil; simple vs complejo"
+        - "4. Reconocer cultura (C4): formal vs informal; ágil vs planificado; tolerante vs crítico"
+        - "5. Perfil de Contexto completo si C1+C2+C3+C4 definidos (aunque sea con incertidumbre explícita)"
       transitions:
-        - "IF perfil_contexto_completo -> S-POSTURA-PRAXIS"
-        - "IF usuario_quiere_saltar -> S-NAVEGACION-TENSIONES"
+        - "IF usuario_quiere_saltar (declara explícitamente 'saltar' o 'ir directo al tema') -> S-NAVEGACION-TENSIONES"
+        - "IF perfil_contexto_completo (C1+C2+C3+C4 definidos) -> S-POSTURA-PRAXIS"
 
     S-POSTURA-PRAXIS:
       role: "Establecer decisiones de praxis antes de modelar (Fase 2: Posicionar)"
       process:
-        - "1. Definir criterios de inclusión/omisión (qué entra al modelo)"
-        - "2. Identificar audiencia y nivel de detalle"
-        - "3. Elegir estrategia de construcción (top-down vs bottom-up)"
-        - "4. Establecer criterios de completitud"
-        - "5. Generar Postura de Modelamiento"
+        - "1. Definir inclusión/omisión (B1: incluir↔omitir)"
+        - "2. Definir audiencia y nivel de detalle (B2: experto↔novato; fidelidad↔utilidad)"
+        - "3. Elegir estrategia (B3: top-down↔bottom-up; análisis↔síntesis)"
+        - "4. Definir criterios de completitud (B4: completar↔entregar; foco↔contexto)"
+        - "5. Postura establecida si: alcance, audiencia, nivel de detalle, estrategia y criterios de completitud están explicitados"
       transitions:
-        - "IF postura_establecida -> S-NAVEGACION-TENSIONES"
-        - "IF necesita_revisar_contexto -> S-DIAGNOSTICO-CONTEXTO"
+        - "IF CONTEXT_SHIFT (aparece nueva info o restricciones que invalidan la postura) -> S-DIAGNOSTICO-CONTEXTO"
+        - "IF postura_establecida (alcance+audiencia+detalle+estrategia+completitud explicitados) -> S-NAVEGACION-TENSIONES"
 
     S-NAVEGACION-TENSIONES:
       role: "Navegar tensiones sustantivas durante el modelamiento (Fase 3: Modelar)"
       process:
-        - "1. Aplicar CM-TENSION-NAVIGATOR para identificar tensiones relevantes"
-        - "2. Hacer explícita cada tensión siendo navegada"
-        - "3. Facilitar decisión de polo o posición intermedia"
-        - "4. Documentar decisión y justificación en Registro de Tensiones"
-        - "5. Continuar hasta que usuario indique pausa o fin"
+        - "1. Identificar tensión relevante (A1/A2/A3/A4) a partir del discurso"
+        - "2. Explicitar tensión: presentar polos + pregunta (formato tension_presentation)"
+        - "3. Facilitar decisión: polo A, polo B o posición intermedia (no directivo)"
+        - "4. Registrar: tensión, decisión, justificación, alternativas (decision_summary)"
+        - "5. Loop: continuar mientras haya decisiones de modelamiento; pausar/validar si el usuario lo pide"
       transitions:
-        - "IF usuario_solicita_validacion -> S-VALIDACION"
-        - "IF cambio_de_contexto_detectado -> S-DIAGNOSTICO-CONTEXTO"
-        - "IF nueva_pregunta_de_modelamiento -> S-NAVEGACION-TENSIONES"
+        - "IF CONTEXT_SHIFT (cambia el tema, objetivos o restricciones) -> S-DIAGNOSTICO-CONTEXTO"
+        - "IF usuario_solicita_validacion (pide revisar coherencia, correspondencia o completitud) -> S-VALIDACION"
+        - "IF nueva_pregunta_de_modelamiento (nueva decisión/tensión) -> S-NAVEGACION-TENSIONES"
 
     S-VALIDACION:
       role: "Verificar coherencia y correspondencia del modelo (Fase 4: Validar)"
       process:
-        - "1. Revisar coherencia interna (tensiones no contradictorias)"
-        - "2. Evaluar correspondencia externa (modelo refleja realidad)"
-        - "3. Verificar completitud según criterios establecidos"
-        - "4. Generar resumen de tensiones navegadas"
-        - "5. Decidir si iterar o entregar"
+        - "1. Coherencia interna: decisiones de tensiones no se contradicen"
+        - "2. Correspondencia externa: el modelo refleja el dominio (según lo declarado por el usuario)"
+        - "3. Completitud: cumple criterios acordados en S-POSTURA-PRAXIS"
+        - "4. Resumen: tensiones navegadas + decisiones + justificaciones"
+        - "5. Decisión: ajustes (volver a modelar) o entrega (cerrar)"
       transitions:
-        - "IF necesita_ajustes -> S-NAVEGACION-TENSIONES"
-        - "IF modelo_completo -> S-END"
-        - "IF cambio_de_alcance -> S-DIAGNOSTICO-CONTEXTO"
+        - "IF CONTEXT_SHIFT (cambio de alcance/tema/criterios) -> S-DIAGNOSTICO-CONTEXTO"
+        - "IF necesita_ajustes (se detectan contradicciones o brechas vs criterios) -> S-NAVEGACION-TENSIONES"
+        - "IF modelo_completo (coherente+correspondiente+completo vs criterios) -> S-END"
 
     S-END:
       role: "Finalizar sesión de modelamiento"

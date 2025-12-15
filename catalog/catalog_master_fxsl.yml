@@ -76,6 +76,18 @@ Catalog:
       status: active
       description: "Asistente médico AI especializado en urgencias en Chile, con parsimonia extrema y foco en decisiones críticas."
 
+    - urn: "urn:knowledge:fxsl:agents:estratega-comunicacional:1.0.0"
+      title: "Estratega-Comunicacional"
+      file: "agents/estratega-comunicacional/agent_estratega_comunicacional.yaml"
+      status: active
+      description: "Estratega de comunicación organizacional."
+
+    - urn: "urn:knowledge:fxsl:agents:modelador-mbt:1.0.0"
+      title: "Modelador-MBT"
+      file: "agents/modelador-mbt/agent_modelador_mbt.yaml"
+      status: active
+      description: "Modelador basado en tensiones (MBT) para diseño organizacional."
+
   Schemas: []
     # Add your schemas here
   Domains:
@@ -286,10 +298,23 @@ Catalog:
       file: "knowledge/domains/cat/integration/kb_data_access_layers_categorical.koda.yml"
       status: active
 
+    - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
+      title: "MBT - Tensiones del Modelamiento de Sistemas"
+      file: "sources/tensiones_modelamiento.md"
+      status: active
+      description: "Taxonomía MBT de tensiones (A/B/C) para guiar decisiones de modelamiento."
+
+    - urn: "urn:knowledge:fxsl:mbt:rules:1.0.0"
+      title: "MBT - Reglas Operativas del Asistente"
+      file: "agents/modelador-mbt/rules_mbt.md"
+      status: active
+      description: "Reglas operativas del agente Modelador-MBT (no directivo, explicitar tensiones, registrar decisiones)."
+
 Statistics:
-  total_artifacts: 50
+  total_artifacts: 54
   core_guides: 0
-  agents: 9
+  agents: 11
   schemas: 0
-  domains: 41
-  last_updated: "2025-12-14"
+  domains: 43
+  last_updated: "2025-12-15"
+  notes: "Saneado: registrados agentes estratega-comunicacional y modelador-mbt; agregados artefactos MBT (tensiones/rules)."
