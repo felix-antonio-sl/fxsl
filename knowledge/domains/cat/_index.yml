@@ -9,7 +9,7 @@ _manifest:
   compatibility:
     min_consumer_version: "1.0.0"
   resolution:
-    canonical_url: "file://knowledge/cat/_index.yml"
+    canonical_url: "file://knowledge/domains/cat/_index.yml"
   dependencies:
     requires: []
   provenance:
@@ -24,4 +24,27 @@ LLM_Parsing_Instructions:
     END_LLM_INSTRUCTIONS
 
 # Index Content
-content: []
+content:
+  - urn: "urn:knowledge:fxsl:cat:cognitive-toolkit:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:seven-sketches:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:categorical-data-structures:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:exploring-category-theoretic-approaches-to-databases:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:action-primary-key:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:algebraic-model-management:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:algebraic-databases:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:coalgebras:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:unified-representation-transformation-multimodel:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:unified-multimodel:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:multicategory-multimodel-query-processing:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:formal-framework-multimodel-data-transformations:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:data-lakes-ct:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:formal-framework-data-lakes-ct:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:cql-data-integration:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:data-access-layers:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:mathematical-modelling:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:audit-patterns:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:kb-category:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:constraint-logic:1.0.0"
+  - urn: "urn:knowledge:fxsl:cat:schema-evolution:1.0.0"

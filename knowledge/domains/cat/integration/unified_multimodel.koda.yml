@@ -10,7 +10,7 @@ _manifest:
     min_consumer_version: "1.0.0"
     breaking_changes_from: null
   resolution:
-    canonical_url: "file://knowledge/cat/integration/unified_multimodel.koda.yml"
+    canonical_url: "file://knowledge/domains/cat/integration/unified_multimodel.koda.yml"
     mirrors: []
   dependencies:
     requires:
@@ -29,7 +29,7 @@ Human-Creator: FS
 Human-Editor: FS
 Model-Collaborator: Cascade
 Creation-Date: 2025-12-05
-Modification-Date: 2025-12-05
+Modification-Date: 2025-12-14
 Version-Notes: "Initial KODA/Spec skeleton for Unified Multi-Model Representation."
 Ctx: "Notas estructuradas sobre schema category global y unificación de modelos SQL/NoSQL/Graph."
 

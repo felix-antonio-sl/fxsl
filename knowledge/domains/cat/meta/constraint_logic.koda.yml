@@ -11,7 +11,7 @@ _manifest:
     min_consumer_version: "1.0.0"
     breaking_changes_from: null
   resolution:
-    canonical_url: "file://knowledge/cat/meta/constraint_logic.koda.yml"
+    canonical_url: "file://knowledge/domains/cat/meta/constraint_logic.koda.yml"
     mirrors: []
   dependencies:
     requires:
@@ -32,7 +32,7 @@ Human-Creator: FS
 Human-Editor: FS
 Model-Collaborator: Cascade
 Creation-Date: 2025-12-05
-Modification-Date: 2025-12-05
+Modification-Date: 2025-12-14
 Version-Notes: "Initial KODA/Spec for Unified Constraint Logic."
 Ctx: "Lógica unificada de constraints basada en sketches y lógica regular."
 

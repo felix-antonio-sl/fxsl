@@ -172,79 +172,124 @@ Catalog:
     # Category Theory Knowledge Base for Arquitecto Categórico
     - urn: "urn:knowledge:fxsl:cat:cognitive-toolkit:1.0.0"
       title: "Cognitive Toolkit v1.1 — Arquitecto Categórico"
-      file: "knowledge/cat/cognitive_toolkit.koda.yml"
+      file: "knowledge/domains/cat/cognitive_toolkit.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:seven-sketches:1.0.0"
       title: "Seven Sketches — Functorial Data Model"
-      file: "knowledge/cat/foundations/seven_sketches.koda.yml"
+      file: "knowledge/domains/cat/foundations/seven_sketches.koda.yml"
       status: active
+
+    - urn: "urn:knowledge:fxsl:cat:categorical-data-structures:1.0.0"
+      title: "Categorical Data Structures (Patterson et al., 2022)"
+      file: "knowledge/domains/cat/foundations/categorical_data_structures.koda.yml"
+      status: draft
+
+    - urn: "urn:knowledge:fxsl:cat:exploring-category-theoretic-approaches-to-databases:1.0.0"
+      title: "Exploring Category-Theoretic Approaches to Databases"
+      file: "knowledge/domains/cat/foundations/exploring_category_theoretic_approaches_to_databases.koda.yml"
+      status: draft
+
+    - urn: "urn:knowledge:fxsl:cat:action-primary-key:1.0.0"
+      title: "Action is the Primary Key (Fukada, 2024)"
+      file: "knowledge/domains/cat/dynamics/action_primary_key.koda.yml"
+      status: draft
+
+    - urn: "urn:knowledge:fxsl:cat:algebraic-model-management:1.0.0"
+      title: "Algebraic Model Management: A Survey (Schultz et al., 2017)"
+      file: "knowledge/domains/cat/meta/algebraic_model_management.koda.yml"
+      status: draft
 
     - urn: "urn:knowledge:fxsl:cat:algebraic-databases:1.0.0"
       title: "Algebraic Databases — Profunctors & Proarrow Equipments"
-      file: "knowledge/cat/foundations/algebraic_databases.koda.yml"
+      file: "knowledge/domains/cat/foundations/algebraic_databases.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0"
       title: "Categorical Systems Theory — Lenses & Monadic Systems"
-      file: "knowledge/cat/dynamics/categorical_systems_theory.koda.yml"
+      file: "knowledge/domains/cat/dynamics/categorical_systems_theory.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:coalgebras:1.0.0"
       title: "Coalgebras for Software Engineering"
-      file: "knowledge/cat/dynamics/coalgebras.koda.yml"
+      file: "knowledge/domains/cat/dynamics/coalgebras.koda.yml"
       status: active
+
+    - urn: "urn:knowledge:fxsl:cat:unified-representation-transformation-multimodel:1.0.0"
+      title: "A Unified Representation and Transformation of Multi-Model Data Using Category Theory"
+      file: "knowledge/domains/cat/integration/unified_representation_transformation_multimodel.koda.yml"
+      status: draft
 
     - urn: "urn:knowledge:fxsl:cat:unified-multimodel:1.0.0"
       title: "Unified Multi-Model Representation"
-      file: "knowledge/cat/integration/unified_multimodel.koda.yml"
+      file: "knowledge/domains/cat/integration/unified_multimodel.koda.yml"
       status: active
+
+    - urn: "urn:knowledge:fxsl:cat:multicategory-multimodel-query-processing:1.0.0"
+      title: "MultiCategory: Multi-model Query Processing Meets Category Theory and Functional Programming"
+      file: "knowledge/domains/cat/integration/multicategory_multimodel_query_processing.koda.yml"
+      status: draft
+
+    - urn: "urn:knowledge:fxsl:cat:formal-framework-multimodel-data-transformations:1.0.0"
+      title: "A Formal Category Theoretical Framework for Multi-Model Data Transformations"
+      file: "knowledge/domains/cat/integration/formal_framework_multimodel_data_transformations.koda.yml"
+      status: draft
 
     - urn: "urn:knowledge:fxsl:cat:data-lakes-ct:1.0.0"
       title: "Data Lakes via Category Theory"
-      file: "knowledge/cat/integration/data_lakes_ct.koda.yml"
+      file: "knowledge/domains/cat/integration/data_lakes_ct.koda.yml"
       status: active
+
+    - urn: "urn:knowledge:fxsl:cat:formal-framework-data-lakes-ct:1.0.0"
+      title: "A Formal Framework for Data Lakes Based on Category Theory"
+      file: "knowledge/domains/cat/integration/formal_framework_data_lakes_category_theory.koda.yml"
+      status: draft
 
     - urn: "urn:knowledge:fxsl:cat:cql-data-integration:1.0.0"
       title: "Categorical Query Language (CQL) Data Integration"
-      file: "knowledge/cat/integration/cql_data_integration.koda.yml"
+      file: "knowledge/domains/cat/integration/cql_data_integration.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:mathematical-modelling:1.0.0"
       title: "Mathematical Modelling via Category Theory"
-      file: "knowledge/cat/meta/mathematical_modelling.koda.yml"
+      file: "knowledge/domains/cat/meta/mathematical_modelling.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:mbse-consistency:1.0.0"
       title: "MBSE Consistency via Category Theory (S2ML+Cat)"
-      file: "knowledge/cat/meta/mbse_consistency.koda.yml"
+      file: "knowledge/domains/cat/meta/mbse_consistency.koda.yml"
       status: active
 
     # Auditoría Categórica (nuevo v1.2)
     - urn: "urn:knowledge:fxsl:cat:audit-patterns:1.0.0"
       title: "Categorical Audit Patterns for DIK Artifacts"
-      file: "knowledge/cat/meta/audit_patterns.koda.yml"
+      file: "knowledge/domains/cat/meta/audit_patterns.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:kb-category:1.0.0"
       title: "Knowledge Base as Category"
-      file: "knowledge/cat/meta/kb_category.koda.yml"
+      file: "knowledge/domains/cat/meta/kb_category.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:constraint-logic:1.0.0"
       title: "Unified Constraint Logic (Sketches/Regular)"
-      file: "knowledge/cat/meta/constraint_logic.koda.yml"
+      file: "knowledge/domains/cat/meta/constraint_logic.koda.yml"
       status: active
 
     - urn: "urn:knowledge:fxsl:cat:schema-evolution:1.0.0"
       title: "Schema Evolution and Behavioral Audit"
-      file: "knowledge/cat/meta/schema_evolution.koda.yml"
+      file: "knowledge/domains/cat/meta/schema_evolution.koda.yml"
+      status: active
+
+    - urn: "urn:knowledge:fxsl:cat:data-access-layers:1.0.0"
+      title: "Data Access Layers via Category Theory"
+      file: "knowledge/domains/cat/integration/kb_data_access_layers_categorical.koda.yml"
       status: active
 
 Statistics:
-  total_artifacts: 41
+  total_artifacts: 50
   core_guides: 0
   agents: 9
   schemas: 0
-  domains: 32
-  last_updated: "2025-12-05"
+  domains: 41
+  last_updated: "2025-12-14"

@@ -11,7 +11,7 @@ _manifest:
     min_consumer_version: "1.0.0"
     breaking_changes_from: null
   resolution:
-    canonical_url: "file://knowledge/cat/meta/audit_patterns.koda.yml"
+    canonical_url: "file://knowledge/domains/cat/meta/audit_patterns.koda.yml"
     mirrors: []
   dependencies:
     requires:
@@ -34,7 +34,7 @@ Human-Creator: FS
 Human-Editor: FS
 Model-Collaborator: Cascade
 Creation-Date: 2025-12-05
-Modification-Date: 2025-12-05
+Modification-Date: 2025-12-14
 Version-Notes: "Initial KODA/Spec for Categorical Audit Patterns."
 Ctx: "Patrones de auditoría categórica para artefactos DIK con rigor absoluto."
 

@@ -10,7 +10,7 @@ _manifest:
     min_consumer_version: "1.0.0"
     breaking_changes_from: null
   resolution:
-    canonical_url: "file://knowledge/cat/foundations/seven_sketches.koda.yml"
+    canonical_url: "file://knowledge/domains/cat/foundations/seven_sketches.koda.yml"
     mirrors: []
   dependencies:
     requires:
@@ -19,7 +19,7 @@ _manifest:
     created_by: "FS"
     created_at: "2025-12-05"
     last_modified_by: "FS"
-    last_modified_at: "2025-12-05"
+    last_modified_at: "2025-12-14"
     signature: null
 
 ID: CAT-FDM-01
@@ -29,8 +29,10 @@ Human-Creator: FS
 Human-Editor: FS
 Model-Collaborator: Cascade
 Creation-Date: 2025-12-05
-Modification-Date: 2025-12-05
-Version-Notes: "KODA/Spec content for Seven Sketches FDM chapter with Proc and examples."
+Modification-Date: 2025-12-14
+Version-Notes: "KODA/Spec content for Seven Sketches FDM chapter with Proc and examples. Updated with Chapter 3 excerpt from sources/cat/7sk_bbdd.md."
+Src:
+  - "file://sources/cat/7sk_bbdd.md"
 Ctx: "Notas estructuradas sobre el modelo functorial de datos (FDM) para el Arquitecto Categórico."
 
 LLM_Parsing_Instructions:
@@ -52,6 +54,167 @@ Source:
   Title: "Seven Sketches in Compositionality - Databases as Functors"
   Authors: ["Brendan Fong", "David I. Spivak"]
   Ctx: "Capítulo que introduce esquemas como categorías, instancias como funtores y migraciones adjuntas."
+
+Chapter_3_Databases_Categories_Functors_Universal_Constructions:
+  ID: SS-CH3-00
+
+  Section_3_1_What_is_a_database:
+    ID: SS-CH3-1
+    Context: |
+      Integrating data from disparate sources is a major problem in industry today. A study in 2008 [BH08] showed that data integration accounts for 40% of IT budgets, and that the market for data integration software was $2.5 billion in 2007 and increasing at a rate of more than 8% per year.
+
+    Definition_Database_as_interlocking_tables:
+      ID: SS-CH3-1-DEF-DB-01
+      Def: "A database is a system of interlocking tables. Data becomes information when it is stored in a given formation."
+
+    Example_Employee_Department:
+      ID: SS-CH3-1-EX-EMPDEPT-01
+      Tables: |
+        | Employee | FName | WorksIn | Mngr |
+        |----------|-------|---------|------|
+        | 1        | Alan  | 101     | 2    |
+        | 2        | Ruth  | 101     | 2    |
+        | 3        | Kris  | 102     | 3    |
+
+        | Department | DName | Secr |
+        |------------|-------|------|
+        | 101        | Sales | 1    |
+        | 102        | IT    | 3    |
+      Notes:
+        - "The ID column entries are like row labels; each row label must be unique."
+        - "Non-ID columns are references: internal references (foreign keys) and external references (e.g., strings)."
+        - "Internal reference labels can be changed consistently; external reference labels cannot."
+      Schema_Diagram: "A Hasse-style diagram for a database schema shows black nodes for tables (ID columns) and arrows for non-ID columns, pointing in the direction of reference."
+
+    Business_Rules:
+      ID: SS-CH3-1-RULES-01
+      Rules:
+        - "Every department’s secretary must work in that department."
+        - "Every employee’s manager must work in the same department as the employee."
+      Note: "easySchema plus constraints equals mySchema (constraints expressed as path equalities like Department.Secr.WorksIn = Department and Employee.Mngr.WorksIn = Employee.WorksIn)."
+
+    Communication_between_databases:
+      ID: SS-CH3-1-COMMS-01
+      Def: "Category theory provides a mathematical approach for translating between different organizational forms (data migration), taking data that fits in one schema and moving it into another."
+
+  Section_3_2_Categories:
+    ID: SS-CH3-2
+
+    Definition_3_6_Category:
+      ID: SS-CH3-DEF-3-6
+      Content: |
+        To specify a category C:
+        1. specify a collection Ob(C), elements of which are called objects.
+        2. for every two objects c,d, specify a set C(c,d), elements of which are called morphisms from c to d.
+        3. for every object c, specify an identity morphism id_c in C(c,c).
+        4. for every three objects c,d,e and morphisms f: c->d and g: d->e, specify a composite f ; g in C(c,e).
+
+        Conditions:
+        (a) Unitality: id_c ; f = f and f ; id_d = f.
+        (b) Associativity: (f ; g) ; h = f ; (g ; h).
+
+    Definition_3_7_Free_category:
+      ID: SS-CH3-DEF-3-7
+      Def: "For any graph G=(V,A,s,t), define a category Free(G) whose objects are vertices V and whose morphisms are paths from c to d. Identity is the trivial path, and composition is concatenation of paths."
+
+  Section_3_3_Functors_natural_transformations_and_databases:
+    ID: SS-CH3-3
+
+    Definition_3_35_Functor:
+      ID: SS-CH3-DEF-3-35
+      Content: |
+        Let C and D be categories. To specify a functor F: C -> D,
+        (i) for every object c in Ob(C), specify an object F(c) in Ob(D);
+        (ii) for every morphism f: c1 -> c2 in C, specify a morphism F(f): F(c1) -> F(c2) in D.
+
+        Properties:
+        (a) F(id_c) = id_{F(c)}.
+        (b) F(f ; g) = F(f) ; F(g).
+
+    Definition_3_44_C_instance:
+      ID: SS-CH3-DEF-3-44
+      Def: "Let C be a schema, i.e. a finitely-presented category. A C-instance is a functor I: C -> Set."
+      Ref: FDM-INSTANCE
+
+    Definition_3_49_Natural_transformation:
+      ID: SS-CH3-DEF-3-49
+      Content: |
+        Let C and D be categories, and let F,G: C -> D be functors.
+        To specify a natural transformation α: F ⇒ G:
+        (i) for each object c in C, specify a morphism α_c: F(c) -> G(c) in D, called the c-component.
+
+        Naturality condition:
+        (a) for every morphism f: c -> d in C,
+            F(f) ; α_d = α_c ; G(f).
+
+        A natural transformation α is a natural isomorphism if each component α_c is an isomorphism in D.
+      Ref: FDM-NATURAL-TRANSFORMATION
+
+    Definition_3_54_Functor_category:
+      ID: SS-CH3-DEF-3-54
+      Def: "Let C and D be categories. D^C is the category whose objects are functors F: C -> D and whose morphisms are natural transformations α: F ⇒ G."
+      Ref: FDM-FUNCTOR-CATEGORY
+
+    Definition_3_60_Category_of_instances:
+      ID: SS-CH3-DEF-3-60
+      Def: "Suppose that C is a database schema and I,J: C -> Set are database instances. An instance homomorphism between them is a natural transformation α: I ⇒ J. Write C-Inst := Set^C."
+      Ref: [FDM-FUNCTOR-CATEGORY, FDM-NATURAL-TRANSFORMATION]
+
+  Section_3_4_Adjunctions_and_data_migration:
+    ID: SS-CH3-4
+
+    Definition_3_68_Pullback_of_instance_along_functor:
+      ID: SS-CH3-DEF-3-68
+      Content: |
+        Let C and D be categories and let F: C -> D be a functor.
+        For any set-valued functor I: D -> Set, the composite F ; I: C -> Set is the pullback of I along F.
+
+        Given a natural transformation α: I ⇒ J, there is a natural transformation α_F: F ; I ⇒ F ; J.
+
+        This uses the data of F to define a functor Δ_F: D-Inst -> C-Inst.
+      Ref: MIGRATION-DELTA
+
+    Definition_3_70_Adjunction:
+      ID: SS-CH3-DEF-3-70
+      Content: |
+        Let C and D be categories, and L: C -> D and R: D -> C be functors.
+        We say that L is left adjoint to R (and R is right adjoint to L) if for any c in C and d in D,
+        there is an isomorphism of hom-sets α_{c,d}: C(c, R(d)) ≅ D(L(c), d) that is natural in c and d.
+      Ref: ADJUNCTION-CHAIN
+
+  Section_3_5_Limits:
+    ID: SS-CH3-5
+
+    Definition_3_79_Terminal_object:
+      ID: SS-CH3-DEF-3-79
+      Def: "Let C be a category. An object Z in C is a terminal object if for each object C of C, there exists a unique morphism !: C -> Z."
+      Ref: LIMIT-TERMINAL
+
+    Proposition_3_84_Terminal_objects_isomorphic:
+      ID: SS-CH3-PROP-3-84
+      Def: "All terminal objects in a category C are isomorphic."
+      Ref: LIMIT-TERMINAL
+
+    Definition_3_86_Product:
+      ID: SS-CH3-DEF-3-86
+      Content: |
+        Let C be a category, and let X,Y be objects in C.
+        A product of X and Y is an object X × Y together with morphisms p_X: X×Y -> X and p_Y: X×Y -> Y
+        such that for all objects C with morphisms f: C -> X and g: C -> Y, there exists a unique morphism <f,g>: C -> X×Y
+        making the usual projection diagram commute.
+      Ref: LIMIT-PRODUCT
+
+    Theorem_3_95_Finite_limits_in_Set_formula:
+      ID: SS-CH3-THM-3-95
+      Content: |
+        Let J be a category presented by a finite graph (V,A,s,t), together with some equations, and let D: J -> Set be a set-valued functor.
+        Write V = {v1, ..., v_n}. The set
+
+          lim D := {(d1, ..., d_n) | d_i in D(v_i) for all 1 <= i <= n and for all a: v_i -> v_j in A, we have D(a)(d_i) = d_j}
+
+        together with the projection maps p_i: (lim D) -> D(v_i) given by p_i(d1,...,d_n) := d_i, is a limit of D.
+
+        This captures finite limits in Set and explains Π-operations as limits of diagrams.
 
 Core_Concepts:
   - ID: FDM-SCHEMA

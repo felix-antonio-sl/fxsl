@@ -5,6 +5,13 @@ _manifest:
   provenance: { created_by: FS, created_at: "2025-12-08" }
 
 ID: CAT-DAL-01
+Version: 1.0.0
+Status: Draft
+Human-Creator: FS
+Model-Collaborator: Cascade
+Creation-Date: 2025-12-08
+Modification-Date: 2025-12-14
+Version-Notes: "Cheatsheet compacto de patrones categóricos para Data Access Layers."
 Ctx: "Patrones categóricos para DAL: storage, APIs, repos, ORMs, lakes."
 
 Storage:
