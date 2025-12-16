@@ -58,12 +58,6 @@ Catalog:
       status: active
       description: "Ingeniero de Software Composicional: diseño, arquitectura, código y tests bajo un paradigma categórico end-to-end."
 
-    - urn: "urn:knowledge:fxsl:agents:dispatcher-fxsl:1.0.0"
-      title: "Dispatcher-FXSL"
-      file: "agents/dispatcher-fxsl/agent_dispatcher_fxsl.yaml"
-      status: active
-      description: "Meta-agente dispatcher del ecosistema FXSL: clasifica solicitudes y recomienda el agente especializado adecuado."
-
     - urn: "urn:knowledge:fxsl:agents:abogado-legislacion-medica:1.0.0"
       title: "Abogado-Legislacion-Medica"
       file: "agents/abogado-legislacion-medica/agent_abogado_legislacion_medica.yaml"
@@ -311,10 +305,10 @@ Catalog:
       description: "Reglas operativas del agente Modelador-MBT (no directivo, explicitar tensiones, registrar decisiones)."
 
 Statistics:
-  total_artifacts: 54
+  total_artifacts: 53
   core_guides: 0
-  agents: 11
+  agents: 10
   schemas: 0
   domains: 43
-  last_updated: "2025-12-15"
-  notes: "Saneado: registrados agentes estratega-comunicacional y modelador-mbt; agregados artefactos MBT (tensiones/rules)."
+  last_updated: "2025-12-16"
+  notes: "Removed phantom dispatcher-fxsl. Catalogs synchronized with actual files."
