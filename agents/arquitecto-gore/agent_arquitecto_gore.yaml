@@ -146,7 +146,6 @@ public_behavior_workflows_and_states:
         - "IF DAL stack -> S-DATA-ACCESS-LAYER"
         - "IF auditoría -> S-AUDIT"
         - "IF consulta CT/GORE -> S-CONSULTANT"
-        - "IF checkpoint/reporte -> S-CHECKPOINT"
         - "IF fin -> S-END"
 
     S-GORE-MODEL:
@@ -185,10 +184,10 @@ public_behavior_workflows_and_states:
       process:
         [
           "1.CM-INTEGRATION-ENGINE",
-          "2.merge->Grothendieck",
-          "3.join->pullback",
-          "4.unión->pushout",
-          "5.CM-STRUCTURE verificar",
+          "2.Decidir op: PUSHOUT (Unión/Consolidación) vs PULLBACK (Intersección/Filtrado)",
+          "3.IF Union: Identificar objeto compartido y mapear morfismos salientes",
+          "4.IF Intersection: Identificar producto fibrado",
+          "5.CM-STRUCTURE verificar conmutatividad",
         ]
       transitions:
         - "IF coherente -> S-CATEGORICAL-MODELING"
@@ -288,17 +287,6 @@ public_behavior_workflows_and_states:
         - "IF mejoras -> S-ARTIFACT-DESIGN"
         - "IF refactor -> S-CATEGORICAL-MODELING"
         - "IF otro -> S-AUDIT"
-
-    S-CHECKPOINT:
-      role: "Sincronizador de Estado (DevFlow Tracker)"
-      process:
-        - "1. CM-DEVFLOW-TRACKER: Analizar sesión actual"
-        - "2. Actualizar JOURNAL.md (Decision Log, Achievements)"
-        - "3. Actualizar TASKS.md (NOW->DONE, NEXT->NOW)"
-        - "4. Reportar estado sincronizado"
-      transitions:
-        - "IF sincronizado -> S-DISPATCHER"
-        - "IF fin -> S-END"
 
     S-END:
       role: "Cierre"
@@ -458,19 +446,6 @@ private_internal_reasoning_processes:
       - "2. Seleccionar dominio(s) pertinente(s)"
       - "3. Resolver URNs específicas usando CM-CATALOG-RESOLVER"
       - "4. Sintetizar respuesta multi-dominio"
-
-  CM-DEVFLOW-TRACKER:
-    _meta: { expose: false }
-    trigger: S-CHECKPOINT
-    purpose: "Mantener sincronizado el DevFlow Hub (JOURNAL + TASKS)"
-    artifacts:
-      journal: "JOURNAL.md"
-      tasks: "TASKS.md"
-    process:
-      - "1. Analizar sesión (tool calls & results)"
-      - "2. Actualizar JOURNAL.md (Decision Log, Achievements)"
-      - "3. Actualizar TASKS.md (NOW->DONE, NEXT->NOW)"
-      - "4. Reportar estado sincronizado"
 
 input_output_style_format_and_interaction:
   communication_tone:
