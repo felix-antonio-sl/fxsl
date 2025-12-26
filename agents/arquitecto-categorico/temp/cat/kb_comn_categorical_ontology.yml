@@ -1,0 +1,742 @@
+# Categorical Ontology: COMN (Concept and Object Modeling Notation)
+# Category-Theoretic Formalization
+# Arquitecto Categórico v1.4.0
+---
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:comn-ontology:1.0.0"
+  version: "1.0.0"
+  provenance:
+    created_by: arquitecto-categorico
+    created_at: "2025-12-25"
+    source_domain: COMN_DataModeling
+
+# =============================================================================
+# I. CATEGORY DEFINITION
+# =============================================================================
+
+category:
+  name: COMN
+  full_name: "Concept and Object Modeling Notation Category"
+  enrichment: Set
+  description: "COMN data modeling notation as a category with Type/Class separation"
+
+  # ---------------------------------------------------------------------------
+  # Core Insight: COMN separates WHAT (Type) from HOW (Class)
+  # Type = Abstract designation of set (semantics)
+  # Class = Concrete description of computer object (implementation)
+  # ---------------------------------------------------------------------------
+
+# =============================================================================
+# II. OBJECTS: Ontological Hierarchy
+# =============================================================================
+
+objects:
+  fundamental:
+    - id: Entity
+      description: "Something with separate and distinct existence"
+      subtypes: [Object, Concept]
+      categorical_role: "General thing in universe of discourse"
+
+    - id: Object
+      parent: Entity
+      description: "Material entity perceptible by senses"
+      essence: Physical
+      categorical_role: "Ob in material subcategory"
+
+    - id: Concept
+      parent: Entity
+      description: "Idea or notion in the mind"
+      essence: Informatical
+      categorical_role: "Ob in conceptual subcategory"
+
+  type_system:
+    - id: Type
+      description: "Designation of a set (concepts or objects)"
+      mechanism: [Naming, Selection, Enumeration, Location]
+      categorical_role: "Functor from Names to Sets"
+
+    - id: Class
+      description: "Description of structure/behavior of computer objects"
+      components: [Attributes, Methods]
+      categorical_role: "Algebra in ComputerObj category"
+
+    - id: SimpleType
+      parent: Type
+      description: "Type whose members have no components"
+      example: "AccountStatus = {open, closed, suspended}"
+
+    - id: CompositeType
+      parent: Type
+      description: "Type whose members are composed of other types"
+      examples: [LogicalRecord, Measure, Document]
+
+  data_information:
+    - id: Data
+      description: "Values separated from predicates (dehydrated information)"
+      categorical_role: "Element of Set (raw value)"
+
+    - id: Information
+      description: "Collection of propositions (data + predicates)"
+      categorical_role: "Element of Prop(Theory)"
+
+    - id: Datum
+      description: "Individual piece of data for predicate binding"
+
+  relations:
+    - id: Relationship
+      description: "Proposition involving two or more entities"
+      categorical_role: "Morphism in COMN"
+
+    - id: RelationshipType
+      description: "Logical predicate defining relationship pattern"
+      categorical_role: "Hom-set specification"
+
+    - id: Predicate
+      description: "Logical statement with variables"
+      arity: [Unary, Binary, NAry]
+
+# =============================================================================
+# III. MORPHISMS
+# =============================================================================
+
+morphisms:
+  type_morphisms:
+    - id: Subtype
+      signature: "Type_Specific → Type_General"
+      description: "Subset relationship"
+      categorical_type: Mono
+      construction: Pullback_of_classifier
+
+    - id: Supertype
+      signature: "Type_General → Type_Specific"
+      description: "Superset inclusion (union)"
+      categorical_type: Epi
+
+    - id: TypeDesignation
+      signature: "Name → Type"
+      description: "Naming a type"
+      categorical_type: "η in Free⊣Forget"
+
+  class_morphisms:
+    - id: Extension
+      signature: "BaseClass → DerivedClass"
+      description: "Class extending with more components/methods"
+      categorical_type: Injection
+
+    - id: Projection
+      signature: "DerivedClass → BaseClass"
+      description: "Forgetting extended components"
+      categorical_type: Surjection
+
+    - id: Representation
+      signature: "Class → Type"
+      description: "Class represents a Type (assigns meaning)"
+      categorical_type: Interpretation_Functor
+
+  composition_morphisms:
+    - id: Containment
+      signature: "Containee → Container"
+      properties: [exclusive, complete, non_blending]
+      description: "Object held in container (not composed)"
+
+    - id: Composition_Blending
+      signature: "Ingredient → Blend"
+      properties: [irreversible, identity_loss]
+
+    - id: Composition_Aggregation
+      signature: "Part → Aggregate"
+      properties: [integrity_preserved, difficult_separation]
+
+    - id: Composition_Assembly
+      signature: "Component → Assembly"
+      properties: [reversible, connectors]
+
+    - id: Composition_Juxtaposition
+      signature: "Element → Arrangement"
+      properties: [spatial_fixed, no_connection]
+
+  data_morphisms:
+    - id: Binding
+      signature: "Datum → PredicateVariable"
+      description: "Data value fills predicate role"
+
+    - id: Hydration
+      signature: "Data × Predicate → Information"
+      description: "Creating propositions from data"
+
+    - id: Dehydration
+      signature: "Information → Data × Predicate"
+      description: "Separating data from structure"
+
+# =============================================================================
+# IV. RELATIONAL THEORY AS CATEGORY
+# =============================================================================
+
+relational_category:
+  description: "COMN's relational theory formalized categorically"
+
+  relation:
+    definition: "Set of tuples with no order, no duplicates"
+    categorical_view: "Functor R: Schema → Set"
+
+  tuple:
+    definition: "Set of data attribute values"
+    structure: "{⟨name, type, value⟩, ...}"
+    categorical_view: "Product in Set"
+
+  scheme:
+    definition: "Set of (name, type) pairs"
+    categorical_view: "Signature of algebra"
+
+  keys:
+    primary_key:
+      role: "Unique identifier"
+      categorical_type: "Mono into relation"
+
+    foreign_key:
+      role: "Reference to other relation"
+      categorical_type: "Morphism between relations"
+      subtype_semantics: "FK defines subtype constraint"
+
+  operations:
+    description: "The 9 fundamental relational operators"
+    categorical_interpretation: "Each operator is a functor or construction"
+
+    set_operators:
+      - id: Select
+        alias: "Restrict, σ"
+        signature: "R → R'"
+        description: "Filter rows by condition"
+        categorical: "Equalizer"
+        sql: "WHERE"
+
+      - id: Project
+        alias: "π"
+        signature: "R → R'"
+        description: "Choose subset of columns"
+        categorical: "Left Kan extension (Σ)"
+        sql: "SELECT columns"
+
+      - id: Union
+        alias: "∪"
+        signature: "R × S → R ∪ S"
+        description: "Combine all rows from both"
+        categorical: "Coproduct"
+        sql: "UNION"
+        requirement: "Same scheme"
+
+      - id: Intersection
+        alias: "∩"
+        signature: "R × S → R ∩ S"
+        description: "Rows in both relations"
+        categorical: "Pullback over identity"
+        sql: "INTERSECT"
+        requirement: "Same scheme"
+
+      - id: Difference
+        alias: "−"
+        signature: "R × S → R − S"
+        description: "Rows in R but not in S"
+        categorical: "Coequalizer variant"
+        sql: "EXCEPT / MINUS"
+        requirement: "Same scheme"
+
+    combination_operators:
+      - id: Join
+        alias: "⋈"
+        signature: "R × S → R ⋈ S"
+        description: "Combine on common attributes"
+        categorical: "Pullback over FK"
+        sql: "JOIN ON"
+
+      - id: Divide
+        alias: "÷"
+        signature: "R ÷ S"
+        description: "Tuples in R matching all of S"
+        categorical: "Right Kan extension (Π)"
+        sql: "NOT EXISTS (NOT EXISTS pattern)"
+        complex: true
+
+    modification_operators:
+      - id: Extend
+        alias: "add column"
+        signature: "R → R'"
+        description: "Add computed column"
+        categorical: "Product with computed value"
+        sql: "SELECT *, expr AS new_col"
+
+      - id: Rename
+        alias: "ρ"
+        signature: "R → R'"
+        description: "Change column name"
+        categorical: "Isomorphism (same but renamed)"
+        sql: "SELECT col AS new_name"
+
+# =============================================================================
+# V. SPECIAL COMPOSITE TYPES
+# =============================================================================
+
+special_composite_types:
+  description: "Important patterns of composite types in COMN"
+
+  measures:
+    description: "Quantity + Unit composite type"
+    structure: "Measure = Value × UnitType"
+    examples:
+      - "CurrencyAmount = Decimal × CurrencyCode"
+      - "Weight = Number × WeightUnit"
+      - "Temperature = Number × TemperatureScale"
+    categorical_type: "Product with semantic constraint"
+    operations:
+      - add: "Only same unit"
+      - convert: "Via conversion morphism"
+    type_safety: "Prevents adding apples to oranges"
+
+  documents:
+    description: "Hierarchical nested composite types"
+    structure: "Document = Tree(CompositeType)"
+    realizations:
+      - xml: "Nested elements with attributes"
+      - json: "Nested objects and arrays"
+      - yaml: "Nested mappings and sequences"
+    categorical_type: "Initial algebra of recursive functor"
+    nesting: "Unlimited depth allowed (unlike E-R)"
+
+  identifiers:
+    description: "Values that uniquely identify entities"
+    structure: "Identifier = Value constrained to assigned set"
+    examples:
+      - "NationalID = pattern-constrained string"
+      - "UUID = 128-bit structured value"
+    categorical_type: "Mono into entity set"
+
+  enumerations:
+    description: "Finite set of named values"
+    structure: "Enum = {v₁, v₂, ..., vₙ}"
+    categorical_type: "Discrete category (only identities)"
+    examples:
+      - "AccountStatus = {open, closed, suspended}"
+      - "OrderState = {pending, shipped, delivered}"
+
+# =============================================================================
+# VI. MODEL REFINEMENT PROCESS
+# =============================================================================
+
+model_refinement:
+  description: "Stepwise refinement methodology in COMN"
+
+  stepwise_refinement:
+    principle: "Add detail incrementally without breaking consistency"
+    categorical_type: "Chain of monomorphisms"
+
+    levels:
+      - level: Conceptual
+        focus: "Business entities and relationships"
+        notation: "High-level diagram, no attributes"
+
+      - level: Logical
+        focus: "Complete type definitions"
+        notation: "Full attributes, keys, constraints"
+
+      - level: Physical
+        focus: "Implementation specifics"
+        notation: "Indexes, partitions, storage"
+
+    consistency:
+      statement: "Each level refines the previous"
+      categorical: "Monic morphism between levels"
+
+  completeness_principle:
+    statement: "All relationships must be shown for included types"
+    purpose: "Prevent hidden dependencies"
+    categorical: "Diagram completeness"
+
+  role_boxes:
+    description: "Annotations for predicate documentation"
+    purpose: "Label multiple predicates in single structure"
+    use_case: "When same data serves different roles"
+    example: "Flight table with both departure_city and arrival_city"
+    categorical_type: "Named projections from product"
+
+# =============================================================================
+# VII. UNIVERSAL CONSTRUCTIONS
+# =============================================================================
+
+limits:
+  terminal:
+    realization: "Universal Type (Any)"
+    description: "Type containing all values"
+
+  product:
+    realization: "CompositeType"
+    description: "Type with multiple components"
+    example: "CurrencyAmount = Decimal × CurrencyCode"
+
+  pullback:
+    realization: "JOIN operation"
+    description: "Combining relations on common key"
+    diagram: |
+      R ──FK──→ S
+      ↓         ↓
+      R ⋈ S ───→ T
+
+  equalizer:
+    realization: "SELECT with WHERE"
+    description: "Rows satisfying condition"
+
+colimits:
+  initial:
+    realization: "Empty Type (∅)"
+    description: "Type with no values"
+
+  coproduct:
+    realization: "Union Type"
+    description: "Type that can be any of several types"
+    example: "oneOf in OpenAPI, | in TypeScript"
+
+  pushout:
+    realization: "UNION operation"
+    description: "Merging relations"
+
+# =============================================================================
+# VII-A. IDENTITY AND DUALITY SEMANTICS
+# =============================================================================
+
+identity_semantics:
+  description: "Formal distinction between Identity (Reference) and Equality (Value)"
+
+  axioms:
+    - id: Value_Equality
+      statement: "v1 = v2 ⟺ components(v1) = components(v2)"
+      categorical: "Extensional equality in Set"
+      applies_to: "Types, Records, Measures"
+
+    - id: Object_Identity
+      statement: "o1 = o2 ⟺ id(o1) = id(o2)"
+      categorical: "Referential identity (morphism uniqueness)"
+      applies_to: "Entities, Computer Objects"
+
+    - id: Mutable_State
+      statement: "state(o, t1) ≠ state(o, t2) does NOT imply o ≠ o"
+      categorical: "Identity characterizes the fiber over time"
+
+dual_nature_fibration:
+  name: "The Entity Fibration"
+  description: "Entities can be viewed as Physical Objects or Conceptual Ideas"
+  structure:
+    base: "Entity Category (Abstract existence)"
+    fiber_physical: "Material Subcategory (Phy)"
+    fiber_conceptual: "Mental Subcategory (Info)"
+    projection: "p: E → {Phy, Info}"
+  meaning: |
+    - A 'Car' entity has a physical fiber (the metal object)
+    - The same 'Car' entity has a conceptual fiber (the registration concept)
+    - COMN models the *interplay* between these fibers
+
+# =============================================================================
+# VII-B. TERMINOLOGY MAPPING FUNCTORS
+# =============================================================================
+
+terminology_mappings:
+  description: "Functors translating COMN concepts to other notations (solving Humpty-Dumpty)"
+  mappings:
+    - id: Map_to_UML
+      source: COMN
+      target: UML
+      rules:
+        - "COMN.Class ⟶ UML.Class"
+        - "COMN.Type ⟶ UML.DataType / Stereotype"
+        - "COMN.Attribute ⟶ UML.Attribute"
+        - "COMN.Relationship ⟶ UML.Association"
+        - "COMN.Composition ⟶ UML.Composition (strict)"
+      caveats: "UML aggregates are ill-defined; COMN is precise."
+
+    - id: Map_to_ER
+      source: COMN
+      target: ER_Logical
+      rules:
+        - "COMN.Entity ⟶ ER.Entity"
+        - "COMN.RecordType ⟶ ER.Entity (Table)"
+        - "COMN.Identity ⟶ ER.PrimaryKey"
+        - "COMN.CompositeType ⟶ (Not Supported directly)"
+      caveats: "ER conflates Entity/Record; COMN separates them."
+
+    - id: Map_to_RDF
+      source: COMN
+      target: RDF_OWL
+      rules:
+        - "COMN.Entity ⟶ OWL.Individual"
+        - "COMN.Type ⟶ OWL.Class"
+        - "COMN.Predicate ⟶ RDF.Property"
+        - "COMN.Proposition ⟶ RDF.Triple"
+      caveats: "RDF is limited to binary predicates; COMN supports n-ary."
+# =============================================================================
+
+type_class_adjunction:
+  description: "The fundamental insight of COMN: Type ↔ Class separation"
+
+  type_category:
+    name: "Type"
+    objects: "Sets of values (abstract)"
+    morphisms: "Subtype inclusions"
+    purpose: "WHAT (semantics, requirements)"
+
+  class_category:
+    name: "Class"
+    objects: "Computer object descriptions (concrete)"
+    morphisms: "Extensions, implementations"
+    purpose: "HOW (structure, implementation)"
+
+  representation_functor:
+    signature: "Rep: Class → Type"
+    action: "Assigns meaning to computer object states"
+    description: "Maps physical states to semantic values"
+
+  implementation_functor:
+    signature: "Impl: Type → Class"
+    action: "Chooses concrete representation for type"
+    description: "Maps semantic requirements to structures"
+
+  adjunction:
+    statement: "Impl ⊣ Rep"
+    unit: "η: Type → Rep(Impl(Type)) [type is represented by its implementation]"
+    counit: "ε: Impl(Rep(Class)) → Class [class implements its representation]"
+    meaning: |
+      - Separating WHAT from HOW enables:
+        1. Specifying requirements independent of implementation
+        2. Changing implementation without changing semantics
+        3. Multiple implementations for same type
+
+# =============================================================================
+# VII. FUNCTORS
+# =============================================================================
+
+functors:
+  - id: U_Forget
+    signature: "COMN → Set"
+    mapping:
+      types: "Underlying set"
+      classes: "Carrier set"
+    forgets: [structure, semantics, relationships]
+
+  - id: F_Free
+    signature: "Set → COMN"
+    mapping:
+      set: "Simple enumeration type"
+    handedness: left_adjoint_to_U
+
+  - id: Rep
+    signature: "Class → Type"
+    description: "Extract semantic type from implementation"
+
+  - id: Impl
+    signature: "Type → Class"
+    description: "Generate implementation for type"
+    handedness: left_adjoint_to_Rep
+
+  - id: Schema
+    signature: "COMN → Rel"
+    mapping:
+      composite_type: "Relation scheme"
+      relationship: "Foreign key"
+    description: "Generate relational schema"
+
+  - id: OOP
+    signature: "COMN → OOClass"
+    mapping:
+      class: "Java/C# class"
+      type: "Interface"
+    description: "Generate OOP code"
+
+  - id: ER_Render
+    signature: "COMN → ERDiagram"
+    mapping:
+      entity: "Rectangle"
+      relationship: "Diamond/Line"
+    description: "Render as E-R diagram"
+
+  - id: JSON_Schema
+    signature: "COMN → JSONSchema"
+    mapping:
+      composite_type: "object schema"
+      simple_type: "enum"
+    description: "Generate JSON Schema"
+
+# =============================================================================
+# VIII. ADJUNCTIONS
+# =============================================================================
+
+adjunctions:
+  - id: Free_Forget
+    left: F_Free
+    right: U_Forget
+    meaning: "Set is free COMN ignoring structure"
+
+  - id: Impl_Rep
+    left: Impl
+    right: Rep
+    meaning: "Type/Class separation is adjunction"
+    importance: FUNDAMENTAL
+
+  - id: Subtype_Supertype
+    left: Restrict
+    right: Include
+    context: "Type hierarchy"
+    meaning: "Subtyping as restriction/inclusion pair"
+
+  - id: Nesting_Flattening
+    left: Nest
+    right: Flatten
+    context: "Composite types"
+    meaning: "Hierarchical vs flat representation"
+
+  - id: NoSQL_SQL
+    left: Denormalize
+    right: Normalize
+    context: "Physical design"
+    meaning: "Trade-off between query speed and update consistency"
+
+# =============================================================================
+# IX. DATA/INFORMATION MONAD
+# =============================================================================
+
+data_information_monad:
+  description: "The Data → Information transformation as monad"
+
+  monad:
+    name: "Info"
+    functor: "Info: Set → Set"
+    unit: "η: Data → Info(Data) [embed raw data]"
+    multiplication: "μ: Info(Info(D)) → Info(D) [flatten nested propositions]"
+
+  kleisli:
+    description: "Kleisli category for working with information"
+    arrows: "f: A → Info(B) [data transformations that produce information]"
+
+  interpretation:
+    predicate_binding: "Data × Predicate →_Kleisli Information"
+    query_execution: "Schema × Data →_Kleisli ResultSet"
+
+# =============================================================================
+# X. PHYSICAL DESIGN CONSTRUCTIONS
+# =============================================================================
+
+physical_design:
+  sql_constructions:
+    create_table: "Colim of schema components"
+    foreign_key: "Mor in COMN → Constraint in SQL"
+    join: "Pullback over FK"
+    union: "Coproduct"
+    group_by: "Coequalizer"
+
+  nosql_constructions:
+    document: "Nested colimit"
+    index: "Projection functor"
+    embedding: "Limit (denormalization)"
+
+  cap_theorem:
+    description: "Categorical interpretation of CAP"
+    consistency: "Equalizer (all replicas equal)"
+    availability: "Coproduct (any replica responds)"
+    partition: "Disconnected subcategories"
+    impossibility: "No simultaneous lim+colim in partitioned category"
+
+  acid_base:
+    acid: "Transactional limits (atomic colimits)"
+    base: "Eventual colimits (lazy coequalizers)"
+
+# =============================================================================
+# XI. COHERENCE AXIOMS
+# =============================================================================
+
+axioms:
+  - id: Type_Set_Correspondence
+    statement: "∀t ∈ Type. ∃!S ∈ Set. t designates S"
+    category: STRUCTURAL
+
+  - id: Class_Representation
+    statement: "∀c ∈ Class. ∃t ∈ Type. Rep(c) = t"
+    category: SEMANTIC
+
+  - id: Subtype_Subset
+    statement: "Subtype(A,B) ⟹ Set(A) ⊆ Set(B)"
+    category: STRUCTURAL
+
+  - id: FK_Subtype
+    statement: "FK(A.col, B.key) ⟹ values(A.col) ⊆ values(B.key)"
+    category: REFERENTIAL
+
+  - id: Predicate_Arity
+    statement: "Predicate P with n variables forms n-ary relation"
+    category: RELATIONAL
+
+  - id: Tuple_Product
+    statement: "Tuple = Product of attribute values"
+    category: RELATIONAL
+
+# =============================================================================
+# XII. AUDIT CHECKLIST
+# =============================================================================
+
+audit:
+  STRUCTURAL:
+    - "All Types properly designated (name, selection, enumeration)"
+    - "All Classes have representation mapping to Type"
+    - "Composite types have valid component structure"
+    - "Subtype relationships form valid lattice"
+
+  REFERENTIAL:
+    - "Foreign keys reference valid primary keys"
+    - "FK implies subtype relationship"
+    - "No dangling references"
+
+  SEMANTIC:
+    - "Type/Class separation maintained"
+    - "Predicates properly define relationships"
+    - "Data/Information distinction clear"
+
+  PHYSICAL:
+    - "SQL schema derivable from logical model"
+    - "NoSQL schema derivable from logical model"
+    - "Indexes defined as projections"
+
+# =============================================================================
+# XIII. TENSION MAPPING (MBT)
+# =============================================================================
+
+tensions:
+  - id: T_A1_Entity_Object_Concept
+    pole_a: "Object (material)"
+    pole_b: "Concept (mental)"
+    adjunction: "Phys ⊣ Info"
+    resolution: "Entity encompasses both"
+
+  - id: T_A1_Type_Class
+    pole_a: "Type (WHAT)"
+    pole_b: "Class (HOW)"
+    adjunction: "Impl ⊣ Rep"
+    resolution: "Fundamental COMN separation"
+
+  - id: T_A2_Data_Information
+    pole_a: "Data (dehydrated)"
+    pole_b: "Information (propositions)"
+    adjunction: "Dehydrate ⊣ Hydrate"
+    resolution: "Predicate binding mechanism"
+
+  - id: T_A4_Containment_Composition
+    pole_a: "Containment (exclusivo)"
+    pole_b: "Composition (modes)"
+    adjunction: "Simple ⊣ Complex"
+    resolution: "Distinct relationships in COMN"
+
+  - id: T_B3_SQL_NoSQL
+    pole_a: "SQL (normalized, limits)"
+    pole_b: "NoSQL (denormalized, colimits)"
+    adjunction: "Normalize ⊣ Denormalize"
+    resolution: "COMN generates both"
+
+  - id: T_B3_ACID_BASE
+    pole_a: "ACID (consistency)"
+    pole_b: "BASE (availability)"
+    adjunction: "Strict ⊣ Eventual"
+    resolution: "CAP-aware physical design"

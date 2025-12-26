@@ -1,0 +1,933 @@
+# Categorical Ontology: Ω (Omega) - Tridominal Fusion
+# Category-Theoretic Fusion of OPM × ALTER × COMN
+# Arquitecto Categórico v1.4.0
+---
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:omega-ontology:1.0.0"
+  version: "1.0.0"
+  provenance:
+    created_by: arquitecto-categorico
+    created_at: "2025-12-25"
+    source_domains: [OPM, ALTER, COMN]
+    fusion_type: "Categorical Pullback"
+
+# =============================================================================
+# I. CATEGORY DEFINITION
+# =============================================================================
+
+category:
+  name: Ω
+  full_name: "Omega - Unified System Modeling Category"
+  enrichment: Set
+  description: |
+    Ω is the categorical fusion of three complementary domains:
+    - OPM: Behavior and structure (HOW systems transform)
+    - ALTER: Purpose and lifecycle (WHY systems exist, FOR WHOM)
+    - COMN: Meaning and data (WHAT things are, semantically)
+
+    Ω is constructed as the PULLBACK of these three categories over
+    a shared Base category of fundamental system concepts.
+
+  construction:
+    type: "Pullback (Fibered Product)"
+    diagram: |
+      Ω ──π_O──→ OPM
+      │          │
+      │π_A       │ U_O (forget to Base)
+      │          ↓
+      ↓          
+      ALTER ────→ Base ←──── COMN
+           U_A         U_C
+    universal_property: |
+      For any category X with functors f_O: X→OPM, f_A: X→ALTER, f_C: X→COMN
+      such that U_O∘f_O = U_A∘f_A = U_C∘f_C,
+      there exists a unique functor h: X→Ω making all squares commute.
+
+# =============================================================================
+# II. BASE CATEGORY (Shared Foundation)
+# =============================================================================
+
+base_category:
+  name: Base
+  description: "Minimal shared ontology across OPM, ALTER, and COMN"
+
+  objects:
+    - id: Thing
+      description: "Generic entity with existence"
+      opm_realization: "Object or Process"
+      alter_realization: "WS Element"
+      comn_realization: "Entity"
+
+    - id: Transformation
+      description: "Change from one state to another"
+      opm_realization: "Process execution"
+      alter_realization: "Activity performing"
+      comn_realization: "Predicate instantiation"
+
+    - id: State
+      description: "Situation or value at a point"
+      opm_realization: "Object state"
+      alter_realization: "WS health"
+      comn_realization: "Attribute value"
+
+    - id: Link
+      description: "Connection between things"
+      opm_realization: "OPM Link (procedural/structural)"
+      alter_realization: "WS Relationship"
+      comn_realization: "Relationship"
+
+  morphisms:
+    - id: transforms
+      signature: "Transformation → Thing"
+      description: "A transformation affects a thing"
+
+    - id: has_state
+      signature: "Thing → State"
+      description: "A thing has a state"
+
+    - id: connects
+      signature: "Link → Thing × Thing"
+      description: "A link connects two things"
+
+# =============================================================================
+# III. PROJECTION FUNCTORS
+# =============================================================================
+
+projection_functors:
+  - id: π_O
+    name: "OPM Projection"
+    signature: "π_O: Ω → OPM"
+    action: "Forgets Purpose (ALTER) and Semantics (COMN)"
+    preserves: "Behavioral dynamics, state transitions, process structure"
+    mapping:
+      Ω-Object: "OPM.Object"
+      Ω-Process: "OPM.Process"
+      Ω-State: "OPM.State"
+      Ω-Transform: "OPM.Effect/Consumption/Result"
+      Ω-Enable: "OPM.Agent/Instrument"
+      Ω-Structure: "OPM.Aggregation/Generalization"
+
+  - id: π_A
+    name: "ALTER Projection"
+    signature: "π_A: Ω → ALTER"
+    action: "Forgets Dynamics (OPM) and Semantics (COMN)"
+    preserves: "Value contribution, lifecycle phase, stakeholder benefit"
+    mapping:
+      Ω-Object: "ALTER.WSElement"
+      Ω-Process: "ALTER.Activity"
+      Ω-State: "ALTER.WSHealth"
+      Ω-Transform: "ALTER.ValueCreation"
+      Ω-Enable: "ALTER.Participant/Technology"
+      Ω-Structure: "ALTER.WSOverlap"
+
+  - id: π_C
+    name: "COMN Projection"
+    signature: "π_C: Ω → COMN"
+    action: "Forgets Purpose (ALTER) and Dynamics (OPM)"
+    preserves: "Type designation, class structure, predicate semantics"
+    mapping:
+      Ω-Object: "COMN.Entity"
+      Ω-Process: "COMN.Predicate"
+      Ω-State: "COMN.Value"
+      Ω-Transform: "COMN.Binding"
+      Ω-Enable: "(implicit)"
+      Ω-Structure: "COMN.Subtype/Composition"
+
+# =============================================================================
+# IV. Ω-OBJECTS (Fused Objects)
+# =============================================================================
+
+omega_objects:
+  description: "Objects in Ω are triples of aligned components from OPM, ALTER, COMN"
+
+  structure:
+    definition: "Ω-Object := ⟨ opm_facet, alter_facet, comn_facet ⟩"
+    constraint: "All facets must be compatible via Base"
+
+  primary_objects:
+    - id: Ω-Thing
+      description: "Universal entity with three simultaneous facets"
+      facets:
+        opm: "Object (stateful/stateless, physical/informatical)"
+        alter: "WSElement (participant/resource/product/customer)"
+        comn: "Entity (object/concept, typed)"
+      categorical_role: "Ob(Ω)"
+
+    - id: Ω-Object
+      parent: Ω-Thing
+      description: "Material or informatical object with triple characterization"
+      structure:
+        opm_facet:
+          essence: "physical | informatical"
+          perseverance: "static | dynamic"
+          states: "[state_1, state_2, ...]"
+        alter_facet:
+          affiliation: "systemic | environmental"
+          role_in_ws: "participant | resource | product | customer"
+        comn_facet:
+          ontological_status: "entity | object | concept"
+          type_reference: "<Ω-Type>"
+          identity_mode: "value | reference"
+
+    - id: Ω-Process
+      parent: Ω-Thing
+      description: "Transformation with purpose, dynamics, and semantics"
+      structure:
+        opm_facet:
+          essence: "physical | informatical"
+          temporal_order: "synchronous | asynchronous"
+          transformees:
+            consumees: "[]"
+            affectees: "[]"
+            resultees: "[]"
+          enablers:
+            agents: "[]"
+            instruments: "[]"
+        alter_facet:
+          value_contribution: "direct | supporting | coordination"
+          ws_phase: "operation | initiation | development | implementation"
+          work_facets: "[subset of 18 facets]"
+        comn_facet:
+          predicate_arity: "unary | binary | n_ary"
+          roles: "[role_1, role_2, ...]"
+          propositions_generated: "[]"
+
+    - id: Ω-State
+      description: "Situation with health, object condition, and semantic value"
+      structure:
+        opm_facet:
+          object_situation: "initial | intermediate | final | default"
+          transition_from: "<previous_state>"
+          transition_to: "<next_state>"
+        alter_facet:
+          ws_health: "operating | degraded | failed | evolving"
+          performance_gap: "none | minor | significant | critical"
+          compliance: "compliant | variant | non_compliant"
+        comn_facet:
+          semantic_value: "<value_in_type_domain>"
+          validity: "valid | invalid | unknown"
+
+    - id: Ω-Type
+      description: "Pure semantic specification (COMN-dominant)"
+      structure:
+        comn_facet:
+          designation: "name | selection | enumeration | location"
+          kind: "simple | composite"
+        opm_facet:
+          essence_constraint: "physical | informatical | any"
+        alter_facet:
+          value_domain: "<what value this type represents>"
+
+    - id: Ω-System
+      description: "Complete system as diagram in Ω"
+      structure:
+        opm_facet:
+          realization: "OPM System Diagram (SD)"
+          main_process: "<Ω-Process>"
+          operand: "<Ω-Object>"
+        alter_facet:
+          realization: "Work System (9 elements)"
+          beneficiary: "<stakeholder_group>"
+          value_proposition: "<statement>"
+        comn_facet:
+          realization: "Data Model"
+          schema: "<set of Ω-Types>"
+
+  derived_objects:
+    - id: Ω-Operand
+      parent: Ω-Object
+      constraint: "Is transformed by at least one Ω-Process"
+      centrality: OPM
+
+    - id: Ω-Agent
+      parent: Ω-Object
+      constraint: "Enables Ω-Process without being transformed"
+      centrality: ALTER
+
+    - id: Ω-Value
+      parent: Ω-Object
+      constraint: "Delivered to beneficiary, typed semantically"
+      centrality: "ALTER + COMN"
+
+    - id: Ω-Record
+      parent: Ω-Type
+      constraint: "Composite type representing data record"
+      centrality: COMN
+
+# =============================================================================
+# V. Ω-MORPHISMS (Fused Links)
+# =============================================================================
+
+omega_morphisms:
+  description: "Morphisms in Ω are trimodal links with components from each domain"
+
+  structure:
+    definition: "Ω-Link := ⟨ opm_component, alter_component, comn_component ⟩"
+
+  transformation_morphisms:
+    - id: Ω-Transform
+      description: "Object state change with value creation and predicate instantiation"
+      components:
+        opm: "Effect | Consumption | Result"
+        alter: "Activity value_contribution"
+        comn: "Predicate binding"
+      signature: "Ω-Process × Ω-Object → Ω-State"
+      categorical_type: "Kleisli arrow in State monad"
+
+    - id: Ω-Consume
+      parent: Ω-Transform
+      description: "Object consumed (destroyed) by process"
+      opm: "Consumption link"
+      alter: "Resource utilization"
+      comn: "Datum consumed"
+
+    - id: Ω-Produce
+      parent: Ω-Transform
+      description: "Object created by process"
+      opm: "Result link"
+      alter: "Value creation"
+      comn: "Information generated"
+
+    - id: Ω-Affect
+      parent: Ω-Transform
+      description: "Object state changed by process"
+      opm: "Effect link"
+      alter: "State transition"
+      comn: "Value update"
+
+  enabling_morphisms:
+    - id: Ω-Enable
+      description: "Object enables process without transformation"
+      components:
+        opm: "Agent | Instrument"
+        alter: "Participant | Technology"
+        comn: "(capability)"
+      signature: "Ω-Object → Ω-Process"
+      categorical_type: "Context morphism (slice category)"
+
+    - id: Ω-Agent
+      parent: Ω-Enable
+      description: "Human enabler"
+      opm: "Agent link"
+      alter: "Participant performs"
+
+    - id: Ω-Instrument
+      parent: Ω-Enable
+      description: "Non-human enabler"
+      opm: "Instrument link"
+      alter: "Technology uses"
+
+  structural_morphisms:
+    - id: Ω-Structure
+      description: "Static relationship between objects"
+      components:
+        opm: "Aggregation | Exhibition | Generalization"
+        alter: "WS overlap | dependency"
+        comn: "Subtype | Composition | FK"
+
+    - id: Ω-Aggregate
+      parent: Ω-Structure
+      description: "Whole-part composition"
+      opm: "Aggregation"
+      comn: "Composite type"
+      categorical_type: "Product"
+
+    - id: Ω-Specialize
+      parent: Ω-Structure
+      description: "Type hierarchy"
+      opm: "Generalization"
+      comn: "Subtype"
+      categorical_type: "Coproduct injection"
+
+    - id: Ω-Exhibit
+      parent: Ω-Structure
+      description: "Feature exposure"
+      opm: "Exhibition"
+      comn: "Attribute | Operation"
+      categorical_type: "Projection"
+
+  flow_morphisms:
+    - id: Ω-Flow
+      description: "Transition or data movement"
+      components:
+        opm: "State transition path"
+        alter: "Value chain"
+        comn: "Data binding"
+      signature: "Ω-State → Ω-State"
+
+    - id: Ω-Invoke
+      description: "Process triggering another process"
+      opm: "Invocation link"
+      alter: "Activity sequence"
+      comn: "Predicate composition"
+      signature: "Ω-Process → Ω-Process"
+
+# =============================================================================
+# VI. Ω-WSLC (Fused Lifecycle Coalgebra)
+# =============================================================================
+
+omega_wslc:
+  name: "Ω Work-System Lifecycle"
+  description: "Fusion of ALTER WSLC with OPM refinement and COMN abstraction levels"
+
+  coalgebra:
+    carrier: "Ω-System"
+    functor: "F(X) = State × P(Transition(X))"
+    coalgebra_map: "δ: Ω → F(Ω)"
+
+  states:
+    - id: Conceptual
+      description: "Abstract types and high-level requirements"
+      dominant_domain: COMN
+      opm_view: "System Diagram (SD) - top level"
+      alter_view: "Initiation phase"
+      comn_view: "Conceptual data model"
+
+    - id: Logical
+      description: "Defined behavior and complete specifications"
+      dominant_domain: OPM
+      opm_view: "Refined diagrams (SD1, SD2, ...)"
+      alter_view: "Development phase"
+      comn_view: "Logical data model"
+
+    - id: Operational
+      description: "Running system producing value"
+      dominant_domain: ALTER
+      opm_view: "Executing processes"
+      alter_view: "Operation & Maintenance"
+      comn_view: "Physical data model + live data"
+
+    - id: Evolving
+      description: "System undergoing emergent change"
+      dominant_domain: ALTER
+      opm_view: "Modified diagram"
+      alter_view: "Workarounds, adaptations"
+      comn_view: "Schema evolution"
+
+  transitions:
+    - from: Conceptual
+      to: Logical
+      trigger: "Refinement (OPM in-zoom)"
+      categorical: "Monic morphism"
+
+    - from: Logical
+      to: Operational
+      trigger: "Implementation complete"
+      categorical: "Deployment functor"
+
+    - from: Operational
+      to: Operational
+      trigger: "Emergent change (workaround, adaptation)"
+      categorical: "2-cell variation"
+
+    - from: Operational
+      to: Conceptual
+      trigger: "Major redesign initiated"
+      categorical: "Abstraction functor"
+
+    - from: Operational
+      to: Evolving
+      trigger: "Performance gap detected"
+      categorical: "Alert morphism"
+
+    - from: Evolving
+      to: Operational
+      trigger: "Stabilization"
+      categorical: "Fixpoint"
+
+    - from: Evolving
+      to: Conceptual
+      trigger: "Requires fundamental redesign"
+      categorical: "Reset morphism"
+
+# =============================================================================
+# VII. UNIVERSAL CONSTRUCTIONS IN Ω
+# =============================================================================
+
+limits:
+  terminal:
+    realization: "Ω-Universe"
+    description: "The encompassing context (organization + environment)"
+
+  product:
+    realization: "Ω-Object × Ω-Object"
+    description: "Parallel composition of objects"
+    example: "⟨IPR, Evaluador⟩ in evaluation context"
+
+  pullback:
+    realization: "Shared component across systems"
+    description: "Common resource, shared infrastructure"
+    diagram: |
+      Ω-System_A ──→ SharedResource ←── Ω-System_B
+                   \\         PB        /
+                    \\        ↓       /
+                     ↘  Ω-Shared  ↙
+
+  equalizer:
+    realization: "Constraint satisfaction"
+    description: "Objects satisfying predicate conditions"
+    example: "SELECT ... WHERE in Ω-Query"
+
+colimits:
+  initial:
+    realization: "Ω-Void"
+    description: "Empty system, no value"
+
+  coproduct:
+    realization: "Ω-System ⊔ Ω-System"
+    description: "Alternative systems (union type)"
+    example: "IPR = RATE | RF | ITF | CONCURSO"
+
+  pushout:
+    realization: "Ω-System merge"
+    description: "Combining systems over shared interface"
+    example: "Merging two WS over common participant"
+
+  coequalizer:
+    realization: "Process abstraction"
+    description: "Identifying equivalent processes"
+    example: "GROUP BY in queries; workaround = original"
+
+# =============================================================================
+# VIII. ADJUNCTIONS IN Ω
+# =============================================================================
+
+adjunctions:
+  internal:
+    - id: Ω-Refine_Abstract
+      left: Refine
+      right: Abstract
+      unit: "η: Ω-System → Abstract(Refine(Ω-System))"
+      counit: "ε: Refine(Abstract(Ω-System)) → Ω-System"
+      meaning: "Refinement adds detail; abstraction removes it"
+      opm_aspect: "in-zoom ⊣ out-zoom"
+      alter_aspect: "Develop ⊣ Initiate"
+      comn_aspect: "Logical ⊣ Conceptual"
+
+    - id: Ω-Plan_Emerge
+      left: Plan
+      right: Emerge
+      context: "Change management"
+      meaning: "Planned change (project) vs emergent change (organic)"
+      alter_dominant: true
+
+    - id: Ω-Impl_Rep
+      left: Implement
+      right: Represent
+      context: "Type/Class duality"
+      meaning: "Implementation ⊣ Representation (inherited from COMN)"
+      comn_dominant: true
+
+  external:
+    - id: Ω_to_OPM
+      left: "Embed_OPM: OPM → Ω"
+      right: "π_O: Ω → OPM"
+      meaning: "OPM embeds into Ω; projection forgets non-OPM facets"
+
+    - id: Ω_to_ALTER
+      left: "Embed_ALTER: ALTER → Ω"
+      right: "π_A: Ω → ALTER"
+      meaning: "ALTER embeds into Ω; projection forgets non-ALTER facets"
+
+    - id: Ω_to_COMN
+      left: "Embed_COMN: COMN → Ω"
+      right: "π_C: Ω → COMN"
+      meaning: "COMN embeds into Ω; projection forgets non-COMN facets"
+
+# =============================================================================
+# IX. Ω-AXIOMS (Coherence Rules)
+# =============================================================================
+
+axioms:
+  structural:
+    - id: Ω-1_Value_Production
+      statement: |
+        ∀ω ∈ Ω-System. 
+        ∃p ∈ Ω-Process, b ∈ Beneficiary. 
+        (p.alter_facet.value_contribution ≠ null) ∧ (p delivers_to b)
+      description: "Every Ω-System must produce value for some beneficiary"
+      origin: ALTER
+
+    - id: Ω-2_Behavioral_Completeness
+      statement: |
+        ∀o ∈ Ω-Object. 
+        (o.opm_facet.perseverance = dynamic) ⟹
+        ∃p ∈ Ω-Process. (p transforms o)
+      description: "Every dynamic object must have a transforming process"
+      origin: OPM
+
+    - id: Ω-3_Universal_Typing
+      statement: |
+        ∀o ∈ Ω-Object, s ∈ Ω-State.
+        ∃t ∈ Ω-Type. (o.comn_facet.type_reference = t)
+      description: "Every object and state must be typed"
+      origin: COMN
+
+    - id: Ω-4_Trimodal_Consistency
+      statement: |
+        ∀ω ∈ Ob(Ω).
+        π_O(ω), π_A(ω), π_C(ω) are all well-defined and compatible
+      description: "All three projections must be consistent"
+      origin: Fusion
+
+  lifecycle:
+    - id: Ω-5_WSLC_Reachability
+      statement: |
+        ∀s ∈ Ω-WSLC.State. 
+        reachable(s, Operational)
+      description: "All lifecycle states must eventually reach Operational"
+      origin: ALTER
+
+    - id: Ω-6_Refinement_Preservation
+      statement: |
+        Refine(ω) preserves all Ω-Links of ω
+      description: "Refinement only adds detail, never removes structure"
+      origin: OPM
+
+  semantic:
+    - id: Ω-7_FK_Subtype
+      statement: |
+        FK(A.col, B.key) ⟹ values(A.col) ⊆ values(B.key)
+      description: "Foreign key implies subtype relationship"
+      origin: COMN
+
+    - id: Ω-8_Predicate_Process_Duality
+      statement: |
+        ∀pred ∈ COMN.Predicate. ∃p ∈ Ω-Process. π_C(p) = pred
+        (when pred represents a transformation)
+      description: "COMN predicates that describe change map to Ω-Processes"
+      origin: Fusion
+
+# =============================================================================
+# X. TENSION RESOLUTION (MBT)
+# =============================================================================
+
+tensions_resolved:
+  - id: T-SER
+    tension: "Entity vs Process (Being vs Becoming)"
+    resolution: "Ω-Thing encompasses both; Ω-Object and Ω-Process as dual facets"
+    adjunction: "Object ⊣ Process in Ω"
+
+  - id: T-DEVENIR_Planned_Emergent
+    tension: "Planned change vs Emergent change"
+    resolution: "Ω-WSLC explicitly models both paths"
+    adjunction: "Plan ⊣ Emerge"
+
+  - id: T-CONOCER
+    tension: "Data vs Information"
+    resolution: "Ω-State carries both: comn_facet.semantic_value (data) + alter_facet context (information)"
+    adjunction: "Dehydrate ⊣ Hydrate (inherited from COMN)"
+
+  - id: T-EXPRESAR
+    tension: "Graphical vs Textual"
+    resolution: "Ω-SD (graphical) ↔ Ω-OPL (textual) isomorphism preserved from OPM"
+    adjunction: "Render ⊣ Parse"
+
+  - id: T-PROCEDER
+    tension: "Synchronous vs Asynchronous"
+    resolution: "Ω-Process.opm_facet.temporal_order explicitly distinguishes"
+    categorical: "Parallel ⊣ Sequential composition"
+
+  - id: T-Type_Class
+    tension: "Type (WHAT) vs Class (HOW)"
+    resolution: "Ω preserves COMN's Impl ⊣ Rep adjunction"
+    dominant: COMN
+
+tensions_residual:
+  - id: T-VALIDAR
+    tension: "How to verify an Ω-Model is semantically correct?"
+    status: "Open - requires domain-specific validation"
+
+  - id: T-ESCALA
+    tension: "How does Ω scale to enterprise-level systems?"
+    status: "Open - Grothendieck fibration over Org suggested"
+
+# =============================================================================
+# XI. AUDIT CHECKLIST
+# =============================================================================
+
+audit:
+  STRUCTURAL:
+    - "All Ω-Objects have three valid facets (OPM, ALTER, COMN)"
+    - "All Ω-Processes have value_contribution ≠ null"
+    - "All Ω-Types are properly designated"
+    - "Projection functors are well-defined"
+
+  BEHAVIORAL:
+    - "Ω-WSLC states are all reachable from Operational"
+    - "Dynamic objects have transforming processes"
+    - "State transitions are well-typed"
+
+  SEMANTIC:
+    - "Type/Class separation maintained"
+    - "Predicates correctly model relationships"
+    - "FK implies subtype"
+
+  COHERENCE:
+    - "All Ω-Axioms satisfied"
+    - "Pullback property verified"
+    - "Adjunctions are compatible across domains"
+
+# =============================================================================
+# XII. PRESERVED VALUE BY DOMAIN
+# =============================================================================
+
+preserved_value:
+  description: |
+    Each source domain contributes UNIQUE value that is FULLY PRESERVED in Ω.
+    The pullback construction guarantees that π_X ∘ Embed_X = id_X for each domain.
+
+  OPM:
+    unique_contributions:
+      - id: Bimodal_Representation
+        description: "OPD (graphical) ↔ OPL (textual) isomorphism"
+        preserved_in: "Ω-SD has both graphical and OPL representations"
+        utility: "Stakeholders can choose preferred modality"
+
+      - id: State_Machine_Semantics
+        description: "Objects as state machines with explicit transitions"
+        preserved_in: "Ω-Object.opm_facet.states + Ω-Flow morphisms"
+        utility: "Precise behavioral specification"
+
+      - id: Hierarchical_Refinement
+        description: "In-zoom/out-zoom for managing complexity"
+        preserved_in: "Ω-WSLC transitions (Conceptual → Logical)"
+        utility: "Scalable modeling from high-level to detailed"
+
+      - id: Process_Centrality
+        description: "Processes as first-class citizens transforming objects"
+        preserved_in: "Ω-Process with transformees/enablers structure"
+        utility: "Clear transformation semantics"
+
+      - id: Essence_Classification
+        description: "Physical vs Informatical distinction"
+        preserved_in: "Ω-Object/Process.opm_facet.essence"
+        utility: "Distinguishes tangible from intangible"
+
+    guarantee: |
+      For any OPM model M, there exists a unique embedding E: M → Ω
+      such that π_O(E(M)) ≅ M (isomorphic recovery).
+
+  ALTER:
+    unique_contributions:
+      - id: Value_Orientation
+        description: "Every element exists to create value for beneficiaries"
+        preserved_in: "Ω-Process.alter_facet.value_contribution + beneficiary"
+        utility: "Purpose-driven modeling, avoids meaningless components"
+
+      - id: Nine_Element_Framework
+        description: "Holistic view: Process, Participant, Info, Tech, Customer, P&S, Env, Infra, Strategy"
+        preserved_in: "Ω-System.alter_facet maps to all 9 elements"
+        utility: "Comprehensive work system analysis"
+
+      - id: Emergent_Change_Model
+        description: "Workarounds, adaptations, experiments as legitimate change"
+        preserved_in: "Ω-WSLC.Evolving state + 2-cell variations"
+        utility: "Captures reality of organic system evolution"
+
+      - id: Eighteen_Work_Facets
+        description: "Cognitive, communicative, physical, info, control, value facets"
+        preserved_in: "Ω-Process.alter_facet.work_facets"
+        utility: "Rich characterization of work activities"
+
+      - id: WSLC_Lifecycle
+        description: "Operation → Initiation → Development → Implementation cycle"
+        preserved_in: "Ω-WSLC coalgebra structure"
+        utility: "Complete lifecycle management"
+
+      - id: Service_Value_Chain
+        description: "Provider-Customer interaction via service stages"
+        preserved_in: "Ω-System inter-system morphisms"
+        utility: "Models service delivery dynamics"
+
+    guarantee: |
+      For any ALTER Work System WS, there exists a unique embedding E: WS → Ω
+      such that π_A(E(WS)) ≅ WS (isomorphic recovery).
+
+  COMN:
+    unique_contributions:
+      - id: Type_Class_Separation
+        description: "WHAT (Type) vs HOW (Class) fundamental distinction"
+        preserved_in: "Ω-Type structure + Impl ⊣ Rep adjunction"
+        utility: "Requirements independent of implementation"
+
+      - id: Composite_Type_Patterns
+        description: "Measures, Documents, Identifiers, Enumerations"
+        preserved_in: "Ω-Type special subtypes"
+        utility: "Rich data modeling vocabulary"
+
+      - id: Relational_Operators
+        description: "9 fundamental operators (Select, Project, Join, etc.)"
+        preserved_in: "Ω limits/colimits (Equalizer, Pullback, etc.)"
+        utility: "Query and transformation algebra"
+
+      - id: Identity_Semantics
+        description: "Value equality vs Reference identity distinction"
+        preserved_in: "Ω-Object.comn_facet.identity_mode"
+        utility: "Precise equality semantics"
+
+      - id: Terminology_Mappings
+        description: "Explicit functors to UML, ER, RDF"
+        preserved_in: "COMN terminology mappings (external functors)"
+        utility: "Interoperability with existing notations"
+
+      - id: Predicate_Logic_Foundation
+        description: "Data = dehydrated information + predicates"
+        preserved_in: "Ω-State.comn_facet + Ω-Process as predicate"
+        utility: "Formal semantic grounding"
+
+    guarantee: |
+      For any COMN model M, there exists a unique embedding E: M → Ω
+      such that π_C(E(M)) ≅ M (isomorphic recovery).
+
+# =============================================================================
+# XIII. EMERGENT PROPERTIES (Exclusive to Ω)
+# =============================================================================
+
+emergent_properties:
+  description: |
+    These properties ONLY exist in Ω and cannot be expressed in any single domain.
+    They emerge from the INTERACTION of the three domains.
+
+  properties:
+    - id: Ω-E1_Purposeful_Behavior
+      name: "Purposeful Behavioral Semantics"
+      formula: "OPM.Process + ALTER.Value + COMN.Predicate"
+      description: |
+        A process in Ω simultaneously:
+        - HAS behavioral dynamics (states, transitions) [OPM]
+        - CREATES value for beneficiaries [ALTER]
+        - INSTANTIATES a semantic predicate [COMN]
+        No single domain captures all three aspects.
+      example: |
+        "Evaluar IPR" in Ω is:
+        - OPM: Process transforming IPR from 'pendiente' to 'evaluado'
+        - ALTER: Activity creating 'transparency value' for 'Ciudadanía'
+        - COMN: Predicate "IPR es_evaluado_por Evaluador en Fecha"
+
+    - id: Ω-E2_Typed_Value_Flow
+      name: "Semantically Typed Value Chains"
+      formula: "ALTER.ValueChain + COMN.Type"
+      description: |
+        Value flows in Ω are TYPED, preventing semantic inconsistencies.
+        ALTER alone has value chains but no type system.
+        COMN alone has types but no value orientation.
+      example: |
+        Value delivered must match expected type:
+        - Beneficiary expects "ReporteIPR" (COMN type)
+        - WS delivers "ReporteIPR" instance (typed value)
+
+    - id: Ω-E3_Stateful_Work_Systems
+      name: "Work Systems with Explicit State Machines"
+      formula: "ALTER.WorkSystem + OPM.StateModel"
+      description: |
+        Work Systems in Ω have EXPLICIT state machines, not just health indicators.
+        ALTER alone has WS health (operating/degraded/failed).
+        OPM alone has object states but no organizational context.
+      example: |
+        Ω-System "Gestión IPR":
+        - WS health: operating (ALTER)
+        - Process state: "evaluación" (OPM)
+        - Object states: {borrador, evaluación, aprobado, ...} (OPM)
+
+    - id: Ω-E4_Semantic_Workarounds
+      name: "Workarounds with Type Safety"
+      formula: "ALTER.Workaround + COMN.TypeCheck"
+      description: |
+        Emergent changes in Ω preserve type constraints.
+        ALTER alone accepts workarounds without semantic validation.
+        COMN alone has no concept of emergent change.
+      example: |
+        A workaround in Ω:
+        - Must still produce correctly-typed outputs
+        - Variation tracked as 2-cell between typed processes
+
+    - id: Ω-E5_Multi_Level_Lifecycle
+      name: "Unified Conceptual-Logical-Operational Lifecycle"
+      formula: "COMN.Levels + OPM.Refinement + ALTER.WSLC"
+      description: |
+        Ω-WSLC unifies three originally separate progressions:
+        - COMN: Conceptual → Logical → Physical
+        - OPM: SD → SD1 → SD2 ... (refinement)
+        - ALTER: Initiation → Development → Implementation → Operation
+      categorical: "These are now a SINGLE coherent path in Ω"
+
+    - id: Ω-E6_Trimodal_Constraints
+      name: "Cross-Domain Constraint Checking"
+      formula: "Ω-Axioms across π_O, π_A, π_C"
+      description: |
+        Ω can enforce constraints that span domains:
+        - "Every process creating value (ALTER) must have typed output (COMN)"
+        - "Every dynamic object (OPM) must belong to a WS element (ALTER)"
+        - "Every FK (COMN) must correspond to a structural link (OPM)"
+      categorical: "Naturality conditions of pullback"
+
+    - id: Ω-E7_Purpose_Driven_Refinement
+      name: "Refinement Guided by Value"
+      formula: "OPM.Refinement + ALTER.ValueContribution"
+      description: |
+        In Ω, when refining (in-zoom), each sub-process INHERITS value contribution.
+        Pure OPM refinement is value-agnostic.
+        This ensures no "orphan" sub-processes without purpose.
+
+    - id: Ω-E8_Semantic_System_Diagram
+      name: "System Diagram with Full Typing"
+      formula: "OPM.SD + COMN.Schema"
+      description: |
+        Ω-SD is an OPM System Diagram where:
+        - Every object is typed (COMN)
+        - Every state has a value domain (COMN)
+        - Every link corresponds to a relationship type (COMN)
+      utility: "Diagrams are executable specifications, not just pictures"
+
+# =============================================================================
+# XIV. UTILITY GUARANTEES
+# =============================================================================
+
+utility_guarantees:
+  description: "Formal guarantees that Ω preserves and extends domain utility"
+
+  preservation:
+    - id: UG-P1
+      statement: "Any OPM practitioner can work purely in π_O(Ω) without learning ALTER/COMN"
+      mechanism: "π_O is a faithful functor (injective on morphisms)"
+
+    - id: UG-P2
+      statement: "Any ALTER practitioner can analyze WS using π_A(Ω)"
+      mechanism: "π_A preserves WS framework and WSLC structure"
+
+    - id: UG-P3
+      statement: "Any COMN practitioner can model data using π_C(Ω)"
+      mechanism: "π_C preserves Type/Class separation and relational operators"
+
+  extension:
+    - id: UG-E1
+      statement: "OPM practitioners GAIN purpose orientation from ALTER"
+      benefit: "Models answer 'WHY' not just 'HOW'"
+
+    - id: UG-E2
+      statement: "OPM practitioners GAIN semantic typing from COMN"
+      benefit: "States have precise value domains"
+
+    - id: UG-E3
+      statement: "ALTER practitioners GAIN behavioral precision from OPM"
+      benefit: "Activities have explicit state machines"
+
+    - id: UG-E4
+      statement: "ALTER practitioners GAIN type safety from COMN"
+      benefit: "Value flows are semantically validated"
+
+    - id: UG-E5
+      statement: "COMN practitioners GAIN dynamic semantics from OPM"
+      benefit: "Types evolve through process execution"
+
+    - id: UG-E6
+      statement: "COMN practitioners GAIN organizational context from ALTER"
+      benefit: "Data models have stakeholder purpose"
+
+  no_loss:
+    statement: |
+      The pullback construction guarantees NO INFORMATION LOSS:
+      - Embed_X ∘ π_X = id_X for each domain X ∈ {OPM, ALTER, COMN}
+      - Any model in X can be embedded in Ω and recovered exactly
+    categorical: "Embedding-Projection adjunctions are sections"

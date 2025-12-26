@@ -1,0 +1,583 @@
+# Categorical Ontology: OPM (Object-Process Methodology)
+# ISO 19450 Category-Theoretic Formalization
+# Arquitecto Categórico v1.4.0
+---
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:opm-ontology:1.0.0"
+  version: "1.0.0"
+  provenance:
+    created_by: arquitecto-categorico
+    created_at: "2025-12-25"
+    source_domain: OPM_ISO_19450
+
+# =============================================================================
+# I. CATEGORY DEFINITION
+# =============================================================================
+
+category:
+  name: OPM
+  enrichment: Set
+  description: "Object-Process Methodology as a category"
+
+  objects:
+    primitives:
+      - id: Object
+        symbol: "▭"
+        essence: [Physical, Informatical]
+        perseverance: [Static, Dynamic]
+        description: "Entity that exists and may have states"
+
+      - id: Process
+        symbol: "▭ (blue)"
+        essence: [Physical, Informatical]
+        temporal: [Synchronous, Asynchronous]
+        description: "Entity that transforms Objects"
+
+      - id: State
+        symbol: "⊂"
+        parent: Object
+        types: [Initial, Intermediate, Final, Default]
+        description: "Fiber over Object representing situation"
+
+    derived:
+      - id: System
+        construction: "Terminal object in OPM model"
+
+      - id: Aggregation_Whole
+        construction: "Product of Parts"
+
+      - id: Generalization_General
+        construction: "Coproduct of Specifics"
+
+  morphisms:
+    description: "Links in OPM formalized as morphisms with precise categorical semantics"
+
+    procedural:
+      description: "Transform objects (creation, destruction, state change)"
+      items:
+        - id: Consumption
+          symbol: "●→"
+          semantics: "Process destroys Object (Object ceases to exist)"
+          arrow_direction: "O ──●→ P"
+          signature: "Consumption(O,P) : O → ⊥_P"
+          categorical_type: "Terminal morphism (into sink)"
+          opl: "P consumes O."
+          effect_on_object: "Object destroyed after process completes"
+
+        - id: Result
+          symbol: "→●"
+          semantics: "Process creates Object (Object begins to exist)"
+          arrow_direction: "P ──●→ O"
+          signature: "Result(P,O) : ⊥_P → O"
+          categorical_type: "Initial morphism (from source)"
+          opl: "P yields O."
+          effect_on_object: "Object created when process completes"
+
+        - id: Effect
+          symbol: "▷"
+          semantics: "Process changes Object state (Object persists)"
+          arrow_direction: "O[s₁] ──▷ P ──▷ O[s₂]"
+          signature: "Effect(O,s₁,P,s₂) : State(O) → State(O)"
+          categorical_type: "Kleisli arrow in State monad"
+          opl: "P changes O from s₁ to s₂."
+          structure: |
+            Span: O ←─input── P ──output─→ O
+            States: s₁ (pre-condition) → s₂ (post-condition)
+          effect_on_object: "Same object, different state"
+
+        - id: Invocation
+          symbol: "⚡→"
+          semantics: "Process triggers another Process"
+          arrow_direction: "P₁ ──⚡→ P₂"
+          signature: "Invoke(P₁,P₂) : P₁ → P₂"
+          categorical_type: "Morphism in Process subcategory"
+          opl: "P₁ invokes P₂."
+          properties:
+            - "Can be synchronous or asynchronous"
+            - "Passes control flow"
+
+    structural:
+      description: "Define static relationships (hierarchy, composition, classification)"
+      items:
+        - id: Aggregation
+          symbol: "○─△─○"
+          semantics: "Whole composed of parts"
+          signature: "Agg: Part₁ × Part₂ × ... × Partₙ → Whole"
+          categorical_type: "Product"
+          projections: "π_i : Whole → Part_i"
+          opl: "Whole consists of Part₁, Part₂, ..., and Partₙ."
+          properties:
+            - "Parts exist independently of whole"
+            - "Whole is characterized by having all parts"
+
+        - id: Exhibition
+          symbol: "○─▽─○"
+          semantics: "Thing exhibits feature"
+          signature: "Exh: Thing → Feature"
+          categorical_type: "Evaluation Morphism / Projection"
+          opl: "Thing exhibits Feature."
+          subtypes:
+            - Attribute: "Static property (Thing → Value)"
+            - Operation: "Dynamic capability (Thing × In → Out)"
+          properties:
+            - "Feature characterizes the Thing"
+            - "Thing is the domain of the feature morphism"
+
+        - id: Generalization
+          symbol: "○─△─○ (open triangle)"
+          semantics: "General type encompasses specific types"
+          signature: "Gen: Specific₁ + Specific₂ + ... + Specificₙ → General"
+          categorical_type: "Coproduct (sum type, union)"
+          injections: "ι_i : Specific_i → General"
+          opl: "General can be Specific₁, Specific₂, ..., or Specificₙ."
+          properties:
+            - "General is union of all specifics"
+            - "Instance of specific IS instance of general"
+            - "Inheritance semantics"
+
+        - id: Tagged
+          symbol: "○──label──○"
+          semantics: "Arbitrary labeled relationship"
+          signature: "Tag(A,B,label) : A → B"
+          categorical_type: "Labeled morphism in Cat(Graph)"
+          opl: "A is related to B (label)."
+          use_case: "Domain-specific relationships not covered by other links"
+
+    control_and_exceptions:
+      description: "Links for flow control and error handling"
+      items:
+        - id: Exception
+          symbol: "⚡→ (red)"
+          semantics: "Process triggered on exception/timeout"
+          signature: "Except(P_source, Event, P_handler) : P_s → P_h"
+          categorical_type: "Kleisli arrow (Error/Maybe monad)"
+          opl: "P_source activates P_handler on Exception."
+
+        - id: Timeout
+          symbol: "⏰→"
+          semantics: "Process triggered by time limit"
+          categorical_type: "Temporal trigger"
+
+    enabling:
+      description: "Enable processes without being transformed"
+      invariant: "Enablers NOT consumed, NOT created, NOT changed"
+      items:
+        - id: Agent
+          symbol: "●───── (filled circle, black line)"
+          semantics: "Human enables process execution"
+          signature: "Agent(H,P) : H ⊢ P"
+          categorical_type: "Context object (slice category over P)"
+          opl: "H handles P."
+          properties:
+            - "H is human participant"
+            - "H is required for P to execute"
+            - "H is NOT transformed by P"
+
+        - id: Instrument
+          symbol: "○───── (hollow circle, black line)"
+          semantics: "Non-human object enables process execution"
+          signature: "Instrument(I,P) : I ⊢ P"
+          categorical_type: "Context object (slice category over P)"
+          opl: "P requires I."
+          properties:
+            - "I is non-human (tool, machine, software)"
+            - "I is required for P to execute"
+            - "I is NOT transformed by P"
+
+    link_composition:
+      description: "How links compose"
+      rules:
+        - pattern: "Consumption ∘ Result"
+          meaning: "Flow: Object consumed by P₁, result feeds P₂"
+          categorical: "Morphism composition"
+
+        - pattern: "Effect ∘ Effect"
+          meaning: "State chain: s₁ → s₂ → s₃"
+          categorical: "Kleisli composition"
+
+        - pattern: "Aggregation ∘ Aggregation"
+          meaning: "Nested hierarchy"
+          categorical: "Product of products"
+
+        - pattern: "Generalization ∘ Generalization"
+          meaning: "Multi-level inheritance"
+          categorical: "Coproduct tower"
+
+  composition:
+    associativity: true
+    identity: "Implicit persistence of Object"
+    rules:
+      - "Procedural ∘ Procedural → Transformation chain"
+      - "Structural ∘ Structural → Hierarchy"
+      - "Mixed composition: context-dependent"
+
+# =============================================================================
+# II. SYSTEM DIAGRAM (SD) COMPONENTS
+# =============================================================================
+
+system_diagram:
+  description: "Top-level OPD (SD level 0) with 5 required components"
+  categorical_role: "Terminal object in model category"
+
+  components:
+    - id: Beneficiary
+      description: "Stakeholder group receiving value from system"
+      categorical_type: "Target object of value morphism"
+      represents: "Problem holder whose state changes from problematic to satisfactory"
+
+    - id: Main_Function
+      description: "Primary process transforming the problematic situation"
+      categorical_type: "Central morphism in diagram"
+
+    - id: Enablers
+      description: "Agents and Instruments supporting main function"
+      subtypes:
+        - Agent: "Human enabler (filled circle)"
+        - Instrument: "Non-human enabler (hollow circle)"
+      categorical_type: "Context objects in slice category"
+
+    - id: Environment
+      description: "External context affecting/affected by system"
+      categorical_type: "Ambient category (dotted boundary)"
+
+    - id: Problem_Occurrence
+      description: "The situation being addressed"
+      note: "Only for artificial/sociotechnical systems; natural systems use 'Outcome'"
+      categorical_type: "Initial condition / constraint"
+
+  hierarchy:
+    SD0: "System Diagram - highest abstraction"
+    SD1: "First refinement - process in-zoomed"
+    SDn: "n-th refinement level"
+    relationship: "SD_{n+1} = Refine(SD_n)"
+
+# =============================================================================
+# III. CONDITION AND CONTROL LINKS
+# =============================================================================
+
+condition_control:
+  description: "OPM mechanisms for conditional behavior and decisions"
+
+  condition_links:
+    - id: Condition_Link
+      description: "Link activated only when condition is true"
+      notation: "Dashed link with condition label"
+      categorical_type: "Partial morphism"
+
+    - id: State_Condition
+      description: "Object must be in specific state for link to activate"
+      notation: "State-specific condition"
+      categorical_type: "Pullback over state"
+
+    - id: Instrument_Condition
+      description: "Instrument enables process only if condition met"
+      notation: "Conditional instrument link"
+
+  decision_nodes:
+    description: "Boolean objects controlling process flow"
+    operators:
+      - id: AND
+        semantics: "All conditions must be true"
+        categorical_type: "Product in Bool"
+
+      - id: OR
+        semantics: "At least one condition must be true"
+        categorical_type: "Coproduct in Bool"
+
+      - id: XOR
+        semantics: "Exactly one condition must be true"
+        categorical_type: "Exclusive coproduct"
+
+  eca_paradigm:
+    name: "Event-Condition-Action"
+    description: "Core control pattern in OPM"
+    structure:
+      Event: "Trigger (state change, process completion)"
+      Condition: "Guard (boolean evaluation)"
+      Action: "Enabled process/link"
+    categorical_type: "Kleisli arrow with Maybe monad"
+
+# =============================================================================
+# IV. PATH AND EXECUTION FLOW
+# =============================================================================
+
+execution_flow:
+  path_labels:
+    description: "Labels on procedural links to disambiguate execution order"
+    notation: "Alphanumeric labels on link lines"
+    purpose: "Resolve ambiguity when multiple paths exist"
+
+  execution_paths:
+    description: "Sequences of procedural links representing behavior"
+    categorical_type: "Paths in the category (composable morphisms)"
+
+  timing:
+    synchronous: "Process waits for all inputs before executing"
+    asynchronous: "Process executes when first input available"
+    categorical_type: "Product vs coproduct trigger"
+
+  process_details:
+    duration:
+      nominal: "Expected execution time"
+      min: "Minimum execution time"
+      max: "Maximum execution time"
+    exceptions:
+      overtime: "When max duration exceeded"
+    probabilities:
+      description: "Probability weights on alternative paths"
+      categorical_type: "Distribution monad"
+
+# =============================================================================
+# V. MULTIPLICITY AND CONSTRAINTS
+# =============================================================================
+
+multiplicity:
+  description: "Cardinality specifications on links"
+
+  notation:
+    single: "Exactly one instance"
+    optional: "Zero or one (marked with ?)"
+    many: "Zero or more (marked with *)"
+    one_or_more: "At least one (marked with +)"
+    range: "Specific range [m..n]"
+
+  on_links:
+    consumption: "How many objects consumed"
+    result: "How many objects created"
+    participation: "How many parts in whole"
+
+  categorical_type: "Hom-set cardinality constraints"
+
+# =============================================================================
+# VI. REFINEMENT OPERATIONS
+# =============================================================================
+
+refinement:
+  description: "Hierarchy of detail management in OPM"
+
+  process_refinement:
+    - id: In_Zoom
+      description: "Reveal sub-processes within a process"
+      categorical_type: "Colimit decomposition"
+
+    - id: Out_Zoom
+      description: "Hide sub-processes, show only parent"
+      categorical_type: "Limit abstraction"
+
+  object_refinement:
+    - id: Unfold
+      description: "Reveal explicit states of an object"
+      categorical_type: "Coalgebra unfolding"
+
+    - id: Fold
+      description: "Hide states, show only object"
+      categorical_type: "Algebra folding"
+
+  state_refinement:
+    - id: State_Express
+      description: "Make implicit default state explicit"
+      categorical_type: "η of state monad"
+
+  consistency:
+    statement: "Refinement preserves semantics"
+    principle: "What is true at SD_n remains true at SD_{n+1}"
+
+# =============================================================================
+# II. UNIVERSAL CONSTRUCTIONS
+# =============================================================================
+
+limits:
+  terminal:
+    realization: SystemDiagram_SD0
+    description: "Complete system overview"
+
+  product:
+    realization: Aggregation_Whole
+    projections: [Part_1, Part_2, ...]
+
+  pullback:
+    realization: SharedObject
+    description: "Object shared by multiple Processes"
+
+  equalizer:
+    realization: StateRestriction
+    description: "Valid state subset"
+
+colimits:
+  initial:
+    realization: EmptyModel
+    description: "No objects, no processes"
+
+  coproduct:
+    realization: Generalization
+    injections: [Specific_1, Specific_2, ...]
+
+  pushout:
+    realization: MergedObjects
+    description: "Objects merged by common state"
+
+  coequalizer:
+    realization: StateAbstraction
+    description: "Equivalent states identified"
+
+# =============================================================================
+# III. FUNCTORS
+# =============================================================================
+
+functors:
+  - id: U_Forget
+    signature: "OPM → Graph"
+    mapping:
+      objects: "Object, Process → Node"
+      morphisms: "Link → Edge"
+      forgets: [State, Essence, Semantics]
+    handedness: right_adjoint_to_F
+
+  - id: F_Free
+    signature: "Graph → OPM"
+    mapping:
+      nodes: "Node → Object (informatical, stateless)"
+      edges: "Edge → Tagged Link"
+    handedness: left_adjoint_to_U
+
+  - id: L_OPL
+    signature: "OPM → Lang(English)"
+    mapping:
+      Object: '"O exists."'
+      Object_with_states: '"O can be s1, s2, ..., or sn."'
+      Process_consumes: '"P consumes O."'
+      Process_creates: '"P yields O."'
+      Process_affects: '"P changes O from s1 to s2."'
+      Agent: '"A handles P."'
+      Instrument: '"P requires I."'
+    preserves: semantics
+
+  - id: Sigma_States
+    signature: "OPM → Coalg(P)"
+    mapping:
+      Object: "(State(O), δ: State(O) → P(State(O)))"
+    description: "States as coalgebra structure"
+
+  - id: R_Refine
+    signature: "OPM → OPM"
+    type: endofunctor
+    mapping:
+      SD_n: SD_{n+1}
+      O: "O with unfolded states"
+    operations: [InZoom, Unfold]
+
+# =============================================================================
+# IV. ADJUNCTIONS
+# =============================================================================
+
+adjunctions:
+  - id: Free_Forget
+    left: F_Free
+    right: U_Forget
+    unit: "η: Id_Graph → UF (extract structure)"
+    counit: "ε: FU → Id_OPM (assign semantics)"
+    meaning: "Graph is free OPM ignoring semantics"
+
+  - id: Abstraction_Refinement
+    left: Abstraction
+    right: R_Refine
+    operations:
+      left: [OutZoom, Fold]
+      right: [InZoom, Unfold]
+    meaning: "Hierarchy of detail levels"
+
+  - id: Algebra_Coalgebra
+    left: Alg
+    right: Coalg
+    context: State_mechanism
+    meaning: "Construction vs observation of states"
+
+# =============================================================================
+# V. BIMODALITY (OPD ↔ OPL)
+# =============================================================================
+
+bimodality:
+  isomorphism:
+    forward: "[-] : OPD → OPL"
+    backward: "⟦-⟧ : OPL → OPD"
+    property: "[-] ∘ ⟦-⟧ = id, ⟦-⟧ ∘ [-] = id"
+
+  equivalence:
+    statement: "OPD ≅ OPL"
+    meaning: "Graphical and textual representations are categorically equivalent"
+
+  cognitive_benefit:
+    description: "Dual representation leverages visual and linguistic cognition"
+
+# =============================================================================
+# VI. COHERENCE CONDITIONS
+# =============================================================================
+
+axioms:
+  - id: Process_Transform
+    statement: "∀P ∈ Process. ∃O ∈ Object. (P transforms O)"
+    category: STRUCTURAL
+
+  - id: State_Ownership
+    statement: "∀s ∈ State. ∃!O ∈ Object. s ∈ State(O)"
+    category: STRUCTURAL
+
+  - id: Enabler_Preservation
+    statement: "∀e ∈ Enabler(P). ¬(P transforms e)"
+    category: BEHAVIORAL
+
+  - id: Path_Commutativity
+    statement: "Parallel paths in OPD commute"
+    category: DIAGRAMMATIC
+
+# =============================================================================
+# VII. AUDIT CHECKLIST
+# =============================================================================
+
+audit:
+  STRUCTURAL:
+    - "All Processes have at least one transformee"
+    - "All Objects have valid state set (may be empty for stateless)"
+    - "No orphan States (every State belongs to exactly one Object)"
+    - "Aggregation forms valid product diagrams"
+    - "Generalization forms valid coproduct diagrams"
+
+  BEHAVIORAL:
+    - "State transitions form valid coalgebra"
+    - "No unreachable states from initial"
+    - "Final states are reachable"
+    - "Synchronous/Asynchronous correctly specified"
+
+  SEMANTIC:
+    - "OPL sentences derivable from OPD"
+    - "Physical/Informatical classification consistent throughout hierarchy"
+    - "Enablers correctly classified (Agent vs Instrument)"
+
+# =============================================================================
+# VIII. TENSION MAPPING (MBT)
+# =============================================================================
+
+tensions:
+  - id: T_A1_Entity_Event
+    pole_a: Object
+    pole_b: Process
+    adjunction: "Ob ⊣ Mor"
+    resolution: "Explicit primitives (both exist)"
+
+  - id: T_A1_Token_Type
+    pole_a: Instance
+    pole_b: Class
+    adjunction: "Free ⊣ Forget"
+    resolution: "Generalization mechanism"
+
+  - id: T_A2_Static_Dynamic
+    pole_a: Stateless_Object
+    pole_b: Stateful_Object
+    adjunction: "Alg ⊣ Coalg"
+    resolution: "State mechanism optional per Object"
+
+  - id: T_A4_Formal_Informal
+    pole_a: OPD
+    pole_b: Natural_Language
+    adjunction: "Syntax ⊣ Semantic"
+    resolution: "OPL bridges both (bimodality)"

@@ -1,0 +1,838 @@
+# Categorical Ontology: ALTER (Work System Theory)
+# Steven Alter's Work System Framework - Category-Theoretic Formalization
+# Arquitecto Categórico v1.4.0
+---
+_manifest:
+  urn: "urn:knowledge:fxsl:cat:alter-ontology:1.0.0"
+  version: "1.0.0"
+  provenance:
+    created_by: arquitecto-categorico
+    created_at: "2025-12-25"
+    source_domain: ALTER_WST_Alter
+
+# =============================================================================
+# I. CATEGORY DEFINITION
+# =============================================================================
+
+category:
+  name: WST
+  full_name: "Work System Theory Category"
+  enrichment: Set
+  description: "Steven Alter's Work System Theory as a category"
+
+  # ---------------------------------------------------------------------------
+  # The fundamental insight: A Work System IS a diagram in a category
+  # WS: J → WST where J is the "9-element shape"
+  # ---------------------------------------------------------------------------
+
+# =============================================================================
+# II. OBJECTS: The 9 Elements of Work System Framework
+# =============================================================================
+
+objects:
+  core_elements:
+    - id: Process
+      alias: "Processes and Activities"
+      description: "Steps performed within the work system"
+      categorical_role: "Morphism source/target in internal dynamics"
+
+    - id: Participant
+      description: "Human agents who perform the work"
+      categorical_role: "Agent objects (enablers)"
+
+    - id: Information
+      description: "Data and knowledge used/produced"
+      categorical_role: "Objects flowing through processes"
+
+    - id: Technology
+      description: "Tools, hardware, software enabling work"
+      categorical_role: "Instrument objects (enablers)"
+
+    - id: Customer
+      description: "Internal/external recipients of value"
+      categorical_role: "Terminal objects in value chain"
+
+    - id: ProductService
+      alias: "Products & Services"
+      description: "Outputs delivered to customers"
+      categorical_role: "Coproduct of process outputs"
+
+  environmental_elements:
+    - id: Environment
+      description: "External context (organizational, regulatory, technical)"
+      categorical_role: "Ambient category / context"
+
+    - id: Infrastructure
+      description: "Shared resources (HR, IT, organizational)"
+      categorical_role: "Base category for fibration"
+
+    - id: Strategy
+      description: "Organizational and departmental strategies"
+      categorical_role: "Constraints / path equations"
+
+  derived_objects:
+    - id: WorkSystem
+      construction: "Diagram WS: J₉ → WST"
+      description: "Complete work system as a diagram"
+
+    - id: InformationSystem
+      parent: WorkSystem
+      constraint: "Processes ⊆ InfoProcessing"
+      description: "IS as specialized WS focused on information"
+
+    - id: Project
+      parent: WorkSystem
+      constraint: "temporal_bound = true"
+      description: "Time-bounded WS for specific goal"
+
+# =============================================================================
+# III. WORK FACETS (18 Common Activity Categories)
+# =============================================================================
+
+work_facets:
+  description: "18 common facets of work that characterize activities within processes"
+  categorical_interpretation: |
+    Facets are FUNCTORS: F_i: Process → Bool
+    Each facet characterizes whether a process exhibits that type of activity.
+    Together they form a PRODUCT of classifiers: Process → 2^18
+
+  cognitive_facets:
+    - id: DecisionMaking
+      description: "Making choices between alternatives"
+      categorical_type: "Process → Choice"
+      is_role: "Agent decides"
+
+    - id: SenseMaking
+      description: "Interpreting situations and creating meaning"
+      categorical_type: "Process → Interpretation"
+
+    - id: ThinkingReasoning
+      description: "Logical analysis and problem-solving"
+      categorical_type: "Process → Inference"
+
+    - id: Learning
+      description: "Acquiring new knowledge or skills"
+      categorical_type: "Process → Knowledge_Delta"
+
+    - id: Planning
+      description: "Determining future actions"
+      categorical_type: "Process → Plan"
+
+  communicative_facets:
+    - id: Communication
+      description: "Exchanging information with others"
+      categorical_type: "Process → Message_Flow"
+      involves: [sender, receiver, channel]
+
+    - id: Negotiation
+      description: "Reaching agreement through discussion"
+      categorical_type: "Process → Agreement"
+
+    - id: Representation
+      description: "Acting on behalf of others"
+      categorical_type: "Process → Proxy_Action"
+
+  physical_facets:
+    - id: PhysicalActions
+      description: "Bodily movements and manipulation"
+      categorical_type: "Process → Physical_Effect"
+      essence: Physical
+
+    - id: MovementTransport
+      description: "Relocating objects or people"
+      categorical_type: "Process → Location_Change"
+      essence: Physical
+
+  information_facets:
+    - id: InformationProcessing
+      description: "Transforming data into usable form"
+      categorical_type: "Process → Info_Transform"
+      key_for: InformationSystem
+
+    - id: DataCapture
+      description: "Recording information from reality"
+      categorical_type: "Process → Reality → Data"
+
+    - id: DataRetrieval
+      description: "Accessing stored information"
+      categorical_type: "Process → Storage → Data"
+
+    - id: DataTransmission
+      description: "Moving data between locations"
+      categorical_type: "Process → Data_Flow"
+
+  control_facets:
+    - id: Controlling
+      description: "Monitoring and adjusting performance"
+      categorical_type: "Process → Feedback_Loop"
+      structure: [observe, compare, adjust]
+
+    - id: Coordination
+      description: "Synchronizing activities across actors"
+      categorical_type: "Process → Sync"
+      involves: [multiple_participants, shared_goal]
+
+  value_facets:
+    - id: ValueCreation
+      description: "Generating worth for customers"
+      categorical_type: "Process → Value"
+      fundamental: true
+
+    - id: ServiceProvision
+      description: "Delivering intangible benefits"
+      categorical_type: "Process → Service"
+
+  facet_functor:
+    name: "Facet"
+    signature: "Facet: Process → P(Facet_Set)"
+    description: "Each process exhibits a subset of the 18 facets"
+    usage: |
+      Facet(p) = {f₁, f₂, ...} where p exhibits facets f₁, f₂, etc.
+      IS processes: InfoProcessing ∈ Facet(p) for all p ∈ IS
+
+  is_characterization:
+    statement: "IS = WS where ∀p ∈ Process. InformationProcessing ∈ Facet(p)"
+    meaning: "Information System is Work System where all processes are info-processing"
+
+# =============================================================================
+# IV. FUNCTIONS OF IS FOR WORK SYSTEMS
+# =============================================================================
+
+is_functions:
+  description: "Functions that an Information System can perform for another Work System"
+  categorical_role: "Profunctor: IS^op × WS → Set"
+
+  information_functions:
+    - id: Provide_Information
+      description: "Supply information needed by WS processes"
+      categorical_type: "Mor(IS.Info, WS.Info)"
+
+    - id: Capture_Information
+      description: "Record information generated by WS"
+      categorical_type: "Mor(WS.Info, IS.Info)"
+
+    - id: Store_Retrieve
+      description: "Persist and access information"
+      categorical_type: "Reader monad composition"
+
+    - id: Transmit_Information
+      description: "Move information between locations/systems"
+      categorical_type: "Data flow morphism"
+
+  processing_functions:
+    - id: Apply_Business_Rules
+      description: "Enforce constraints and policies"
+      categorical_type: "Equalizer enforcement"
+
+    - id: Transform_Process
+      description: "Compute derived information"
+      categorical_type: "Functor application"
+
+    - id: Validate_Data
+      description: "Check data quality and completeness"
+      categorical_type: "Subtype verification"
+
+  coordination_functions:
+    - id: Coordinate_Activities
+      description: "Synchronize work across participants"
+      categorical_type: "Pullback synchronization"
+
+    - id: Track_Progress
+      description: "Monitor status and completion"
+      categorical_type: "State observation (coalgebra)"
+
+    - id: Trigger_Actions
+      description: "Initiate processes based on conditions"
+      categorical_type: "ECA pattern (OPM cross-reference)"
+
+# =============================================================================
+# V. WORK SYSTEM CHARACTERISTICS
+# =============================================================================
+
+ws_characteristics:
+  description: "Relevant properties of Work Systems for evaluation"
+  categorical_role: "Functors: WS → Measure"
+
+  performance_metrics:
+    - id: Efficiency
+      description: "Resource utilization effectiveness"
+      measure_type: "Ratio"
+
+    - id: Throughput
+      description: "Output rate"
+      measure_type: "Rate"
+
+    - id: Cycle_Time
+      description: "End-to-end process duration"
+      measure_type: "Duration"
+
+    - id: Quality
+      description: "Error rate, defect rate"
+      measure_type: "Ratio"
+
+  reliability_metrics:
+    - id: Availability
+      description: "System uptime percentage"
+      measure_type: "Percentage"
+
+    - id: Resilience
+      description: "Recovery capability from failures"
+      measure_type: "Duration"
+
+    - id: Consistency
+      description: "Predictability of outcomes"
+      measure_type: "Variance"
+
+  user_experience:
+    - id: Usability
+      description: "Ease of use by participants"
+      measure_type: "Scale"
+
+    - id: Satisfaction
+      description: "Customer/participant contentment"
+      measure_type: "Scale"
+
+# =============================================================================
+# VI. TYPES OF CHANGES IN WORK SYSTEMS
+# =============================================================================
+
+change_types:
+  description: "Categories of changes that affect Work Systems"
+
+  change_events:
+    description: "Discrete occurrences that trigger change"
+    examples: [regulatory_change, technology_update, market_shift]
+    categorical_type: "Event object in temporal category"
+
+  change_trajectories:
+    description: "Long-term patterns of change"
+    examples: [automation_trend, digitalization, skill_evolution]
+    categorical_type: "Path in state space"
+
+  change_forces:
+    description: "Pressures driving change"
+    categories:
+      - internal: [efficiency_pressure, quality_demands]
+      - external: [competition, regulation, technology]
+    categorical_type: "Gradient in performance space"
+
+  change_interactions:
+    description: "How changes in one WS affect others"
+    modes:
+      - cascade: "Change propagates through service chain"
+      - buffer: "Change absorbed without propagation"
+      - amplify: "Change effect magnified"
+    categorical_type: "Profunctor composition"
+
+  is_usage_contexts:
+    description: "How IS is used relative to work"
+    modes:
+      - id: Mandated
+        description: "IS use required by policy/design"
+        categorical_type: "Constraint morphism"
+
+      - id: Discretionary
+        description: "IS use optional, chosen by participant"
+        categorical_type: "Optional morphism (Maybe)"
+
+      - id: Workaround_Bypass
+        description: "Work done avoiding/circumventing IS"
+        categorical_type: "Alternative path in category"
+
+# =============================================================================
+# VII. MORPHISMS
+# =============================================================================
+
+morphisms:
+  internal_dynamics:
+    - id: Performs
+      signature: "Participant → Process"
+      description: "Human executes activity"
+      categorical_type: Agent_Link
+
+    - id: Uses
+      signature: "Process → Technology"
+      description: "Process utilizes tool"
+      categorical_type: Instrument_Link
+
+    - id: Consumes
+      signature: "Process → Information"
+      description: "Process takes information as input"
+      categorical_type: Input_Link
+
+    - id: Produces
+      signature: "Process → Information"
+      description: "Process generates information"
+      categorical_type: Output_Link
+
+    - id: Delivers
+      signature: "Process → ProductService"
+      description: "Process contributes to output"
+      categorical_type: Value_Link
+
+    - id: Receives
+      signature: "Customer → ProductService"
+      description: "Customer receives value"
+      categorical_type: Value_Terminal
+
+  structural_relations:
+    - id: DependsOn
+      signature: "WorkSystem → Infrastructure"
+      description: "WS relies on shared resources"
+      categorical_type: Fibration_Projection
+
+    - id: ConstrainedBy
+      signature: "WorkSystem → Environment"
+      description: "WS operates within context"
+      categorical_type: Ambient_Morphism
+
+    - id: AlignsTo
+      signature: "WorkSystem → Strategy"
+      description: "WS implements strategic direction"
+      categorical_type: Path_Equation
+
+  inter_ws_relations:
+    - id: Overlap
+      signature: "WorkSystem × WorkSystem → OverlapType"
+      values: [Interface, Minimal, Significant, Enclosure]
+      categorical_type: Span
+
+    - id: Provides
+      signature: "WorkSystem_A → WorkSystem_B"
+      description: "WS_A provides service to WS_B"
+      categorical_type: Service_Morphism
+
+# =============================================================================
+# IV-A. SERVICE VALUE CHAIN (SVC)
+# =============================================================================
+
+service_value_chain:
+  description: "Framework connecting Providers and Customers via service interactions"
+  categorical_structure: "Composition of Profunctors"
+
+  components:
+    - id: Provider_WS
+      role: "Source of service"
+      categorical: "C category"
+
+    - id: Customer_WS
+      role: "Consumer of service"
+      categorical: "D category"
+
+    - id: Service_Profunctor
+      signature: "S: C^op × D → Set"
+      meaning: "Set of service interactions between Provider c and Customer d"
+
+  stages:
+    - id: Negotiation
+      description: "Agreeing on commitments"
+      categorical: "Hom(Commitment_Space)"
+
+    - id: Setup
+      description: "Preparing for delivery"
+      categorical: "State transition (pre-delivery)"
+
+    - id: Request
+      description: "Specific demand for instance"
+      categorical: "Trigger event"
+
+    - id: Fulfillment
+      description: "Execution of service actions"
+      categorical: "Action morphism"
+
+    - id: Settlement
+      description: "Finalization and value recognition"
+      categorical: "Value terminal"
+
+  composition:
+    rule: "SVC = Negotiation ; Setup ; Request ; Fulfillment ; Settlement"
+    categorical: "Kleisli composition of service stages"
+
+# =============================================================================
+# IV-B. WORKAROUNDS AND VARIATION
+# =============================================================================
+
+workarounds_rigorous:
+  description: "Formal definition of emergent deviations"
+
+  concept: "Workaround as specialized 2-cell"
+  definition:
+    ideal_process: "f: A → B"
+    actual_process: "g: A → B"
+    workaround: "α: f ⇒ g"
+
+  types:
+    - id: Bypass
+      description: "Skipping a required step"
+      categorical: "Identity vs Composite (id ~ g ∘ f)"
+
+    - id: Substitution
+      description: "Using different resource/tool"
+      categorical: "Isomorphic replacement (h' ~ h)"
+
+    - id: Obstacle_Handling
+      description: "Overcoming barrier"
+      categorical: "Retraction of obstruction"
+
+  compliance_states:
+    description: "States relative to process definition"
+    states:
+      - Compliant: "Process matches design (f = g)"
+      - Variant: "Process deviates but achieves goal (f ~ g)"
+      - NonCompliant: "Process fails goal or violates constraint"
+
+    categorical_check: "Monitor functor M: Process → {Compliant, Variant, NonCompliant}"
+
+# =============================================================================
+# IV. WORK SYSTEM LIFE CYCLE AS COALGEBRA
+# =============================================================================
+
+wslc_coalgebra:
+  description: "Work System Life Cycle as coalgebraic structure"
+
+  states:
+    - id: Operation
+      description: "System running, producing value"
+
+    - id: Initiation
+      description: "Recognizing need for change"
+      triggers: [planned_change, emergent_issue, opportunity]
+
+    - id: Development
+      description: "Designing new/modified system"
+
+    - id: Implementation
+      description: "Deploying changes"
+
+  transitions:
+    - from: Operation
+      to: Initiation
+      trigger: "Performance gap OR opportunity"
+
+    - from: Initiation
+      to: Development
+      trigger: "Change approved"
+
+    - from: Development
+      to: Implementation
+      trigger: "Design complete"
+
+    - from: Implementation
+      to: Operation
+      trigger: "Deployment complete"
+
+  emergent_changes:
+    description: "Non-project changes during Operation"
+    types:
+      - id: Workaround
+        description: "Ad-hoc adaptation to problem"
+        categorical_type: "Local morphism modification"
+
+      - id: Adaptation
+        description: "Gradual adjustment over time"
+        categorical_type: "Functor natural transformation"
+
+      - id: Experiment
+        description: "Trial of new approach"
+        categorical_type: "Tentative diagram extension"
+
+  coalgebra_structure:
+    carrier: "WorkSystem"
+    functor: "F(X) = State × P(Transition(X))"
+    coalgebra_map: "δ: WS → F(WS)"
+    description: "Each WS has current state and possible transitions"
+
+# =============================================================================
+# V. UNIVERSAL CONSTRUCTIONS
+# =============================================================================
+
+limits:
+  terminal:
+    realization: "Organizational Context"
+    description: "The encompassing organization"
+
+  product:
+    realization: "WS × WS"
+    description: "Parallel work systems"
+    projections: [π₁, π₂]
+
+  pullback:
+    realization: "Shared Resource"
+    description: "Common infrastructure between WSs"
+    diagram: |
+      WS_A ──→ Infrastructure ←── WS_B
+             \     ↓ PB    /
+              \    ↓     /
+               ↘ Shared ↙
+
+  equalizer:
+    realization: "Constraint Satisfaction"
+    description: "WS satisfying strategy alignment"
+
+colimits:
+  initial:
+    realization: "Empty/Null System"
+    description: "No work, no value"
+
+  coproduct:
+    realization: "WS ⊔ WS"
+    description: "Independent parallel systems"
+    injections: [ι₁, ι₂]
+
+  pushout:
+    realization: "Merged WS"
+    description: "Combining WSs over shared interface"
+    diagram: |
+      Interface ──→ WS_A
+         ↓           ↓
+       WS_B ──→ WS_Merged
+
+  coequalizer:
+    realization: "Process Abstraction"
+    description: "Identifying equivalent processes"
+
+# =============================================================================
+# VI. FUNCTORS
+# =============================================================================
+
+functors:
+  - id: U_Forget
+    signature: "WST → Graph"
+    mapping:
+      elements: "Node"
+      relations: "Edge"
+      forgets: [WSLC_dynamics, value_semantics, strategy]
+    handedness: right_adjoint
+
+  - id: F_Free
+    signature: "Graph → WST"
+    mapping:
+      nodes: "Element (untyped)"
+      edges: "Relation (untyped)"
+    handedness: left_adjoint
+
+  - id: Value_Chain
+    signature: "WST → Poset"
+    mapping:
+      ws: "Value contribution level"
+      morphism: "Value flow direction"
+    description: "Extracts value hierarchy"
+
+  - id: Info_Projection
+    signature: "WST → InfoCat"
+    mapping:
+      ws: "Information system subset"
+    description: "Projects IS from general WS"
+
+  - id: WSLC_Behavior
+    signature: "WST → Coalg(F)"
+    mapping:
+      ws: "(State, Transitions)"
+    description: "Behavioral view via coalgebra"
+
+  - id: Snapshot
+    signature: "WST → Table"
+    mapping:
+      ws: "Work System Snapshot (tabular)"
+    description: "Renders WS as documentation artifact"
+
+# =============================================================================
+# VII. ADJUNCTIONS
+# =============================================================================
+
+adjunctions:
+  - id: Free_Forget
+    left: F_Free
+    right: U_Forget
+    unit: "η: Graph → UF(Graph)"
+    counit: "ε: FU(WST) → WST"
+    meaning: "Graph is free WST ignoring semantics"
+
+  - id: Generalize_Specialize
+    left: Generalize
+    right: Specialize
+    context: "WS type hierarchy"
+    meaning: "IS ⊂ WS, Project ⊂ WS"
+    diagram: |
+      Generalize: IS → WS
+      Specialize: WS → IS (partial, restricts to info-processing)
+
+  - id: Planned_Emergent
+    left: Plan
+    right: Emerge
+    context: "WSLC change modes"
+    meaning: "Tension between project-driven and organic change"
+    categorical: |
+      Plan: Initiation → Development → Implementation (sequential)
+      Emerge: Operation → Operation' (continuous)
+
+  - id: Internal_External
+    left: Focus
+    right: Context
+    context: "WS boundary"
+    meaning: "9 elements vs Environment/Infrastructure"
+
+# =============================================================================
+# VIII. WORK SYSTEM AS DIAGRAM
+# =============================================================================
+
+ws_as_diagram:
+  description: "A Work System IS a diagram in WST"
+
+  index_category:
+    name: "J₉"
+    objects:
+      [
+        Process,
+        Participant,
+        Information,
+        Technology,
+        Customer,
+        ProductService,
+        Environment,
+        Infrastructure,
+        Strategy,
+      ]
+    morphisms:
+      - "Participant → Process (performs)"
+      - "Process → Information (uses/produces)"
+      - "Process → Technology (uses)"
+      - "Process → ProductService (delivers)"
+      - "Customer → ProductService (receives)"
+      - "WorkSystem → Environment (constrained)"
+      - "WorkSystem → Infrastructure (depends)"
+      - "WorkSystem → Strategy (aligns)"
+
+  work_system_functor:
+    signature: "WS: J₉ → WST"
+    description: "Each WS is a functor from the shape to the category"
+
+  consistency:
+    statement: "WS is valid iff diagram commutes"
+    checks:
+      - "Value flows from Process to Customer"
+      - "Information supports Process execution"
+      - "Technology enables Process"
+      - "Participant agency covers all Processes"
+
+# =============================================================================
+# IX. COHERENCE / AXIOMS
+# =============================================================================
+
+axioms:
+  structural:
+    - id: Value_Production
+      statement: "∀ws ∈ WorkSystem. ∃p ∈ Process, c ∈ Customer. (p delivers_to c)"
+      description: "Every WS must produce value for someone"
+
+    - id: Participant_Coverage
+      statement: "∀p ∈ Process(ws). ∃h ∈ Participant(ws). (h performs p)"
+      description: "Every process has an agent (human or automated)"
+
+    - id: Information_Flow
+      statement: "∀p ∈ Process. (∃i. consumes(p,i)) ∨ (∃o. produces(p,o))"
+      description: "Processes interact with information"
+
+  lifecycle:
+    - id: WSLC_Reachability
+      statement: "∀s ∈ State. reachable(s, Operation)"
+      description: "All lifecycle states lead back to Operation"
+
+    - id: Change_Completeness
+      statement: "change(ws) = planned(ws) ⊔ emergent(ws)"
+      description: "All changes are either planned or emergent"
+
+  integration:
+    - id: Environment_Constraint
+      statement: "∀ws. behavior(ws) ⊆ allowed(environment(ws))"
+      description: "WS operates within environmental constraints"
+
+    - id: Strategy_Alignment
+      statement: "value(ws) aligns_with strategy(ws)"
+      description: "WS value proposition matches strategy"
+
+# =============================================================================
+# X. AUDIT CHECKLIST
+# =============================================================================
+
+audit:
+  STRUCTURAL:
+    - "All 9 elements present and connected"
+    - "Customer receives ProductService"
+    - "Participant performs Process"
+    - "Information flows through Processes"
+    - "Technology enables Processes"
+
+  BEHAVIORAL:
+    - "WSLC states reachable from Operation"
+    - "Emergent changes tracked"
+    - "Workarounds documented"
+
+  SEMANTIC:
+    - "Value chain coherent"
+    - "Strategy alignment explicit"
+    - "Environment constraints respected"
+
+  INTER_WS:
+    - "Overlap types correctly classified"
+    - "Service dependencies documented"
+    - "Shared infrastructure explicit"
+
+# =============================================================================
+# XI. TENSION MAPPING (MBT)
+# =============================================================================
+
+tensions:
+  - id: T_A1_Element_System
+    pole_a: "Individual Element"
+    pole_b: "Complete Work System"
+    adjunction: "Lim ⊣ Colim"
+    resolution: "9-element framework balances granularity"
+
+  - id: T_A2_Planned_Emergent
+    pole_a: "Planned Change (SDLC)"
+    pole_b: "Emergent Change (workarounds)"
+    adjunction: "Project ⊣ Organic"
+    resolution: "WSLC accommodates both explicitly"
+
+  - id: T_A2_Static_Dynamic
+    pole_a: "Snapshot (static view)"
+    pole_b: "Lifecycle (dynamic view)"
+    adjunction: "Alg ⊣ Coalg"
+    resolution: "Framework + WSLC complement"
+
+  - id: T_A3_Explicit_Tacit
+    pole_a: "Documented Process"
+    pole_b: "Tacit Workaround"
+    adjunction: "Exp ⊣ Log"
+    resolution: "WST includes informal adaptations"
+
+  - id: T_B2_Sociotechnical_Automated
+    pole_a: "Human-centric WS"
+    pole_b: "Fully Automated WS"
+    adjunction: "Human ⊣ Machine"
+    resolution: "Spectrum of automation levels"
+
+# =============================================================================
+# XII. SPECIAL CONSTRUCTIONS
+# =============================================================================
+
+special_constructions:
+  grothendieck_fibration:
+    name: "Enterprise Work Systems Fibration"
+    base: "Org Category (departments, units)"
+    fiber: "WST (work systems per unit)"
+    total: "∫(WS/Org) = Enterprise view"
+    description: "All WSs across organization as fibered category"
+
+  kan_extension:
+    name: "IS as Kan Extension"
+    context: "IS ⊂ WS"
+    left_kan: "Free generation of supporting processes"
+    right_kan: "Restriction to info-processing core"
+
+  profunctor:
+    name: "WS-to-WS Service"
+    signature: "P: WS_A^op × WS_B → Set"
+    meaning: "Services provided by WS_A to WS_B"
+    composition: "Profunctor composition for service chains"
