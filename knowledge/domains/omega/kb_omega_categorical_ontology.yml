@@ -599,7 +599,56 @@ axioms:
       origin: Fusion
 
 # =============================================================================
-# X. TENSION RESOLUTION (MBT)
+# X. INTERNAL LOGIC (TOPOS THEORY)
+# =============================================================================
+
+internal_logic:
+  description: |
+    Elevation of Ω from a category to a TOPOS. This provides the system with
+    a robust internal logic for reasoning about partial truths and context.
+
+  structures:
+    - id: Subobject_Classifier
+      symbol: "Ω_Truth" # Not to be confused with category name Ω
+      definition: "The object of truth values in the system context."
+      structure: "A set of truth values structured as a Heyting Algebra."
+      values:
+        - True (Absolute validity)
+        - False (Absolute invalidity)
+        - Partial (Valid in some contexts/states)
+        - Contingent (Valid depending on external conditions)
+      utility: |
+        Allows modeling statements like "This record is valid" not as a binary
+        boolean, but as a logic value dependent on the System State (e.g. valid
+        only in 'Draft' state, invalid in 'Approved').
+
+    - id: Internal_Language
+      type: "Mitchell-Benabou Language"
+      description: "A formal language for expressing properties OF the system WITHIN the system."
+      capabilities:
+        - "Reflexive reasoning: The system can query its own state validity."
+        - "Contextual assertions: Assertions are automatically scoped to the current slice (Work System)."
+
+  generic_abstractions:
+    - id: Generalized_Resource
+      description: "Refining 'Reasoning' to apply to ANY resource type."
+      types:
+        - Computational (CPU, RAM)
+        - Physical (Raw materials, space)
+        - Social (Political capital, trust, attention)
+        - Financial (Budget, cash flow)
+      axiom: "All resources obey conservation laws unless explicitly generative."
+
+    - id: Generalized_Flow
+      description: "Refining 'Ω-Flow' to cover all transmission types."
+      types:
+        - Information_Flow (bits/knowledge)
+        - Value_Flow (money/utility)
+        - Mass_Energy_Flow (physical stuff)
+        - Authority_Flow (delegation/command)
+
+# =============================================================================
+# XI. TENSION RESOLUTION (MBT)
 # =============================================================================
 
 tensions_resolved:

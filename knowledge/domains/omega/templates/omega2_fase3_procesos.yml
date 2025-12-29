@@ -1,0 +1,127 @@
+# Catálogo de Procesos
+# Template Omega 2.0 - Fase 3: Proceso (Vista ⚙️)
+# Formato: YAML ejecutable
+
+_metadata:
+  sistema: "[Nombre del Sistema]"
+  version: "1.0"
+  fecha: "[YYYY-MM-DD]"
+  autor: "[Nombre]"
+
+# =============================================================================
+# PROCESOS
+# =============================================================================
+
+procesos:
+  # --- Ejemplo de Proceso ---
+  - id: PROC-001
+    nombre: "Ingresar Solicitud"
+    proposito: "Registrar formalmente la petición de un ciudadano"
+    actor: "Funcionario de Partes"
+
+    # Entidades que consume (input)
+    entrada:
+      - entidad: ENT-001 # Ciudadano
+        modo: lectura
+      - entidad: ENT-002 # Solicitud (en estado Borrador)
+        modo: lectura
+
+    # Entidades que produce o modifica (output)
+    salida:
+      - entidad: ENT-002 # Solicitud
+        modo: creacion # [creacion | modificacion | eliminacion]
+        estado_resultante: "Ingresada"
+
+    # Condiciones
+    precondicion: "El ciudadano está identificado en el sistema"
+    postcondicion: "La solicitud tiene número de ingreso asignado"
+
+    # Atomicidad
+    es_atomico: true # ¿Un actor, una sesión, un sistema?
+
+    # Trazabilidad a Propósito
+    beneficiario: "B-01" # ID del beneficiario que sirve
+    valor_aportado: "Transparencia en el registro de solicitudes"
+
+  # --- Proceso compuesto (no atómico) ---
+  - id: PROC-002
+    nombre: "Evaluar Solicitud"
+    proposito: "Determinar si la solicitud cumple requisitos"
+    actor: "Evaluador"
+    es_atomico: false
+    subprocesos: [PROC-002-A, PROC-002-B, PROC-002-C] # Descomposición
+
+  # --- Agregar más procesos aquí ---
+
+# =============================================================================
+# CICLOS DE VIDA (Máquinas de Estado)
+# =============================================================================
+
+ciclos_de_vida:
+  # --- Ciclo de vida de Solicitud ---
+  - entidad: ENT-002
+    nombre: "Ciclo de Vida de Solicitud"
+
+    estados:
+      - nombre: "Borrador"
+        tipo: inicial
+        descripcion: "Solicitud en preparación, no visible para evaluadores"
+
+      - nombre: "Ingresada"
+        tipo: normal
+        descripcion: "Solicitud registrada oficialmente"
+
+      - nombre: "En Evaluación"
+        tipo: normal
+        descripcion: "Solicitud siendo analizada por evaluador asignado"
+
+      - nombre: "Aprobada"
+        tipo: final
+        descripcion: "Solicitud aceptada, procede a ejecución"
+
+      - nombre: "Rechazada"
+        tipo: final
+        descripcion: "Solicitud denegada, con justificación"
+
+    transiciones:
+      - desde: "Borrador"
+        hacia: "Ingresada"
+        evento: "Ingresar"
+        actor: "Funcionario de Partes"
+        proceso: PROC-001
+
+      - desde: "Ingresada"
+        hacia: "En Evaluación"
+        evento: "Asignar Evaluador"
+        actor: "Jefe de Unidad"
+
+      - desde: "En Evaluación"
+        hacia: "Aprobada"
+        evento: "Aprobar"
+        actor: "Evaluador"
+        condicion: "Cumple todos los requisitos"
+
+      - desde: "En Evaluación"
+        hacia: "Rechazada"
+        evento: "Rechazar"
+        actor: "Evaluador"
+        condicion: "No cumple requisitos obligatorios"
+
+      - desde: "En Evaluación"
+        hacia: "Ingresada"
+        evento: "Devolver para Corrección"
+        actor: "Evaluador"
+
+# =============================================================================
+# VALIDACIÓN
+# =============================================================================
+
+_validacion:
+  - check: "Cada entidad con estados en Fase 2 tiene ciclo de vida aquí"
+    status: "[OK | PENDIENTE]"
+  - check: "Cada proceso tiene al menos una entidad de salida"
+    status: "[OK | PENDIENTE]"
+  - check: "Cada proceso tiene un beneficiario asociado"
+    status: "[OK | PENDIENTE]"
+  - check: "Cada transición tiene un actor definido"
+    status: "[OK | PENDIENTE]"

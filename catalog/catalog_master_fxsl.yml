@@ -10,7 +10,7 @@ _manifest:
   provenance:
     created_by: "Felix Sanhueza"
     created_at: "2025-11-25"
-    last_modified_at: "2025-12-23"
+    last_modified_at: "2025-12-26"
 
 Catalog:
   Core_Guides: []
@@ -35,7 +35,7 @@ Catalog:
       status: active
       description: "Ingeniero-Arquitecto de Sistemas Composicionales: descomposición jerárquica y composición categórica de sistemas complejos."
 
-    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.2.0"
+    - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.4.0"
       title: "Arquitecto-Categorico"
       file: "agents/arquitecto-categorico/agent_arquitecto_categorico.yaml"
       status: active
@@ -82,6 +82,12 @@ Catalog:
       file: "agents/modelador-mbt/agent_modelador_mbt.yaml"
       status: active
       description: "Modelador basado en tensiones (MBT) para diseño organizacional."
+
+    - urn: "urn:knowledge:fxsl:agents:omega:1.0.0"
+      title: "Omega"
+      file: "agents/omega/agent_omega.yaml"
+      status: active
+      description: "OMEGA: Arquitecto de Sistemas. Especialista en modelado tridimensional (Propósito, Datos, Proceso) usando Omega 2.0."
 
   Schemas: []
     # Add your schemas here
@@ -305,11 +311,23 @@ Catalog:
       status: active
       description: "Reglas operativas del agente Modelador-MBT (no directivo, explicitar tensiones, registrar decisiones)."
 
+    - urn: "urn:knowledge:fxsl:domains:omega:pragmatico:1.0.0"
+      title: "Omega 2.0 Pragmático"
+      file: "knowledge/domains/omega/omega_2_pragmatico.md"
+      status: active
+      description: "Framework simplificado de modelado tridimensional (Propósito, Datos, Proceso)."
+
+    - urn: "urn:knowledge:fxsl:domains:omega:categorical:1.0.0"
+      title: "Omega Categorical Ontology"
+      file: "knowledge/domains/omega/kb_omega_categorical_ontology.yml"
+      status: active
+      description: "Referencia teórica de la ontología Ω vinculada a OPM, ALTER y COMN."
+
 Statistics:
-  total_artifacts: 53
+  total_artifacts: 56
   core_guides: 0
-  agents: 10
+  agents: 11
   schemas: 0
-  domains: 43
-  last_updated: "2025-12-23"
-  notes: "Removed phantom dispatcher-fxsl. Catalogs synchronized with actual files."
+  domains: 45
+  last_updated: "2025-12-26"
+  notes: "Added Omega agent and KB domains. Updated Arquitecto-Categorico to v1.4.0."

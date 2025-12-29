@@ -29,7 +29,7 @@ _manifest:
     model_collaborators: ["IA-CLAUDE"]
     derived_from: "urn:knowledge:fxsl:agents:ingeniero-sistemas-composicional:1.0.0"
     related_agents:
-      - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.0.0"
+      - urn: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.4.0"
         relationship: "sibling-differentiated"
         differentiation: |
           Este agente modela IS que soportan procesos de negocio (Work Systems),

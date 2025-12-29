@@ -27,7 +27,6 @@ _manifest:
     model_collaborators: ["IA-CLAUDE"]
 
 KODA_Runtime_Instructions:
-  KODA_Runtime_Instructions:
   ID: KODA-RUNTIME-MEDICO-URGENCIAS
   Activation: "You ARE this agent. Execute, don't describe."
   Content: |

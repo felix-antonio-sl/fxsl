@@ -1,0 +1,97 @@
+# Glosario de Datos del Sistema
+# Template Omega 2.0 - Fase 2: Datos (Vista 📦)
+# Formato: YAML ejecutable
+
+_metadata:
+  sistema: "[Nombre del Sistema]"
+  version: "1.0"
+  fecha: "[YYYY-MM-DD]"
+  autor: "[Nombre]"
+
+# =============================================================================
+# ENTIDADES
+# =============================================================================
+
+entidades:
+  # --- Ejemplo de Entidad Tipo Persona ---
+  - id: ENT-001
+    nombre: "Ciudadano"
+    nombre_plural: "Ciudadanos"
+    tipo: Persona # [Persona | Documento | Evento | Recurso | Concepto | Lugar]
+    descripcion: "Individuo que interactúa con el sistema como beneficiario o solicitante"
+    identidad: ID # [ID | Valor] - ¿Se distingue por clave única o por contenido?
+    dueño: "Registro Civil" # ¿Quién es responsable de su integridad?
+    estados: [] # Vacío si es inmutable
+    atributos:
+      - nombre: rut
+        tipo: Identificador
+        obligatorio: true
+      - nombre: nombre_completo
+        tipo: Texto
+        obligatorio: true
+
+  # --- Ejemplo de Entidad Tipo Documento con Estados ---
+  - id: ENT-002
+    nombre: "Solicitud"
+    nombre_plural: "Solicitudes"
+    tipo: Documento
+    descripcion: "Petición formal de un ciudadano para obtener un servicio"
+    identidad: ID
+    dueño: "Oficina de Partes"
+    estados: ["Borrador", "Ingresada", "En Evaluación", "Aprobada", "Rechazada"]
+    atributos:
+      - nombre: fecha_ingreso
+        tipo: Fecha
+        obligatorio: true
+      - nombre: monto_solicitado
+        tipo: Moneda
+        obligatorio: false
+
+  # --- Agregar más entidades aquí ---
+  # - id: ENT-003
+  #   nombre: "[...]"
+
+# =============================================================================
+# RELACIONES
+# =============================================================================
+
+relaciones:
+  - id: REL-001
+    nombre: "presenta"
+    desde: ENT-001 # Ciudadano
+    hacia: ENT-002 # Solicitud
+    cardinalidad: "1:N" # Un ciudadano puede presentar muchas solicitudes
+    descripcion: "Un Ciudadano presenta una o más Solicitudes"
+
+  # --- Agregar más relaciones aquí ---
+  # - id: REL-002
+  #   nombre: "[verbo]"
+  #   desde: ENT-XXX
+  #   hacia: ENT-YYY
+
+# =============================================================================
+# INVARIANTES (Reglas que SIEMPRE deben cumplirse)
+# =============================================================================
+
+invariantes:
+  - id: INV-001
+    descripcion: "Toda Solicitud debe tener exactamente un Ciudadano asociado"
+    afecta: [ENT-002, REL-001]
+    severidad: ERROR # [ERROR | WARNING]
+
+  - id: INV-002
+    descripcion: "Una Solicitud Aprobada no puede volver a estado Borrador"
+    afecta: [ENT-002]
+    severidad: ERROR
+
+# =============================================================================
+# VALIDACIÓN
+# =============================================================================
+
+_validacion:
+  - check: "Cada sustantivo del Canvas de Propósito tiene entrada aquí"
+    status: "[OK | PENDIENTE]"
+  - check: "Cada entidad tiene al menos 1 atributo definido"
+    status: "[OK | PENDIENTE]"
+  - check: "Cada entidad con estados tiene al menos 2 estados"
+    status: "[OK | PENDIENTE]"
