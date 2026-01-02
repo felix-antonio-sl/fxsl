@@ -13,9 +13,9 @@ The ISUT includes 3 axioms (A1, A2, A3) and 12 assumptions (UA1-UA12) forming a 
 
 UA1: A WS is where humans/machines perform work using info, tech, and resources to create product/services for internal/external customers. UA2: An IS is a WS mostly processing info (capture, store, retrieve, delete, transmit, manipulate, display). UA3: ISs serve other WSs. UA4: ISs/WSs act as entities that execute practices, projects, or programmed responses. UA5: Systems can be sociotechnical or fully automated. UA6: Sociotechnical WSs use IT tools; fully automated WSs use automated ISs, sometimes using sociotechnical ISs for collaboration. UA7: WSs have goals like efficiency, effectiveness, reliability, resilience, etc. (Alter, 2024). UA8: IS usage aims to achieve WS goals.
 Burton-Jones et al. (206) note UA9: "Product/services" concept is better for IS usage as products can embody service features, and vice versa (Alter, 2010; Vargo & Lusch, 2004). UA10: IS usage might not always meet WS goals. UA11: Using an IS implies applying its products/services to WS activities. UA12: IS roles should be obvious to professionals for analysis or design, unlike unseen internal ISs like car ABS. Basic Concepts: ISUT uses system definitions (Ackoff, 1971) for WSs, ISs, projects, reflecting Churchman (1979), Checkland (1999). Skyttner (1996) views systems as subjective. ISUT usage is for active systems, not static structures, unlike tool-based IT research.
-System usage as a dependent variable features in IS research like TAM (Davis, 1989), IS success model (DeLone & McLean, 1992; 2003), TTF (Goodhue & Thompson, 1995), and UTAUT (Venkatesh et al., 2003). Demetis & Lee (2017) critique that 'systems' in IS often just mean 'IT' or 'computer'. 
+System usage as a dependent variable features in IS research like TAM (Davis, 1989), IS success model (DeLone & McLean, 1992; 2003), TTF (Goodhue & Thompson, 1995), and UTAUT (Venkatesh et al., 2003). Demetis & Lee (2017) critique that 'systems' in IS often just mean 'IT' or 'computer'.
 
-IS often lacks a definition of 'information'. ISUT considers information as both part and output of ISs, echoing Boell & Cecez-Kecmanovic’s (2015) views. Information may be intentional and contextually meaningful in WS. ISUT merges data, info, and knowledge, considering anything used/produced in WS as information. 
+IS often lacks a definition of 'information'. ISUT considers information as both part and output of ISs, echoing Boell & Cecez-Kecmanovic’s (2015) views. Information may be intentional and contextually meaningful in WS. ISUT merges data, info, and knowledge, considering anything used/produced in WS as information.
 
 The ISUT concept is based on decades of work system theory (Alter, 1999-2013). 'Work' involves using resources (human, info, physical, financial) to produce outputs for humans or machines, not tied to careers. This includes business/societal settings but not personal activities like games. The work system unit is key for organizational systems, going back to Bostrom & Heinen (1977). WSs can be socio-technical or automated (UA1, UA5), operating in environments with necessary infrastructures and stakeholders. Businesses comprise multiple WSs for tasks like product development, customer acquisition, and coordination.
 The WS concept applies to systems in organizations and homes. It's useful for typical WSs but not for trivial, ephemeral ones. Large enterprises can be seen as interacting WSs, not a single WS, which is less effective than models like value chains. WSs have special cases; principles for WSs apply to ISs, projects, etc. The main WS types are sociotechnical and fully automated. Sociotechnical WSs involve human-tech interaction to produce outputs, but humans aren't merely "users" due to the social-technical blend. Fully automated WSs handle tasks autonomously, like IoT and AI systems. All their value-adding activities are by hardware/software after activation. Designers/managers of sociotechnical WSs are participants if they contribute to outputs; builders of automated WSs are not participants but part of other WSs.
@@ -76,7 +76,8 @@ The selected articles show fundamental differences between ISUT and most IS usag
 
 Axioms A1, A2, A3 state IS usage occurs when IS performs roles related to work facets in a WS. This section elaborates ISUT’s approach combining roles and work facets in an agent responsibility framework to clarify practical applications of these axioms.
 
-### Roles Delegated to IS by Work Systems:
+### Roles Delegated to IS by Work Systems
+
 - Monitoring the WS: May lack direct WS involvement, used for management info, worker safety, or surveillance.
 - Providing info: Via documents, reports, datasets, recordings, or videos.
 - Enabling capabilities: For info analysis or creating/analyzing models.
@@ -84,11 +85,13 @@ Axioms A1, A2, A3 state IS usage occurs when IS performs roles related to work f
 - Coproducing activities: Roles shared between IS and WS via user/device-driven dialogues or mixed interactions.
 - Executing activities: Automated IS performs WS tasks or WS tasks outsourced to external IS.
 
-### Facets of Work:
+### Facets of Work
+
 Facets describe and analyze IS use by WSs, like decision-making and info processing. This extension of work system theory aids stakeholder interactions in system analysis/design, inspired by how a diamond's facets can be viewed and analyzed.
 All 18 facets of work in Table 2 apply to any WS, linked to concepts, evaluation criteria, design trade-offs, sub-facets, and open-ended queries for analysis and design (Alter, 2021a, pp. 323-331). Some overlap, e.g., decisions and communication. Iterative design for these facets might have resulted in 14 or 27 facets. Inclusion as a facet was based on its association with concepts, criteria, trade-offs, sub-facets, and questions useful in analysis/design. Facets specify requirements for capabilities often overlooked in IS contexts.
 
-Table 1 lists 18 facets: 
+Table 1 lists 18 facets:
+
 - Decision-making, Communication, Info provision, Reality representation, Learning, Coordination, Physical work, Service, Knowledge application, Planning, Improvisation, Support work performance, Value creation, Thinking, Execution control, Info processing, Social interaction, Security maintenance.
 
 Facets aren't assumed independent; e.g., decision-making involves communication, learning, info processing. Each facet serves as a lens for WSs using ISs.
@@ -99,14 +102,14 @@ Six facets in Fig 3 (e.g., decision-making involves info processing, communicati
 
 ### Table 3: IS Role Application to Work Facets in EMR Context
 
-| Work Facet            | IS Role           | Application                                                                            |
-|-----------------------|-------------------|----------------------------------------------------------------------------------------|
-| Making decisions      | monitor           | IS monitors clinical decisions for standard adherence, equitable treatment.             |
-| Communicating         | provide info      | IS expedites staff communication.                                                      |
-| Processing info       | provide capabilities | IS reduces data, visualizes for effortless physician processing.                      |
-| Coordinating          | control activities | IS ensures standard adherence in patient problem lists coordination.                    |
-| Creating value        | coproduce activities | IS aids value creation via joint condition/treatment monitoring.                      |
-| Maintaining security  | execute activities | IS maintains security/privacy, monitors electronic messages.                           |
+| Work Facet           | IS Role              | Application                                                                 |
+| -------------------- | -------------------- | --------------------------------------------------------------------------- |
+| Making decisions     | monitor              | IS monitors clinical decisions for standard adherence, equitable treatment. |
+| Communicating        | provide info         | IS expedites staff communication.                                           |
+| Processing info      | provide capabilities | IS reduces data, visualizes for effortless physician processing.            |
+| Coordinating         | control activities   | IS ensures standard adherence in patient problem lists coordination.        |
+| Creating value       | coproduce activities | IS aids value creation via joint condition/treatment monitoring.            |
+| Maintaining security | execute activities   | IS maintains security/privacy, monitors electronic messages.                |
 
 The AR framework suggests IS roles/facets can be tailored to specific situations rather than exhaust all combinations. Designers should focus on relevant combinations for each WS.
 
@@ -115,10 +118,12 @@ The AR framework suggests IS roles/facets can be tailored to specific situations
 ISUT's usefulness is evaluated through new IS usage insights across four different IS cases, each beyond routine uses. Inspired by perceived gaps in IT adoption discussions, these examples highlight ISUT's applicability, with further analysis possible on ISUT's three axioms and 12 assumptions.
 These ISs include EMR, SMgt, AdEx, and MCAS. The first two are vital in corporate environments. The third is a fully automated WS also an IS with many sub-ISs. The fourth, a cyber-physical WS, had an IS fail significantly. Other examples related to hidden Internet infrastructure apply ISUT somewhat but offer few insights.
 
-### 7.1 An EMR System:
+### 7.1 An EMR System
+
 In Gawande's case, a major EMR implementation affected a 70,000-staff medical group. Benefits included standardization and patient access to records. Yet, primary care doctors experienced burnout, spending excessive personal time on data entry, encountering "signal fatigue," with irrelevant alerts requiring human sorting. EMR led to disconnection and less collaboration. Some roles shifted to "scribes" for data entry, including doctors in India supporting Boston physicians. The EMR IS overlaps with the medical WS, prompting documentation stress over patient care. An ISUT perspective emphasizes issues beyond an HCI focus.
 
-### 7.2 Workarounds in a Mandated Enterprise System:
+### 7.2 Workarounds in a Mandated Enterprise System
+
 SMgt, a spreadsheet-based sales management system, was a workaround to an ERP system deemed unusable in Hong Kong's branches due to storage constraints. The ERP logic didn't fit Hong Kong's conditions, where four stores used a central warehouse for replenishment orders and customer deliveries, differing from headquarter expectations.
 HK staff created SMgt, a spreadsheet sales mgmt sys, to bypass corp ERP for HK ops. SMgt allows 4 stores to manage inventory, sales, deliveries apart from corp ERP, used only for inventory replenishment and sales reporting. Thus, corp ERP was partly used and bypassed. Answering typical ERP use Qs would mislead. ISUT helps describe this as WSs (order receiving, selling, order fulfilling) managed by 2 ISs: ERP for HQ communication and SMgt for HK stores. Focusing solely on HCI wouldn't fully capture IS usage here.
 
@@ -128,6 +133,7 @@ ISUT development stemmed from a need for an integrated view of IS usage amid inc
 Practice Contributions: ISUT offers insights for detailed IS usage descriptions and for analyzing design, implementation, and usage patterns. Viewing IS usage via roles in work systems can guide IS development beyond conventional methods. It explores responsibilities across roles, identifying hidden issues. Tools like BPMN document process flows but miss aspects for visualizing sociotechnical and automated systems, unlike ISUT, which integrates those. Relying on user stories might overlook how ISs enhance work systems' efficiency and effectiveness. ISUT also applies to automated systems overlooked by user stories. It supports IS implementation with feedback on management's goals for IS's impact on work systems. Practitioners showed its efficacy with 700+ management briefings by MBA/EMBA students (2003-2017) via WSM. ISUT could enhance WSM or a systems analysis toolkit (Alter & Bork, 2020) from a work system view.
 
 Research Contributions: ISUT challenges existing IS usage views, differing from variance/process theories. It unifies IS usage insights across sociotechnical and automated systems, aiming to integrate ideas for describing, analyzing, and evaluating IS usage in all sectors. Despite diverse ISs, ISUT seeks comprehensive understanding. Its uniqueness brings research opportunities/challenges:
+
 - As a rare systems theory, it offers comparison points for different theories.
 - It questions ambiguities in IS definitions, starting with system, information, extending to IT artifacts.
 - It challenges theories like UTAUT and IS success model, advocating for more descriptive IS usage analysis.

@@ -89,6 +89,12 @@ Catalog:
       status: active
       description: "OMEGA: Arquitecto de Sistemas. Especialista en modelado tridimensional (Propósito, Datos, Proceso) usando Omega 2.0."
 
+    - urn: "urn:knowledge:fxsl:agents:ontologista-gist:1.0.0"
+      title: "Ontologista-Gist"
+      file: "agents/ontologista-gist/agent_ontologista_gist.yaml"
+      status: active
+      description: "Pensador Dialéctico-Generativo especializado en Gist 14.0 upper ontology. Hereda de Pensador-Generador."
+
   Schemas: []
     # Add your schemas here
   Domains:
@@ -323,11 +329,66 @@ Catalog:
       status: active
       description: "Referencia teórica de la ontología Ω vinculada a OPM, ALTER y COMN."
 
+    # Gist 14.0 Upper Ontology Knowledge Base
+    - urn: "urn:knowledge:fxsl:gist:readme:14.0.0"
+      title: "Gist README - Overview and Getting Started"
+      file: "knowledge/domains/gist/docs/README.md"
+      status: active
+      description: "Overview of Gist upper ontology, licensing, and access methods."
+
+    - urn: "urn:knowledge:fxsl:gist:namespace:14.0.0"
+      title: "Gist Namespace vs Ontology IRI"
+      file: "knowledge/domains/gist/docs/Namespace.md"
+      status: active
+      description: "Distinction between namespace and ontology IRI in Gist."
+
+    - urn: "urn:knowledge:fxsl:gist:address-guidance:14.0.0"
+      title: "Gist Address Modeling Patterns"
+      file: "knowledge/domains/gist/docs/models/AddressGuidance.md"
+      status: active
+      description: "Patterns for modeling physical and electronic addresses with Categories."
+
+    - urn: "urn:knowledge:fxsl:gist:uom-model:14.0.0"
+      title: "Gist Magnitudes and Units of Measure"
+      file: "knowledge/domains/gist/docs/models/UnitOfMeasureModel.md"
+      status: active
+      description: "Magnitude pattern with Aspects, UnitGroups, and conversion factors."
+
+    - urn: "urn:knowledge:fxsl:gist:core:14.0.0"
+      title: "gistCore 14.0.0 Ontology"
+      file: "knowledge/domains/gist/ontologies/gistCore14.0.0.ttl"
+      status: active
+      description: "Core Gist ontology with ~100 classes and ~100 properties."
+
+    - urn: "urn:knowledge:fxsl:gist:annotations:14.0.0"
+      title: "gistRdfsAnnotations 14.0.0"
+      file: "knowledge/domains/gist/ontologies/gistRdfsAnnotations14.0.0.ttl"
+      status: active
+      description: "RDFS labels and comments for Gist classes and properties."
+
+    - urn: "urn:knowledge:fxsl:gist:subclass-assertions:14.0.0"
+      title: "gistSubClassAssertions 14.0.0"
+      file: "knowledge/domains/gist/ontologies/gistSubClassAssertions14.0.0.ttl"
+      status: active
+      description: "Supplementary subclass hierarchy for OWL RL reasoners."
+
+    - urn: "urn:knowledge:fxsl:gist:media-types:14.0.0"
+      title: "gistMediaTypes 14.0.0"
+      file: "knowledge/domains/gist/ontologies/gistMediaTypes14.0.0.ttl"
+      status: active
+      description: "IANA Media Type instances (JSON, Turtle, CSV, etc.)."
+
+    - urn: "urn:knowledge:fxsl:gist:prefixes:14.0.0"
+      title: "gistPrefixDeclarations 14.0.0"
+      file: "knowledge/domains/gist/ontologies/gistPrefixDeclarations14.0.0.ttl"
+      status: active
+      description: "SHACL prefix declarations for visualizers and tooling."
+
 Statistics:
-  total_artifacts: 56
+  total_artifacts: 66
   core_guides: 0
-  agents: 11
+  agents: 12
   schemas: 0
-  domains: 45
-  last_updated: "2025-12-26"
-  notes: "Added Omega agent and KB domains. Updated Arquitecto-Categorico to v1.4.0."
+  domains: 54
+  last_updated: "2026-01-02"
+  notes: "Added Ontologista-Gist agent and Gist 14.0 knowledge base (9 artifacts)."
