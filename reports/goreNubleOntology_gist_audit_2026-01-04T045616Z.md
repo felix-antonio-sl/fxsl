@@ -1,79 +1,25 @@
-# Re-auditoría Gist 14.0 + alineamiento Omega — goreNubleOntology.ttl
+# Re-auditoría de alineamiento Gist 14.0 — goreNubleOntology.ttl
 
-- Ontología auditada: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOntology.ttl`
-- SHA-256: `f5c0f1deceab704ab433c4f9324324882f5c10fd336dff1f1e398c3460c04ace`
-- Tamaño: 50296 bytes
-- mtime (UTC): 2026-01-04T05:09:57.109564+00:00
-- Ejecutado (UTC): 2026-01-04T05:10:18.166183+00:00
+- Fuente: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOntology.ttl`
+- SHA-256: `ca8146b563c2ae298bab0d35a652264423311a5d997cec320f1da55098df8754`
+- Tamaño: 39460 bytes
+- mtime (UTC): 2026-01-04T04:44:45.305353+00:00
+- Ejecutado (UTC): 2026-01-04T04:56:16.870420+00:00
 
 ## Resumen
-- Ontology IRI: `https://gorenuble.gob.cl/ontology/goreNubleOntology`
+- Ontología: `https://gorenuble.gob.cl/ontology/goreNubleOntology`
 - owl:imports: `https://w3id.org/semanticarts/ontology/gistCore14.0.0`
 - owl:versionIRI: `https://gorenuble.gob.cl/ontology/goreNubleOntology1.0.0`
-- Conteos (TBox): clases=58, objProps=56, dataProps=8
-
-## Alineamiento con modelo Omega (Mermaid)
-- Modelo Omega: `/Users/felixsanhueza/Developer/gorenuble/knowledge/domains/gn/models/omega_gore_nuble_mermaid.md` (v2.6.0, 2025-12-29)
-- Mermaid blocks: 25, edges: 211, labeled edges: 47, unique labels: 30
-- Cobertura de labels:
-  - Mapeables a propiedades TBox: 15
-  - Labels de flujo/decisión/clasificación (no son propiedades): 15
-
-### Mapeo de etiquetas Omega → TBox
-- `articulación productiva` → `gnub:coordinatesProductivelyWith`
-- `asigna presupuesto` → `gnub:allocatesBudgetTo`
-- `coordina planes` → `gnub:coordinatesPlansWith`
-- `designa` → `gnub:designates`
-- `financia proyectos` → `gnub:managesFundingFor`
-- `fiscaliza` → `gnub:audits`
-- `fomento productivo` → `gnub:promotesProductiveDevelopmentIn`
-- `gobierno interior` → `gnub:exercisesInteriorGovernmentOver`
-- `norma/financia` → `gnub:regulates`, `gnub:funds`
-- `obras públicas` → `gnub:deliversPublicWorksIn`
-- `preside` → `gnub:chairs`
-- `programas sociales` → `gnub:deliversSocialProgramsIn`
-- `propone terna` → `gnub:nominatesCandidatesFor`
-- `supervisa` → `gnub:supervises`
-- `tutela` → `gnub:hasTutelaOver`
-
-### Etiquetas Omega que NO deben modelarse como propiedades
-- Estas etiquetas aparecen en diagramas de proceso/decisión; típicamente se modelan como estados/resultados (instancias de `gist:Category`) o como tareas/eventos (`gist:Task`/`gist:Event`), no como predicates.
-- `Aprobado`
-- `Competencias Transferidas`
-- `Con Observ.`
-- `Coordinación sin subordinación`
-- `Envío Digital`
-- `Favorable`
-- `Firma FEA`
-- `No`
-- `No Recom.`
-- `Observado`
-- `Programa`
-- `Proyecto`
-- `Retroalimentación`
-- `RF Recomendación Favorable`
-- `Sí`
-
-### Evidencia ABox de alineamiento con Omega
-- Referencia ABox: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl`
-- Colecciones SEREMIAS (isMemberOf): `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:746`
-- Colecciones SERVICIOS (isMemberOf): `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:852`
-- DIPLADE coordina SEREMIAS: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1102`
-- DIFOI articulación SERVICIOS: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1106`
-- DIPIR financiamiento SERVICIOS: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1108`
-- DIDESO programas sociales: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1112`
-- DIINF obras públicas: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1113`
-- Gobernador propone terna: `/Users/felixsanhueza/Developer/gorenuble/ontologies/goreNubleOrgData.ttl:1100`
-
-### Observaciones semánticas (Omega ↔ Gist)
-- En Omega, varias relaciones punteadas representan “coordinación sin subordinación”; esto calza con `gist:isConnectedTo` (simétrica). En el TBox, `gnub:coordinatesPlansWith`/`gnub:coordinatesProductivelyWith` podrían declararse como subpropiedades de `gist:isConnectedTo` para capturar esa intención.
-- Las divisiones (`gnub:Division`) participan como sujeto de relaciones cuyo dominio está fijado a `gist:GovernmentOrganization`; en OWL esto induce el tipo `gist:GovernmentOrganization` para dichas instancias. Si eso es intencional, conviene hacerlo explícito en la TBox (subclase).
-- `norma/financia` en el diagrama corresponde a dos relaciones distintas (`gnub:regulates` + `gnub:funds`), ambas ya agrupadas bajo `gnub:governs`.
+- Conteos: clases=47, objProps=43, dataProps=8, otros=0
 
 ## Hallazgos (Gist)
 - Importación versionada de Gist: **OK**
 - Gobernanza unificada (`gnub:governs` inverseOf `gist:isGovernedBy`): **OK**
-- Magnitudes alineadas (`gist:Magnitude`): `gnub:hasMaxAdminCost`, `gnub:hasMaxExecTime`, `gnub:hasThreshold`
+- Magnitudes (`gist:Magnitude`) usadas en: `gnub:hasMaxAdminCost`, `gnub:hasMaxExecTime`, `gnub:hasThreshold`
+- Principales oportunidades pendientes:
+  - Mapear roles de participación a `gist:hasParticipant/hasParty` (p.ej. `gnub:hasApplicant`, `gnub:isEvaluatedBy`).
+  - Alinear módulo legal a superpropiedades Gist (`gist:isGovernedBy`, `gist:isPartOf`) y añadir inversas navegables donde aplica.
+  - Revisar `gnub:Province` (GeoRegion vs GovernedGeoRegion) y nombres que puedan confundir Category vs entidad.
 
 ## Auditoría por elemento
 ### Ontología
@@ -87,13 +33,6 @@
 - Etiqueta: "Adquisición ANF"@es
 - Definición: "Adquisición de Activos No Financieros (Vehículos, Equipos) vía Circular 33."@es
 - Superclase: `gnub:IPRProject`
-- Alineamiento Gist: **OK**
-
-### `gnub:AdministrativeAct`
-- Tipo: `owl:Class`
-- Etiqueta: "Acto Administrativo"@es
-- Definición: "Acto administrativo formal del GORE que genera obligaciones o derechos (Resolución, Decreto, Convenio)."@es
-- Superclase: `gist:Commitment`
 - Alineamiento Gist: **OK**
 
 ### `gnub:AdmissibilityState`
@@ -110,28 +49,14 @@
 - Superclase: `gist:Organization`
 - Alineamiento Gist: **REVIEW**
 
-### `gnub:AgreementState`
-- Tipo: `owl:Class`
-- Etiqueta: "Estado de Convenio"@es
-- Definición: "Estado de tramitación del convenio (Borrador, Visado, Firmado, TdR Pendiente, Formalizado)."@es
-- Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
-
 ### `gnub:ApplicantInstitution`
 - Tipo: `owl:Class`
 - Etiqueta: "Institución Postulante"@es
 - Definición: "Tipo de entidad habilitada para postular a fondos (ej. Municipalidad, ONG, Univ)."@es
 - Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Es una `gist:Category` (tipo de institución). Si quieres evitar lectura como entidad concreta, renombrar a `gnub:ApplicantInstitutionType`.
-
-### `gnub:ApprovalFlowStage`
-- Tipo: `owl:Class`
-- Etiqueta: "Etapa de Aprobación"@es
-- Definición: "Etapa del flujo de aprobación de un acto administrativo (Elaboración, V°B° Jurídico, V°B° Control, V°B° Jefatura, Firma Gobernador, TdR CGR)."@es
-- Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
+  - Si es ‘tipo de institución’, considerar renombrar a `gnub:ApplicantInstitutionType` para evitar lectura como entidad concreta (Category paradigm).
 
 ### `gnub:BasicStudy`
 - Tipo: `owl:Class`
@@ -197,13 +122,6 @@
 - Superclase: `gist:Category`
 - Alineamiento Gist: **OK**
 
-### `gnub:Decree`
-- Tipo: `owl:Class`
-- Etiqueta: "Decreto"@es
-- Definición: "Norma dictada por autoridad sujeta a control externo de CGR (Toma de Razón), típicamente para modificaciones presupuestarias que afectan Partida 31."@es
-- Superclase: `gnub:AdministrativeAct`
-- Alineamiento Gist: **OK**
-
 ### `gnub:Department`
 - Tipo: `owl:Class`
 - Etiqueta: "Departamento"@es
@@ -225,8 +143,7 @@
 - Superclase: `gist:Organization`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - En el modelo Omega, las divisiones actúan como órganos de gobierno (coordinan, gestionan financiamiento, ejecutan). Considerar `rdfs:subClassOf gist:GovernmentOrganization` (y análogo para `Department/Unit/StaffUnit/AdvisoryBody`) para coherencia explícita.
-  - Si no quieres endurecer la TBox, alternativa: reemplazar `rdfs:domain` por `gist:domainIncludes` en propiedades como `gnub:coordinatesPlansWith` para evitar inferencias no deseadas.
+  - Tensión Gist: si no necesitas inferencias fuertes por tipo, modelar como `gist:Organization` + `gist:isCategorizedBy` (con instancias de `gnub:OrganizationalUnitType`) en vez de subclases.
 
 ### `gnub:EvaluationResult`
 - Tipo: `owl:Class`
@@ -301,7 +218,7 @@
 ### `gnub:IPRPhase`
 - Tipo: `owl:Class`
 - Etiqueta: "Fase de IPR"@es
-- Definición: "Fase del ciclo de vida de una IPR según proceso estándar GORE (F0-Postulación, F1-Admisibilidad, F2-Evaluación, F3-Priorización, F4-Formalización, F5-Cierre)."@es
+- Definición: "Fase del ciclo de vida de una IPR según proceso estándar GORE."@es
 - Superclase: `gist:Category`
 - Alineamiento Gist: **OK**
 
@@ -311,13 +228,6 @@
 - Definición: "IPR de gasto de capital (Subtítulo 31 o 33) orientada a crear, ampliar, reponer o mejorar activos físicos o intangibles de larga duración."@es
 - Superclase: `gnub:IPR`
 - DisjointWith: `gnub:InvestmentProgram, gnub:OperationalProgram, gnub:BasicStudy`
-- Alineamiento Gist: **OK**
-
-### `gnub:IPRStateTransition`
-- Tipo: `owl:Class`
-- Etiqueta: "Transición de Estado IPR"@es
-- Definición: "Transición entre dos fases/estados en el ciclo de vida de una IPR (ej. F1→F2, PRE-ADMISIBLE→ADMISIBLE)."@es
-- Superclase: `gist:Event`
 - Alineamiento Gist: **OK**
 
 ### `gnub:ImplementationMode`
@@ -423,52 +333,17 @@
 ### `gnub:Province`
 - Tipo: `owl:Class`
 - Etiqueta: "Provincia"@es
-- Definición: "División político-administrativa intermedia entre región y comuna en Chile, gobernada por un Delegado Presidencial Provincial."@es
-- Superclase: `gist:GovernedGeoRegion`
+- Definición: "División político-administrativa intermedia entre región y comuna en Chile."@es
+- Superclase: `gist:GeoRegion`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - El diagrama Omega trata provincias como unidades político-territoriales con ‘gobierno interior’. Evaluar `gist:GovernedGeoRegion` vs `gist:GeoRegion` según si quieres representar explícitamente gobernanza territorial.
+  - Revisar si debe ser `gist:GovernedGeoRegion` (unidad político‑administrativa) en vez de `gist:GeoRegion`.
 
 ### `gnub:RegionalFund`
 - Tipo: `owl:Class`
 - Etiqueta: "Fondo Regional"@es
 - Definición: "Fondo de inversión o financiamiento administrado por el GORE."@es
 - Superclase: `gist:Account`
-- Alineamiento Gist: **OK**
-
-### `gnub:Rendition`
-- Tipo: `owl:Class`
-- Etiqueta: "Rendición de Cuentas"@es
-- Definición: "Procedimiento administrativo mediante el cual una entidad ejecutora demuestra y justifica la correcta utilización de fondos públicos recibidos del GORE."@es
-- Superclase: `gist:Event`
-- Alineamiento Gist: **OK**
-
-### `gnub:RenditionExpedient`
-- Tipo: `owl:Class`
-- Etiqueta: "Expediente de Rendición"@es
-- Definición: "Conjunto ordenado de documentos que respaldan la recepción, uso y justificación de fondos públicos (Res. 30/2015 CGR Art. 10)."@es
-- Superclase: `gist:Content`
-- Alineamiento Gist: **OK**
-
-### `gnub:RenditionRole`
-- Tipo: `owl:Class`
-- Etiqueta: "Rol en Rendición"@es
-- Definición: "Rol de un actor en el proceso de rendición SISREC (Analista Ejecutor, Ministro de Fe, Encargado Ejecutor, Analista Otorgante, Encargado Otorgante)."@es
-- Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
-
-### `gnub:RenditionState`
-- Tipo: `owl:Class`
-- Etiqueta: "Estado de Rendición"@es
-- Definición: "Estado del proceso de rendición (Pendiente, En Revisión, Observada, Aprobada, Rechazada)."@es
-- Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
-
-### `gnub:Resolution`
-- Tipo: `owl:Class`
-- Etiqueta: "Resolución"@es
-- Definición: "Decisión formal del GORE que puede ser exenta o afecta a Toma de Razón de CGR."@es
-- Superclase: `gnub:AdministrativeAct`
 - Alineamiento Gist: **OK**
 
 ### `gnub:StaffUnit`
@@ -483,13 +358,6 @@
 - Etiqueta: "Fondo Temático"@es
 - Definición: "Fondo temático específico dentro de la Subvención 8%."@es
 - Superclase: `gist:Category`
-- Alineamiento Gist: **OK**
-
-### `gnub:TransferAgreement`
-- Tipo: `owl:Class`
-- Etiqueta: "Convenio de Transferencia"@es
-- Definición: "Convenio de transferencia de recursos entre el GORE y una entidad ejecutora, que establece obligaciones mutuas."@es
-- Superclase: `gist:Agreement`
 - Alineamiento Gist: **OK**
 
 ### `gnub:Unit`
@@ -509,14 +377,6 @@
 - subPropertyOf: `gnub:governs`
 - Alineamiento Gist: **OK**
 
-### `gnub:approvesAct`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "aprueba convenio"@es
-- Definición: "Resolución que aprueba y formaliza un convenio de transferencia."@es
-- Dominio: `gnub:Resolution`
-- Rango: `gnub:TransferAgreement`
-- Alineamiento Gist: **OK**
-
 ### `gnub:audits`
 - Tipo: `owl:ObjectProperty`
 - Etiqueta: "fiscaliza"@es
@@ -532,10 +392,9 @@
 - Definición: "Relaciona un artículo con el documento legal al que pertenece."@es
 - Dominio: `gnub:LegalArticle`
 - Rango: `gnub:LegalDocument`
-- subPropertyOf: `gist:isPartOf`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Agregar `rdfs:subPropertyOf gist:isPartOf` (parte‑todo) para alinear artículos↔documentos legales.
+  - Agregar `rdfs:subPropertyOf gist:isPartOf` para alinearlo al patrón parte‑todo de Gist.
 
 ### `gnub:binds`
 - Tipo: `owl:ObjectProperty`
@@ -560,9 +419,9 @@
 - Dominio: `gist:GeoRegion`
 - Rango: `gist:GeoRegion`
 - inverseOf: `gist:isGeoContainedIn`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - En Omega, el territorio se organiza por contención. Ya está `owl:inverseOf gist:isGeoContainedIn`; si requieres inferencias de contención hacia ‘contiene’, considera materializar o declarar transitividad explícita (según reasoner).
+  - Ya está alineada como `owl:inverseOf gist:isGeoContainedIn`. Opcional: declarar explícitamente `a owl:TransitiveProperty` si tu reasoner no infiere transitividad del inverso.
 
 ### `gnub:coordinatesPlansWith`
 - Tipo: `owl:ObjectProperty`
@@ -570,9 +429,7 @@
 - Definición: "Relación de coordinación de planes (p.ej., DIPLADE coordina planes con SEREMIs)."@es
 - Dominio: `gist:GovernmentOrganization`
 - Rango: `gist:Organization`
-- Alineamiento Gist: **REVIEW**
-- Recomendaciones:
-  - En Omega aparece como coordinación sin subordinación (línea punteada). Considerar `rdfs:subPropertyOf gist:isConnectedTo` y declarar `a owl:SymmetricProperty` si aplica.
+- Alineamiento Gist: **OK**
 
 ### `gnub:coordinatesProductivelyWith`
 - Tipo: `owl:ObjectProperty`
@@ -580,9 +437,7 @@
 - Definición: "Relación de articulación productiva (p.ej., DIFOI articula con servicios públicos regionales)."@es
 - Dominio: `gist:GovernmentOrganization`
 - Rango: `gist:Organization`
-- Alineamiento Gist: **REVIEW**
-- Recomendaciones:
-  - En Omega aparece como coordinación sin subordinación (línea punteada). Considerar `rdfs:subPropertyOf gist:isConnectedTo` y declarar `a owl:SymmetricProperty` si aplica.
+- Alineamiento Gist: **OK**
 
 ### `gnub:currentPreinvestmentStage`
 - Tipo: `owl:ObjectProperty`
@@ -590,7 +445,9 @@
 - Definición: "Etapa actual de preinversión en formulación."@es
 - Dominio: `gnub:IPR`
 - Rango: `gnub:PreinvestmentStage`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:deliversPublicWorksIn`
 - Tipo: `owl:ObjectProperty`
@@ -631,10 +488,9 @@
 - Definición: "Relaciona un artículo con los mandatos que establece."@es
 - Dominio: `gnub:LegalArticle`
 - Rango: `gnub:LegalMandate`
-- inverseOf: `gnub:derivesFromArticle`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Declarar `owl:inverseOf gnub:derivesFromArticle` para navegación bidireccional.
+  - Declarar `owl:inverseOf gnub:derivesFromArticle` (coherencia navegable).
 
 ### `gnub:exercisesInteriorGovernmentOver`
 - Tipo: `owl:ObjectProperty`
@@ -643,14 +499,6 @@
 - Dominio: `gist:GovernmentOrganization`
 - Rango: `gist:GeoRegion`
 - subPropertyOf: `gnub:governs`
-- Alineamiento Gist: **OK**
-
-### `gnub:fromIPRPhase`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "desde fase"@es
-- Definición: "Fase de origen de la transición."@es
-- Dominio: `gnub:IPRStateTransition`
-- Rango: `gnub:IPRPhase`
 - Alineamiento Gist: **OK**
 
 ### `gnub:funds`
@@ -677,16 +525,9 @@
 - Definición: "Estado de admisibilidad actual de la IPR."@es
 - Dominio: `gnub:IPR`
 - Rango: `gnub:AdmissibilityState`
-- Alineamiento Gist: **OK**
-
-### `gnub:hasAgreementState`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "tiene estado de convenio"@es
-- Definición: "Estado actual de tramitación del convenio."@es
-- Dominio: `gnub:TransferAgreement`
-- Rango: `gnub:AgreementState`
-- subPropertyOf: `gist:isCategorizedBy`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasApplicant`
 - Tipo: `owl:ObjectProperty`
@@ -694,28 +535,9 @@
 - Definición: "Organización que postula la iniciativa (distinto del ejecutor financiero)."@es
 - Dominio: `gnub:IPR`
 - Rango: `gist:Organization`
-- subPropertyOf: `gist:hasParty`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Alineación de participación: agregar `rdfs:subPropertyOf gist:hasParty` (o `gist:hasParticipant`).
-
-### `gnub:hasApprovalStage`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "tiene etapa de aprobación"@es
-- Definición: "Etapa actual en el flujo de aprobación del acto administrativo."@es
-- Dominio: `gnub:AdministrativeAct`
-- Rango: `gnub:ApprovalFlowStage`
-- subPropertyOf: `gist:isCategorizedBy`
-- Alineamiento Gist: **OK**
-
-### `gnub:hasCurrentPhase`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "tiene fase actual"@es
-- Definición: "Fase actual del ciclo de vida de la IPR."@es
-- Dominio: `gnub:IPR`
-- Rango: `gnub:IPRPhase`
-- subPropertyOf: `gist:isCategorizedBy`
-- Alineamiento Gist: **OK**
+  - Agregar `rdfs:subPropertyOf gist:hasParty` (o `gist:hasParticipant`) para alinearse con el patrón de participación de Gist.
 
 ### `gnub:hasEvaluationTier`
 - Tipo: `owl:ObjectProperty`
@@ -723,7 +545,9 @@
 - Definición: "Nivel de proporcionalidad asignado para evaluación (0, 1, 2, 3)."@es
 - Dominio: `gnub:IPRProject`
 - Rango: `gnub:EvaluationTier`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasEvaluationTrack`
 - Tipo: `owl:ObjectProperty`
@@ -731,15 +555,9 @@
 - Definición: "Track de evaluación al que pertenece este resultado."@es
 - Dominio: `gnub:EvaluationResult`
 - Rango: `gnub:EvaluationTrack`
-- Alineamiento Gist: **OK**
-
-### `gnub:hasExpedient`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "tiene expediente"@es
-- Definición: "Relaciona una rendición con su expediente documental."@es
-- Dominio: `gnub:Rendition`
-- Rango: `gnub:RenditionExpedient`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasFundingSource`
 - Tipo: `owl:ObjectProperty`
@@ -755,7 +573,9 @@
 - Definición: "Modalidad de ejecución del IPR (Directa o Transferencia)."@es
 - Dominio: `gnub:IPR`
 - Rango: `gnub:ImplementationMode`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasInvestmentTypology`
 - Tipo: `owl:ObjectProperty`
@@ -763,7 +583,9 @@
 - Definición: "Clasificación sectorial (RIS) requerida para iniciativas evaluadas bajo el Sistema Nacional de Inversiones (SNI) (ej. Edificación, Patrimonio)."@es
 - Dominio: `gnub:IPR`
 - Rango: `gnub:InvestmentTypology`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasLegalMandate`
 - Tipo: `owl:ObjectProperty`
@@ -771,10 +593,10 @@
 - Definición: "Relaciona un órgano o autoridad con un mandato legal específico."@es
 - Dominio: `unionOf(gist:Organization gist:Person)`
 - Rango: `gnub:LegalMandate`
-- subPropertyOf: `gist:isGovernedBy`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Agregar `rdfs:subPropertyOf gist:isGovernedBy` para alinear mandato legal como gobernanza. Si requieres vigencia/historial: reificar con `gist:TemporalRelation`.
+  - Agregar `rdfs:subPropertyOf gist:isGovernedBy` (un mandato legal gobierna/dirige conducta).
+  - Si requieres vigencia/historial de aplicabilidad, reificar con `gist:TemporalRelation`.
 
 ### `gnub:hasMaxAdminCost`
 - Tipo: `owl:ObjectProperty`
@@ -798,16 +620,9 @@
 - Definición: "Relaciona un programa con sus componentes (bienes/servicios)."@es
 - Dominio: `gnub:OperationalProgram`
 - Rango: `gnub:ProgramComponent`
-- Alineamiento Gist: **OK**
-
-### `gnub:hasRenditionState`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "tiene estado de rendición"@es
-- Definición: "Estado actual del proceso de rendición."@es
-- Dominio: `gnub:Rendition`
-- Rango: `gnub:RenditionState`
-- subPropertyOf: `gist:isCategorizedBy`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:hasThreshold`
 - Tipo: `owl:ObjectProperty`
@@ -840,10 +655,9 @@
 - Definición: "Organización responsable de la evaluación técnica (se puede aplicar tanto a una IPR concreta como a un mecanismo de financiamiento)."@es
 - Dominio: (no declarado)
 - Rango: `gist:Organization`
-- subPropertyOf: `gist:hasParticipant`
 - Alineamiento Gist: **REVIEW**
 - Recomendaciones:
-  - Alineación de participación: agregar `rdfs:subPropertyOf gist:hasParticipant` (y opcionalmente usar `gist:hasParty`).
+  - Agregar `rdfs:subPropertyOf gist:hasParticipant` (y opcionalmente restringir a `gist:hasParty` si sólo aplica a Org/Person).
 
 ### `gnub:isManagedBy`
 - Tipo: `owl:ObjectProperty`
@@ -879,8 +693,6 @@
 - Dominio: `gist:GovernmentOrganization`
 - Rango: `gist:Organization`
 - Alineamiento Gist: **OK**
-- Recomendaciones:
-  - En el diagrama Omega la etiqueta es “financia proyectos” pero en la ontología el `skos:prefLabel` es “gestiona financiamiento para”. Considerar `skos:altLabel` para alinear vocabulario diagrama↔ontología.
 
 ### `gnub:nominatesCandidatesFor`
 - Tipo: `owl:ObjectProperty`
@@ -896,7 +708,9 @@
 - Definición: "Tipo de resultado/dictamen que produce este track de evaluación."@es
 - Dominio: `gnub:EvaluationTrack`
 - Rango: `gnub:EvaluationResult`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:promotesProductiveDevelopmentIn`
 - Tipo: `owl:ObjectProperty`
@@ -904,15 +718,6 @@
 - Definición: "Relación del diagrama: DIFOI ejecuta/coordina fomento productivo en el territorio."@es
 - Dominio: `gist:GovernmentOrganization`
 - Rango: `gist:GeoRegion`
-- Alineamiento Gist: **OK**
-
-### `gnub:receivesRendition`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "recibe rendición (otorgante)"@es
-- Definición: "Entidad otorgante que recibe la rendición (GORE como participante en rol de otorgante)."@es
-- Dominio: `gnub:Rendition`
-- Rango: `gist:Organization`
-- subPropertyOf: `gist:hasParty`
 - Alineamiento Gist: **OK**
 
 ### `gnub:regulates`
@@ -924,30 +729,15 @@
 - subPropertyOf: `gnub:governs`
 - Alineamiento Gist: **OK**
 
-### `gnub:rendersAccount`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "rinde cuentas (ejecutor)"@es
-- Definición: "Entidad ejecutora que rinde cuentas (participante en rol de ejecutor)."@es
-- Dominio: `gnub:Rendition`
-- Rango: `gist:Organization`
-- subPropertyOf: `gist:hasParty`
-- Alineamiento Gist: **OK**
-
-### `gnub:rendersFor`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "rinde por convenio"@es
-- Definición: "Convenio de transferencia al que corresponde esta rendición."@es
-- Dominio: `gnub:Rendition`
-- Rango: `gnub:TransferAgreement`
-- Alineamiento Gist: **OK**
-
 ### `gnub:requiresEvaluation`
 - Tipo: `owl:ObjectProperty`
 - Etiqueta: "requiere evaluación"@es
 - Definición: "Track de evaluación técnica requerido por el mecanismo."@es
 - Dominio: `gnub:FinancingMechanism`
 - Rango: `gnub:EvaluationTrack`
-- Alineamiento Gist: **OK**
+- Alineamiento Gist: **REVIEW**
+- Recomendaciones:
+  - Si la intención es sólo clasificar, preferir `gist:isCategorizedBy` (y mantener la propiedad específica sólo si agrega claridad/compatibilidad).
 
 ### `gnub:supervises`
 - Tipo: `owl:ObjectProperty`
@@ -955,30 +745,6 @@
 - Definición: "Relación de supervisión jerárquica entre Asignaciones (ej. Jefatura de División supervisa a Jefatura de Departamento)."@es
 - Dominio: `gist:Assignment`
 - Rango: `gist:Assignment`
-- Alineamiento Gist: **OK**
-
-### `gnub:toIPRPhase`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "hacia fase"@es
-- Definición: "Fase de destino de la transición."@es
-- Dominio: `gnub:IPRStateTransition`
-- Rango: `gnub:IPRPhase`
-- Alineamiento Gist: **OK**
-
-### `gnub:transitionOf`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "transición de"@es
-- Definición: "IPR sujeta a la transición de estado."@es
-- Dominio: `gnub:IPRStateTransition`
-- Rango: `gnub:IPR`
-- Alineamiento Gist: **OK**
-
-### `gnub:triggeredBy`
-- Tipo: `owl:ObjectProperty`
-- Etiqueta: "gatillada por"@es
-- Definición: "Acto administrativo que gatilla la transición (ej. Resolución de aprobación, Certificado CORE)."@es
-- Dominio: `gnub:IPRStateTransition`
-- Rango: `gnub:AdministrativeAct`
 - Alineamiento Gist: **OK**
 
 ### `gnub:usesFinancingMechanism`
@@ -1054,7 +820,11 @@
 - Rango: `xsd:string`
 - Alineamiento Gist: **OK**
 
-## Mejoras priorizadas
-- Alinear coordinación Omega (punteado) con `gist:isConnectedTo` (subPropertyOf + simetría) cuando aplique.
-- Hacer explícita la naturaleza gubernamental de unidades (`gnub:Division` etc.) o relajar dominios usando `gist:domainIncludes`.
-- Alinear módulo legal: `gnub:hasLegalMandate` ⊑ `gist:isGovernedBy` y `gnub:belongsToLegalDocument` ⊑ `gist:isPartOf`; añadir inversa `gnub:establishes` ↔ `gnub:derivesFromArticle`.
+## Roadmap sugerido
+- Añadir axiomas de alineamiento (sin cambiar datos):
+  - `gnub:hasApplicant rdfs:subPropertyOf gist:hasParty`.
+  - `gnub:isEvaluatedBy rdfs:subPropertyOf gist:hasParticipant`.
+  - `gnub:hasLegalMandate rdfs:subPropertyOf gist:isGovernedBy`.
+  - `gnub:belongsToLegalDocument rdfs:subPropertyOf gist:isPartOf`.
+  - `gnub:establishes owl:inverseOf gnub:derivesFromArticle` (si aplica).
+- Mantener el patrón de magnitudes (ya alineado) y, si crece el uso de plazos, reconsiderar `gnub:maxExecutionMonths` hacia `gist:Magnitude` para homogeneidad.
