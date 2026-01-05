@@ -2,6 +2,11 @@
 # URN: urn:knowledge:fxsl:med:legislacion:formacion_especialistas:1.0.0
 ---
 _manifest:
+  classification:
+    role: "KB sobre formación de especialistas en el sistema público de salud: becas, Período Asistencial Obligatorio (PAO) y comisiones de estudio"
+    primary_use: "Determinar requisitos, obligaciones y efectos de acceder a programas de especialización financiados por el Estado y su PAO asociado"
+    cross_reference: "Usar definiciones globales BECA y PAO de kb_med_000; reglas de jornada de kb_med_004 y derechos especiales de kb_med_012"
+
   urn: "urn:knowledge:fxsl:med:legislacion:formacion_especialistas:1.0.0"
   federation:
     visibility: internal
@@ -25,9 +30,21 @@ _manifest:
     - Ref: "urn:knowledge:fxsl:med:legislacion:remuneraciones:1.0.0"
 
 LLM_Parsing_Instructions:
-  Role: "KB sobre formación de especialistas en el sistema público de salud: becas, Período Asistencial Obligatorio (PAO) y comisiones de estudio"
-  Primary_Use: "Determinar requisitos, obligaciones y efectos de acceder a programas de especialización financiados por el Estado y su PAO asociado"
-  Cross_Reference: "Usar definiciones globales BECA y PAO de kb_med_000; reglas de jornada de kb_med_004 y derechos especiales de kb_med_012"
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
 
 # ═══════════════════════════════════════════════════════════════════
 # PARTE 1: BECAS DE ESPECIALIZACIÓN

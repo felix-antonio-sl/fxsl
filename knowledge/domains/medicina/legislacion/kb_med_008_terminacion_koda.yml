@@ -2,6 +2,11 @@
 # URN: urn:knowledge:fxsl:med:legislacion:terminacion:1.0.0
 ---
 _manifest:
+  classification:
+    role: "KB sobre causales, procedimientos y efectos de la terminación de la relación funcionaria y laboral de médicos en Chile"
+    primary_use: "Determinar qué causales pueden invocarse para terminar el vínculo, qué procedimiento aplica y qué derechos conserva el médico"
+    cross_reference: "Usar definiciones legales de kb_med_000; estatutos de kb_med_001; deberes/prohibiciones de kb_med_002; jornada/calificaciones de kb_med_004; responsabilidad administrativa de kb_med_007; confianza legítima de kb_med_014"
+
   urn: "urn:knowledge:fxsl:med:legislacion:terminacion:1.0.0"
   federation:
     visibility: internal
@@ -25,9 +30,21 @@ _manifest:
     - Ref: "urn:knowledge:fxsl:med:legislacion:responsabilidad_admin:1.0.0"
 
 LLM_Parsing_Instructions:
-  Role: "KB sobre causales, procedimientos y efectos de la terminación de la relación funcionaria y laboral de médicos en Chile"
-  Primary_Use: "Determinar qué causales pueden invocarse para terminar el vínculo, qué procedimiento aplica y qué derechos conserva el médico"
-  Cross_Reference: "Usar definiciones legales de kb_med_000; estatutos de kb_med_001; deberes/prohibiciones de kb_med_002; jornada/calificaciones de kb_med_004; responsabilidad administrativa de kb_med_007; confianza legítima de kb_med_014"
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
 
 # ═══════════════════════════════════════════════════════════════════
 # PARTE 1: TERMINACIÓN DE LA RELACIÓN FUNCIONARIA (SECTOR PÚBLICO)

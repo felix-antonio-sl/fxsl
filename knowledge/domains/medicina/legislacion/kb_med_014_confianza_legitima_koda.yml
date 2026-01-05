@@ -2,6 +2,11 @@
 # URN: urn:knowledge:fxsl:med:legislacion:confianza_legitima:1.0.0
 ---
 _manifest:
+  classification:
+    role: "KB sobre el principio de confianza legítima aplicado a médicos funcionarios a contrata"
+    primary_use: "Determinar si un médico a contrata está protegido contra la no renovación arbitraria según su antigüedad"
+    cross_reference: "Usar definiciones de contrata/honorarios de kb_med_000; causales de término de kb_med_008; modalidades de contratación de kb_med_010"
+
   urn: "urn:knowledge:fxsl:med:legislacion:confianza_legitima:1.0.0"
   federation:
     visibility: internal
@@ -22,9 +27,21 @@ _manifest:
     - Ref: "urn:knowledge:fxsl:med:legislacion:contratacion_publica:1.0.0"
 
 LLM_Parsing_Instructions:
-  Role: "KB sobre el principio de confianza legítima aplicado a médicos funcionarios a contrata"
-  Primary_Use: "Determinar si un médico a contrata está protegido contra la no renovación arbitraria según su antigüedad"
-  Cross_Reference: "Usar definiciones de contrata/honorarios de kb_med_000; causales de término de kb_med_008; modalidades de contratación de kb_med_010"
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
 
 # ═══════════════════════════════════════════════════════════════════
 # PARTE 1: CONCEPTO Y FUNDAMENTO

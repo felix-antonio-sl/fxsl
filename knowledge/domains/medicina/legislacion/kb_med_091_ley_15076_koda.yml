@@ -2,6 +2,11 @@
 # URN: urn:knowledge:fxsl:med:legislacion:ley_15076:1.0.0
 ---
 _manifest:
+  classification:
+    role: "KB detallada de la Ley 15.076 para profesionales funcionarios de la salud"
+    primary_use: "Mapear consultas al articulado específico de la Ley 15.076 (DFL 1/2001), explicando derechos, deberes, jornada, remuneraciones, previsión y beneficios especiales de médicos, dentistas, farmacéuticos/químico-farmacéuticos y bioquímicos que actúan como profesionales funcionarios"
+    cross_reference: "Usar kb_med_000_legislacion_index_koda.yml para definiciones globales de leyes y kb_med_001_intro_estatutos_koda.yml para jerarquía normativa (especialmente LEY_19664, EA_18834 y LOC_18575). Este módulo se focaliza en el articulado de Ref: LEY_15076."
+
   urn: "urn:knowledge:fxsl:med:legislacion:ley_15076:1.0.0"
   federation:
     visibility: internal
@@ -20,9 +25,21 @@ _manifest:
     - Ref: "urn:knowledge:fxsl:med:legislacion:index:1.0.0"
 
 LLM_Parsing_Instructions:
-  Role: "KB detallada de la Ley 15.076 para profesionales funcionarios de la salud"
-  Primary_Use: "Mapear consultas al articulado específico de la Ley 15.076 (DFL 1/2001), explicando derechos, deberes, jornada, remuneraciones, previsión y beneficios especiales de médicos, dentistas, farmacéuticos/químico-farmacéuticos y bioquímicos que actúan como profesionales funcionarios"
-  Cross_Reference: "Usar kb_med_000_legislacion_index_koda.yml para definiciones globales de leyes y kb_med_001_intro_estatutos_koda.yml para jerarquía normativa (especialmente LEY_19664, EA_18834 y LOC_18575). Este módulo se focaliza en el articulado de Ref: LEY_15076."
+  ID: KODA-LLM-PARSER-01
+  Req: Mandatory block following Metadata.
+  Prohib: Using for artifact creation or translation.
+  Content: |
+    BEGIN_LLM_INSTRUCTIONS
+    You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
+
+    FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, tables) with zero loss. Ignore fat (filler words, rhetoric, stylistic prose).
+
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
+    REFERENCE POLICY: Ref: is internal only—must point to existing ID within THIS document. XRef/XRef_Required: are external only—must point to a URN (optionally with #ID fragment) in another artifact. External documents without specific ID use Ctx:, Ctx_Required:, or Ctx_Optional:.
+
+    LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.
+    END_LLM_INSTRUCTIONS
 
 Resumen_Ejecutivo:
   ID: L15076_RESUMEN
