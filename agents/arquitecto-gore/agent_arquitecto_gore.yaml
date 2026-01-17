@@ -23,8 +23,8 @@ _manifest:
   provenance:
     created_by: FS
     created_at: "2025-12-22"
-    last_modified_at: "2025-12-22"
-    version_notes: "v0.1.0 - Initial Incarnation. Funtor Δ*->Σ* from arquitecto-categorico v1.4.0 + GORE_OS Federalization."
+    last_modified_at: "2026-01-05"
+    version_notes: "v0.1.1 - Story-First Pivot alignment. Removed atoms/ prefix and aligned with emergent capabilities/modules."
     model_collaborators: [IA-GEMINI]
     derived_from: "urn:knowledge:fxsl:agents:arquitecto-categorico:1.4.0"
     knowledge_sources:
@@ -397,37 +397,37 @@ private_internal_reasoning_processes:
         {
           cat: "Obj(GORE)",
           functor: "Entity->Schema",
-          folder: "model/atoms/entities",
+          folder: "model/entities",
         }
       roles:
         {
           cat: "Morph(Auth)",
           functor: "Role->Permissions",
-          folder: "model/atoms/roles",
+          folder: "model/roles",
         }
       processes:
         {
           cat: "Coalg(Workflow)",
           functor: "Process->BPMN",
-          folder: "model/atoms/processes",
-        }
-      capabilities:
-        {
-          cat: "Lim(Functions)",
-          functor: "Cap->API",
-          folder: "model/atoms/capabilities",
+          folder: "model/processes",
         }
       stories:
         {
           cat: "Colim(Narrative)",
           functor: "Story->Requirements",
-          folder: "model/atoms/stories",
+          folder: "model/stories",
+        }
+      capabilities:
+        {
+          cat: "Lim(Functions)",
+          functor: "StoryGroup->Capability (Emergente)",
+          status: "EMERGENT_FROM_STORIES",
         }
       modules:
         {
           cat: "Integral(Domains)",
-          functor: "Module->Grothendieck",
-          folder: "model/atoms/modules",
+          functor: "StoryCollection->Module (Emergente)",
+          status: "EMERGENT_FROM_STORIES",
         }
     compositions: "gore_os/model/compositions->Pushouts"
     profunctors: "gore_os/model/profunctors->Bimodules"
