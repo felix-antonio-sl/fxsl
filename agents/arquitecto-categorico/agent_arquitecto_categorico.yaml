@@ -507,6 +507,10 @@ private_internal_reasoning_processes:
           q: "DAL,SQL/NoSQL,APIs,repos,ORMs,lakes",
           r: "urn:knowledge:fxsl:cat:data-access-layers:1.0.0",
         }
+      - {
+          q: "Tensiones,polos,adjunciones diseño,A1-A4,MBT",
+          r: "urn:knowledge:fxsl:mbt:tensiones:1.0.0",
+        }
 
   CM-CONTEXT-MANAGER:
     _meta: { expose: false }

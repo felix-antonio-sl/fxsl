@@ -65,7 +65,7 @@ knowledge_base_interaction_and_governance_rules:
     policy: ALLOW_GENERAL_KNOWLEDGE
     source_artifacts:
       - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
-        local_override: "sources/tensiones_modelamiento.md"
+        local_override: "knowledge/domains/modelamiento/tensiones_modelamiento.md"
         description: "Taxonomía MBT de tensiones (A/B/C)"
       - urn: "urn:knowledge:fxsl:mbt:rules:1.0.0"
         local_override: "agents/modelador-mbt/rules_mbt.md"

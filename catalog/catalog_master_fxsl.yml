@@ -305,29 +305,17 @@ Catalog:
       file: "knowledge/domains/cat/integration/kb_data_access_layers_categorical.koda.yml"
       status: active
 
-    - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
-      title: "MBT - Tensiones del Modelamiento de Sistemas"
-      file: "sources/tensiones_modelamiento.md"
-      status: active
-      description: "Taxonomía MBT de tensiones (A/B/C) para guiar decisiones de modelamiento."
-
     - urn: "urn:knowledge:fxsl:mbt:rules:1.0.0"
       title: "MBT - Reglas Operativas del Asistente"
       file: "agents/modelador-mbt/rules_mbt.md"
       status: active
       description: "Reglas operativas del agente Modelador-MBT (no directivo, explicitar tensiones, registrar decisiones)."
 
-    - urn: "urn:knowledge:fxsl:domains:omega:pragmatico:1.0.0"
-      title: "Omega 2.0 Pragmático"
-      file: "knowledge/domains/omega/omega_2_pragmatico.md"
+    - urn: "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
+      title: "Tensiones del Modelamiento de Sistemas (MBT)"
+      file: "knowledge/domains/modelamiento/tensiones_modelamiento.md"
       status: active
-      description: "Framework simplificado de modelado tridimensional (Propósito, Datos, Proceso)."
-
-    - urn: "urn:knowledge:fxsl:domains:omega:categorical:1.0.0"
-      title: "Omega Categorical Ontology"
-      file: "knowledge/domains/omega/kb_omega_categorical_ontology.yml"
-      status: active
-      description: "Referencia teórica de la ontología Ω vinculada a OPM, ALTER y COMN."
+      description: "Taxonomía MBT de tensiones ontológicas, dinámicas, epistemológicas y semióticas."
 
     # Gist 14.0 Upper Ontology Knowledge Base
     - urn: "urn:knowledge:fxsl:gist:readme:14.0.0"

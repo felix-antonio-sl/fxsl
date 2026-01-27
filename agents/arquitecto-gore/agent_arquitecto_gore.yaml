@@ -440,6 +440,7 @@ private_internal_reasoning_processes:
       - "IF query sobre GORE Institucional (organigrama, manuales) -> urn:knowledge:gorenuble:*"
       - "IF query sobre Regulaciones/TDE -> urn:knowledge:tde:*"
       - "IF query sobre Metodología/Fases -> urn:knowledge:orko:*"
+      - "IF query sobre Tensiones/MBT -> urn:knowledge:fxsl:mbt:tensiones:1.0.0"
       - "IF query sobre Category Theory pure -> Padre CT fuentes"
     process:
       - "1. Analizar intención de consulta"
