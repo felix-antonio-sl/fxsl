@@ -95,6 +95,12 @@ Catalog:
       status: active
       description: "Pensador Dialéctico-Generativo especializado en Gist 14.0 upper ontology. Hereda de Pensador-Generador."
 
+    - urn: "urn:knowledge:fxsl:agents:ingeniero-moltbot-composicional:1.0.0"
+      title: "Ingeniero-Moltbot-Composicional"
+      file: "agents/ingeniero-moltbot-composicional/agent_ingeniero_moltbot_composicional.yaml"
+      status: active
+      description: "Especialista en desarrollo e implementación de Moltbot. Descendiente de Ingeniero-Sistemas-Composicional."
+
   Schemas: []
     # Add your schemas here
   Domains:
@@ -372,11 +378,118 @@ Catalog:
       status: active
       description: "SHACL prefix declarations for visualizers and tooling."
 
+    # === Moltbot Knowledge Base ===
+    # External namespace: moltbot (no fxsl prefix)
+    # Catalog source: knowledge/domains/moltbot/docs/catalog_moltbot.yaml
+
+    # Concepts
+    - urn: "urn:knowledge:moltbot:concepts:agent-runtime:1.0.0"
+      title: "Moltbot Agent Runtime"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_agent_runtime.yaml"
+      status: active
+      description: "Runtime de agentes: workspace, bootstrap, sesiones, streaming"
+
+    - urn: "urn:knowledge:moltbot:concepts:session-management:1.0.0"
+      title: "Moltbot Session Management"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_session_management.yaml"
+      status: active
+      description: "Gestión de sesiones: IDs, persistencia, queue modes"
+
+    - urn: "urn:knowledge:moltbot:concepts:memory-context:1.0.0"
+      title: "Moltbot Memory and Context"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_memory_context.yaml"
+      status: active
+      description: "Memoria y contexto: bootstrap files, system prompt"
+
+    - urn: "urn:knowledge:moltbot:concepts:messaging:1.0.0"
+      title: "Moltbot Messaging"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_messaging.yaml"
+      status: active
+      description: "Mensajería: formatos, streaming, deltas"
+
+    - urn: "urn:knowledge:moltbot:concepts:groups:1.0.0"
+      title: "Moltbot Groups"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_groups.yaml"
+      status: active
+      description: "Grupos: routing, activación, mention gating"
+
+    - urn: "urn:knowledge:moltbot:concepts:models:1.0.0"
+      title: "Moltbot Models"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_models.yaml"
+      status: active
+      description: "Modelos: providers, refs, aliases"
+
+    - urn: "urn:knowledge:moltbot:concepts:routing:1.0.0"
+      title: "Moltbot Routing"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_routing.yaml"
+      status: active
+      description: "Routing: multi-agent, channel routing"
+
+    - urn: "urn:knowledge:moltbot:concepts:misc:1.0.0"
+      title: "Moltbot Miscellaneous"
+      file: "knowledge/domains/moltbot/docs/concepts/kb_misc.yaml"
+      status: active
+      description: "Misceláneos: timestamps, token usage, etc."
+
+    # CLI
+    - urn: "urn:knowledge:moltbot:cli:cli:1.0.0"
+      title: "Moltbot CLI"
+      file: "knowledge/domains/moltbot/docs/cli/kb_cli.yaml"
+      status: active
+      description: "CLI: comandos gateway, agent, send, wizard, doctor"
+
+    # Gateway
+    - urn: "urn:knowledge:moltbot:gateway:gateway:1.0.0"
+      title: "Moltbot Gateway"
+      file: "knowledge/domains/moltbot/docs/gateway/kb_gateway.yaml"
+      status: active
+      description: "Gateway: WebSocket control plane, configuración, Tailscale"
+
+    # Channels
+    - urn: "urn:knowledge:moltbot:channels:channels:1.0.0"
+      title: "Moltbot Channels"
+      file: "knowledge/domains/moltbot/docs/channels/kb_channels.yaml"
+      status: active
+      description: "Canales: WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Teams"
+
+    # Tools
+    - urn: "urn:knowledge:moltbot:tools:tools:1.0.0"
+      title: "Moltbot Tools"
+      file: "knowledge/domains/moltbot/docs/tools/kb_tools.yaml"
+      status: active
+      description: "Tools: browser, canvas, nodes, skills"
+
+    # Platforms
+    - urn: "urn:knowledge:moltbot:platforms:platforms:1.0.0"
+      title: "Moltbot Platforms"
+      file: "knowledge/domains/moltbot/docs/platforms/kb_platforms.yaml"
+      status: active
+      description: "Plataformas: macOS, iOS, Android, Canvas, Voice"
+
+    # Operations
+    - urn: "urn:knowledge:moltbot:operations:install-start-help-security:1.0.0"
+      title: "Moltbot Operations - Install/Start/Help/Security"
+      file: "knowledge/domains/moltbot/docs/operations/kb_operations_install_start_help_security.yaml"
+      status: active
+      description: "Operaciones: instalación, inicio, ayuda, seguridad"
+
+    - urn: "urn:knowledge:moltbot:operations:automation-hooks-reference:1.0.0"
+      title: "Moltbot Operations - Automation/Hooks/Reference"
+      file: "knowledge/domains/moltbot/docs/operations/kb_operations_automation_hooks_reference.yaml"
+      status: active
+      description: "Operaciones: automatización, hooks, referencias"
+
+    - urn: "urn:knowledge:moltbot:operations:nodes-plugins-providers-web:1.0.0"
+      title: "Moltbot Operations - Nodes/Plugins/Providers/Web"
+      file: "knowledge/domains/moltbot/docs/operations/kb_operations_nodes_plugins_providers_web.yaml"
+      status: active
+      description: "Operaciones: nodos, plugins, providers, web"
+
 Statistics:
-  total_artifacts: 66
+  total_artifacts: 83
   core_guides: 0
-  agents: 12
+  agents: 13
   schemas: 0
-  domains: 54
-  last_updated: "2026-01-05"
-  notes: "Namespace audit and KODA compliance cleanup: standardized LLM_Parsing_Instructions across all domains (medicina, cat, omega)."
+  domains: 70
+  last_updated: "2026-01-29"
+  notes: "Added Moltbot KB (16 artifacts) and Ingeniero-Moltbot-Composicional agent."
