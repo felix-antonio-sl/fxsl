@@ -42,6 +42,8 @@ LLM_Parsing_Instructions:
 
     FIDELITY: Preserve meat (essential information) and skeleton (structure: headers, IDs, lists, formulas, code) with zero loss. Ignore fat.
 
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
     REFERENCE POLICY: Ref: internal only—must point to existing ID within THIS document. XRef/XRef_Required: external only—must point to a URN (optionally with #ID fragment) in another artifact.
 
     LANGUAGE POLICY: Keywords in English, content in original language. Never translate content.

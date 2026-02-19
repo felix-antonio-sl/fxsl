@@ -44,7 +44,8 @@ LLM_Parsing_Instructions:
   Content: |
     BEGIN_LLM_INSTRUCTIONS
     You are an AI agent consuming a KODA artifact. Parse with absolute fidelity.
-    LEXICON: Def->Definition, Proc->Process, Ex->Example, Ref->Reference, XRef->External Reference
+    LEXICON (expand before processing): Act->Action, Cond->Condition, Ctx->Context, Ctx_Required->Required External Reference, Ctx_Optional->Optional External Reference, Def->Definition, Ex->Example, Mssn->Mission, Obj->Objective, Proc->Process, Purp->Purpose, Ref->Reference, XRef->Cross-Artifact Reference, XRef_Required->Mandatory Cross-Artifact Reference, Req->Requirement, Res->Result, Src->Source, Prohib->Prohibition, Warn->Warning, Just->Justification, Rec->Recommendation
+
     REFERENCE POLICY: Ref: internal only. XRef: external URN only.
     END_LLM_INSTRUCTIONS
 

@@ -101,6 +101,12 @@ Catalog:
       status: active
       description: "Especialista en desarrollo e implementación de Moltbot. Descendiente de Ingeniero-Sistemas-Composicional."
 
+    - urn: "urn:knowledge:fxsl:agents:ingeniero-openclaw-composicional:1.1.0"
+      title: "Ingeniero-OpenClaw-Composicional"
+      file: "agents/ingeniero-openclaw-composicional/agent_ingeniero_openclaw_composicional.yaml"
+      status: active
+      description: "Ingeniero-Arquitecto de Sistemas OpenClaw: desarrollo, configuración y operación self-hosted multi-canal."
+
   Schemas: []
     # Add your schemas here
   Domains:
@@ -486,10 +492,10 @@ Catalog:
       description: "Operaciones: nodos, plugins, providers, web"
 
 Statistics:
-  total_artifacts: 83
+  total_artifacts: 84
   core_guides: 0
-  agents: 13
+  agents: 14
   schemas: 0
   domains: 70
-  last_updated: "2026-01-29"
-  notes: "Added Moltbot KB (16 artifacts) and Ingeniero-Moltbot-Composicional agent."
+  last_updated: "2026-02-19"
+  notes: "Added Ingeniero-OpenClaw-Composicional agent."

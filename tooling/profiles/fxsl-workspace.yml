@@ -57,4 +57,4 @@ key_directories:
 # Comandos útiles
 useful_commands:
   validate: "cd ../koda && ./scripts/koda-validate.sh --workspace ../fxsl"
-  catalog: "cat knowledge/catalog/catalog_master_fxsl.yml"
+  catalog: "cat catalog/catalog_master_fxsl.yml"
