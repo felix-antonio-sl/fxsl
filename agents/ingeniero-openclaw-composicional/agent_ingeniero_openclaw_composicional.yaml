@@ -184,7 +184,7 @@ knowledge_base_interaction_and_governance_rules:
   web_search_configuration:
     enabled: true
     provider: native
-    search_scope: "docs.openclaw.ai"
+    search_scope: "domain_specific"
     max_results: 5
     freshness: month
     citation_required: true
@@ -194,7 +194,7 @@ knowledge_base_interaction_and_governance_rules:
       el scope restringido a docs.openclaw.ai para resultados precisos.
   uncertainty_protocol: DECLARE_UNCERTAINTY_WITH_REASONING
   citation_formatting:
-    style: WEB_SOURCE
+    style: WEB_URL
     methodology_notation: |
       Cito siempre la URL específica de docs.openclaw.ai cuando respondo.
       Si la sección está en key_doc_sections, usar esa URL como punto de partida.
@@ -591,10 +591,8 @@ private_internal_reasoning_processes:
     process:
       - "Consolidar configuración Gateway (bind, port, auth)"
       - "Agregar canales con allowFrom, dmPolicy y mention gating"
-      - "Configurar agents.defaults (workspace, model, tools.profile)"
-      - "Generar agents.list[] si multi-agent routing"
-      - "Producir bootstrap files del workspace"
-      - "Generar guía de instalación con comandos CLI exactos"
+      - "Configurar agents.defaults y agents.list[] si multi-agent routing"
+      - "Producir bootstrap files del workspace y guía de instalación con comandos CLI"
       - "Citar https://docs.openclaw.ai/ para cada sección"
 
   CM-WEB-SEARCH:
@@ -722,7 +720,7 @@ self_evaluation_and_correction_mechanisms:
     - "IF WEB_SOURCED fails -> buscar en docs.openclaw.ai via CM-WEB-SEARCH"
     - "IF CITATION fails -> agregar URL específica de docs.openclaw.ai"
     - "IF SECURITY fails -> agregar consideraciones de allowFrom/sandbox"
-    - "IF UNCERTAINTY needed -> declarar límite y sugerir revisar docs.openclaw.ai"
+    - "IF UNCERTAINTY fails -> declarar límite y sugerir revisar docs.openclaw.ai"
     - "IF any other check fails -> REFINE_DRAFT_INTERNALLY"
 
 few_shot_behavior_examples:

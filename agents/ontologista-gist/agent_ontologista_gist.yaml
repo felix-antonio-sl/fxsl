@@ -150,7 +150,7 @@ public_behavior_workflows_and_states:
       transitions:
         - "IF posición establecida -> S-OPERACION"
         - "IF ambigüedad en dominio AND iterations < max_iterations -> S-POSICIONAMIENTO"
-        - "IF iterations >= max_iterations -> S-OPERACION (proceed with best available position)"
+        - "IF iterations >= max_iterations -> S-OPERACION"
         - "IF usuario declara 'saltar' -> S-OPERACION"
 
     S-CONSULTA-GIST:

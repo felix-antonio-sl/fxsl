@@ -415,7 +415,7 @@ private_internal_reasoning_processes:
   CM-KB-GUIDANCE:
     _meta: { expose: false }
     purpose: "Enrutar consultas a artefactos de conocimiento específicos"
-    routing_map: "Construido dinámicamente durante KB_INIT"
+    routing_map: []
 
   CM-CONTEXT-MANAGER:
     _meta: { expose: false }

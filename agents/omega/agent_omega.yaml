@@ -66,8 +66,9 @@ knowledge_base_interaction_and_governance_rules:
   usage_policy_and_source_management:
     policy: EXCLUSIVE_USE
     source_artifacts:
-      - urn: "urn:knowledge:fxsl:domains:omega:pragmatico:1.0.0"
-      - urn: "urn:knowledge:fxsl:domains:omega:categorical:1.0.0"
+      - urn: "urn:knowledge:fxsl:cat:omega-ontology:1.0.0"
+      - urn: "urn:knowledge:fxsl:omega:template-glosario:1.0.0"
+      - urn: "urn:knowledge:fxsl:omega:template-procesos:1.0.0"
   uncertainty_protocol: DECLARE_UNCERTAINTY_WITH_REASONING
   citation_formatting:
     style: OFFICIAL_SOURCE_NAME
@@ -84,13 +85,13 @@ public_behavior_workflows_and_states:
         - 2. CM-OMEGA-CLASSIFIER
         - 3. Dirigir al estado apropiado
       transitions:
-        - IF nuevo sistema→S-IMMERSION
-        - IF continuar fase 1→S-PURPOSE
-        - IF continuar fase 2→S-DATA
-        - IF continuar fase 3→S-PROCESS
-        - IF validar modelo→S-COHERENCE
-        - IF consulta teórica→S-CONSULTANT
-        - IF terminar→S-END
+        - IF nuevo sistema -> S-IMMERSION
+        - IF continuar fase 1 -> S-PURPOSE
+        - IF continuar fase 2 -> S-DATA
+        - IF continuar fase 3 -> S-PROCESS
+        - IF validar modelo -> S-COHERENCE
+        - IF consulta teórica -> S-CONSULTANT
+        - IF terminar -> S-END
 
     S-IMMERSION:
       role: Fase 0 - Inmersión en el Dominio
@@ -99,9 +100,9 @@ public_behavior_workflows_and_states:
         - 2. Generar Mapa de Stakeholders
         - 3. Validar Pitch de 2 minutos
       transitions:
-        - IF fase completa→S-PURPOSE
-        - IF ajustar→S-IMMERSION
-        - IF cambio contexto→S-DISPATCHER
+        - IF fase completa -> S-PURPOSE
+        - IF ajustar -> S-IMMERSION
+        - IF cambio contexto -> S-DISPATCHER
 
     S-PURPOSE:
       role: Fase 1 - Vista Propósito 🎯
@@ -110,9 +111,9 @@ public_behavior_workflows_and_states:
         - 2. Generar Canvas de Propósito
         - 3. Verificar beneficiarios tienen productos
       transitions:
-        - IF fase completa→S-DATA
-        - IF ajustar→S-PURPOSE
-        - IF cambio contexto→S-DISPATCHER
+        - IF fase completa -> S-DATA
+        - IF ajustar -> S-PURPOSE
+        - IF cambio contexto -> S-DISPATCHER
 
     S-DATA:
       role: Fase 2 - Vista Datos 📦
@@ -121,9 +122,9 @@ public_behavior_workflows_and_states:
         - 2. Tipificar y relacionar entidades
         - 3. Generar Glosario YAML
       transitions:
-        - IF fase completa→S-PROCESS
-        - IF ajustar→S-DATA
-        - IF cambio contexto→S-DISPATCHER
+        - IF fase completa -> S-PROCESS
+        - IF ajustar -> S-DATA
+        - IF cambio contexto -> S-DISPATCHER
 
     S-PROCESS:
       role: Fase 3 - Vista Proceso ⚙️
@@ -132,9 +133,9 @@ public_behavior_workflows_and_states:
         - 2. Definir ciclos de vida
         - 3. Generar Catálogo de Procesos YAML
       transitions:
-        - IF fase completa→S-COHERENCE
-        - IF ajustar→S-PROCESS
-        - IF cambio contexto→S-DISPATCHER
+        - IF fase completa -> S-COHERENCE
+        - IF ajustar -> S-PROCESS
+        - IF cambio contexto -> S-DISPATCHER
 
     S-COHERENCE:
       role: Fase 4 - Validación de Coherencia
@@ -143,10 +144,10 @@ public_behavior_workflows_and_states:
         - 2. Detectar y reportar huérfanos
         - 3. Generar Matriz de Trazabilidad
       transitions:
-        - IF modelo coherente→S-DISPATCHER
-        - IF huérfanos en datos→S-DATA
-        - IF huérfanos en procesos→S-PROCESS
-        - IF huérfanos en propósito→S-PURPOSE
+        - IF modelo coherente -> S-DISPATCHER
+        - IF huérfanos en datos -> S-DATA
+        - IF huérfanos en procesos -> S-PROCESS
+        - IF huérfanos en propósito -> S-PURPOSE
 
     S-CONSULTANT:
       role: Consultor Teórico Omega
@@ -155,8 +156,8 @@ public_behavior_workflows_and_states:
         - 2. Responder con cita a fuente
         - 3. Proveer ejemplo práctico
       transitions:
-        - IF resuelto→S-DISPATCHER
-        - IF aplicar→S-IMMERSION
+        - IF resuelto -> S-DISPATCHER
+        - IF aplicar -> S-IMMERSION
 
     S-END:
       role: Cierre de Sesión
@@ -330,10 +331,10 @@ self_evaluation_and_correction_mechanisms:
       - SCOPE_COMPLIANCE
       - PHASE_COHERENCE
   correction_protocol:
-    - "IF CATALOG_RESOLUTION fails→CM-CATALOG-RESOLVER,retry"
-    - "IF CONTEXT_SHIFT fails→S-DISPATCHER"
-    - "IF PHASE_COHERENCE fails→Volver a fase anterior"
-    - "IF other fails→REFINE"
+    - "IF CATALOG_RESOLUTION fails -> CM-CATALOG-RESOLVER,retry"
+    - "IF CONTEXT_SHIFT fails -> S-DISPATCHER"
+    - "IF PHASE_COHERENCE fails -> Volver a fase anterior"
+    - "IF other fails -> REFINE"
 
 few_shot_behavior_examples:
   - context: Nuevo sistema

@@ -1,3 +1,21 @@
+_manifest:
+  urn: "urn:knowledge:moltbot:catalog:master:1.0.0"
+  federation:
+    visibility: internal
+    license: "Proprietary"
+  compatibility:
+    min_consumer_version: "1.0.0"
+    breaking_changes_from: null
+  resolution:
+    canonical_url: "file://knowledge/domains/moltbot/docs/catalog_moltbot.yaml"
+    mirrors: []
+  provenance:
+    created_by: "Moltbot Docs"
+    created_at: "2026-01-29"
+    last_modified_by: "Codex"
+    last_modified_at: "2026-01-29"
+    signature: null
+
 ID: MOLTBOT-KB-CATALOG-01
 Version: 1.0.0
 Status: Draft
