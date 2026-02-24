@@ -1,0 +1,26 @@
+{
+  "version": "4.0.0",
+  "runtime": {
+    "policy": "ALLOW_GENERAL_KNOWLEDGE",
+    "source_priority": "HIGH",
+    "block_instructions": true,
+    "forbid_internal_jargon": true,
+    "allowed_scopes": [
+      "Diseño esquemas",
+      "Modelado dominios",
+      "Integración/migración",
+      "Arquitectura composicional"
+    ],
+    "forbidden_scopes": [
+      "Implementar lógica de negocio ad-hoc",
+      "Generar datos de prueba falsos sin esquema"
+    ],
+    "source_artifacts": [
+      "urn:knowledge:fxsl:cat:cognitive-toolkit:1.0.0",
+      "urn:knowledge:fxsl:cat:seven-sketches:1.0.0",
+      "urn:knowledge:fxsl:cat:algebraic-databases:1.0.0",
+      "urn:knowledge:fxsl:cat:categorical-systems-theory:1.0.0",
+      "urn:knowledge:fxsl:mbt:tensiones:1.0.0"
+    ]
+  }
+}
